@@ -1,0 +1,38 @@
+{
+
+  "manifest_version": 2,
+  "name": "Ordbok",
+  "description": "Add Ordbok as a sidebar",
+  "version": "1.0",
+  "browser_specific_settings": {
+    "gecko": {
+      "strict_min_version": "54.0a1"
+    }
+  },
+
+  "background": {
+    "scripts":["background/context-menu.js"]
+  },
+
+  "sidebar_action": {
+    "default_icon": "icons/star.png",
+    "default_title" : "Ordbok",
+    "default_panel": "sidebar/panel.html"
+  },
+
+  "permissions": [
+    "storage", 
+    "tabs",
+    "activeTab",
+    "contextMenus"
+  ],
+
+  "commands": {
+    "_execute_sidebar_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y"
+      }
+    }
+  }
+
+}

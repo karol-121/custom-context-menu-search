@@ -1,7 +1,7 @@
 {
 
   "manifest_version": 2,
-  "name": "Custom context menu seach",
+  "name": "Custom context menu search",
   "description": "Customizable open in new tab from context menu.",
   "version": "1.0",
   
@@ -14,7 +14,7 @@
   },
 
   "options_ui": {
-    "page": "options/options.html",
+    "page": "settings/page.html",
     "browser_style": true
   },
 

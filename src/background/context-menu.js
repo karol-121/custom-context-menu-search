@@ -1,39 +1,48 @@
-//temponary examples of user defined new tab targets
-const DuckDuckGoSearch = {
-  id: "search-duckduckgo",
-  title: "Search DuckDuckGo",
-  contexts: ["selection"],
-  action: "https://duckduckgo.com?q="
+//upon failed reading from storage
+function onError(error) {
+  console.log(error);
 }
 
-const DuckDuckGoTranslate = {
-  id: "translate-duckduckgo",
-  title: "Translate DuckDuckGo",
-  contexts: ["selection"],
-  action: "https://duckduckgo.com?q=translate "
-}
+//upon receiving context menu items from storage
+function onReceivied(item) {
 
-const DuckDuckGoDefine = {
-  id: "define-duckduckgo",
-  title: "Define DuckDuckGo",
-  contexts: ["selection"],
-  action: "https://duckduckgo.com?q=define "
-}
+  //add context menu items from storage to array
+  contextMenuItems = item.items;
 
-//add temponary examples to array, make them iterable
-const contextMenuItems = [DuckDuckGoSearch, DuckDuckGoTranslate, DuckDuckGoDefine];
+  //register each cotext menu item
+  for (const contextMenuItem of contextMenuItems) {
 
+    console.log(contextMenuItem);
 
-//register context menu item for each temponary example
-for (const contextMenuItem of contextMenuItems) {
+    //TODO remove removed contextmenus upon update
 
-  browser.contextMenus.create({
-    id: contextMenuItem.id,
-    title: contextMenuItem.title,
-    contexts: contextMenuItem.contexts,
-  });
+    browser.contextMenus.create({
+      id: contextMenuItem.id,
+      title: contextMenuItem.title,
+      contexts: contextMenuItem.contexts,
+    });
+
+  }
 
 }
+
+function respondToMessage(request, sender, response) {
+
+  if(request.updated) {
+    browser.storage.local.get().then(onReceivied, onError);
+  }
+  
+}
+
+
+
+//array with context menu items
+let contextMenuItems;
+
+//receivie context menu items from storage
+browser.storage.local.get().then(onReceivied, onError);
+
+browser.runtime.onMessage.addListener(respondToMessage);
 
 //if context menu item has been clicked
 browser.contextMenus.onClicked.addListener((info) => {
@@ -47,6 +56,7 @@ browser.contextMenus.onClicked.addListener((info) => {
       //TODO: santize selection text
       const term = info.selectionText;
 
+      //TODO: add support for wildcard (%s)
       const url = contextMenuItem.action + term;
 
       browser.tabs.create({

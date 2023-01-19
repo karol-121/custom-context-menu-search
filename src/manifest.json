@@ -14,7 +14,7 @@
   },
 
   "options_ui": {
-    "page": "settings/page.html",
+    "page": "gui/page.html",
     "browser_style": true
   },
 

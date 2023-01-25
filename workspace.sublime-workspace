@@ -1,0 +1,683 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"fun",
+				"function"
+			],
+			[
+				"spa",
+				"space-around"
+			],
+			[
+				"fl",
+				"flex-grow"
+			],
+			[
+				"f",
+				"flex-direction"
+			],
+			[
+				"wra",
+				"wrapCheckbox"
+			],
+			[
+				"flex",
+				"flex-direction"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"sele",
+				"selection_regex"
+			],
+			[
+				"titl",
+				"title_regex"
+			],
+			[
+				"con",
+				"contextMenuItem"
+			],
+			[
+				"ta",
+				"table_body"
+			],
+			[
+				"colle",
+				"collectItems"
+			],
+			[
+				"conte",
+				"context_option"
+			],
+			[
+				"co",
+				"context"
+			],
+			[
+				"app",
+				"appendChild"
+			],
+			[
+				"const",
+				"contextMenuItems"
+			],
+			[
+				"create",
+				"createRow"
+			],
+			[
+				"on",
+				"onSuccess"
+			],
+			[
+				"ur",
+				"url_input"
+			],
+			[
+				"cell",
+				"cell_manage"
+			],
+			[
+				"ce",
+				"cell_url"
+			],
+			[
+				"cel",
+				"cell_manage"
+			],
+			[
+				"t",
+				"td"
+			],
+			[
+				"re",
+				"regexUrl"
+			],
+			[
+				"text",
+				"textareaValue"
+			],
+			[
+				"backg",
+				"background-color"
+			],
+			[
+				"font",
+				"font-family"
+			],
+			[
+				"fle",
+				"flex-grow"
+			],
+			[
+				"te",
+				"textareaValue"
+			],
+			[
+				"inner",
+				"innerText"
+			],
+			[
+				"inne",
+				"innerText"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"o",
+				"o:f"
+			],
+			[
+				"Du",
+				"DuckDuckGoDefine"
+			],
+			[
+				"Duc",
+				"DuckDuckGoTranslate"
+			],
+			[
+				"Duck",
+				"DuckDuckGoSearch"
+			],
+			[
+				"a",
+				"addEventListener"
+			],
+			[
+				"lin",
+				"link"
+			],
+			[
+				"link",
+				"link_text"
+			],
+			[
+				"bu",
+				"button_parent"
+			],
+			[
+				"cosn",
+				"console"
+			],
+			[
+				"fe",
+				"fetch"
+			],
+			[
+				"lo",
+				"loadStatus"
+			],
+			[
+				"is",
+				"isActive_Local"
+			],
+			[
+				"sot",
+				"storageFetch"
+			],
+			[
+				"storage",
+				"storageItems"
+			],
+			[
+				"fetchi",
+				"fetchingErr"
+			],
+			[
+				"item",
+				"itemKeyComparator"
+			],
+			[
+				"Stor",
+				"StorageItem"
+			],
+			[
+				"suare",
+				"squareMetersModuleBody"
+			],
+			[
+				"toTop",
+				"toTopModuleHead"
+			],
+			[
+				"ma",
+				"matches"
+			],
+			[
+				"met",
+				"metadata"
+			],
+			[
+				"com",
+				"componentMetaPrototype"
+			],
+			[
+				"module",
+				"moduleComponentPrototype"
+			],
+			[
+				"base",
+				"baseComponentPrototype"
+			],
+			[
+				"comp",
+				"componentPrototype"
+			],
+			[
+				"cons",
+				"console"
+			],
+			[
+				"toggle_toggle",
+				"toggle_toggler_selected"
+			],
+			[
+				"toggle",
+				"toggle_toggler_unselected"
+			],
+			[
+				"toggl",
+				"toggle_background_unselected"
+			],
+			[
+				"togg",
+				"toggle_toggle_unselected"
+			],
+			[
+				"togl",
+				"toggle_background_selected"
+			],
+			[
+				"sett",
+				"setting_group_name"
+			],
+			[
+				"tog",
+				"toggle_toggler"
+			],
+			[
+				"to",
+				"toggle_background"
+			],
+			[
+				"page",
+				"page_container"
+			],
+			[
+				"crea",
+				"createSettingGroupItem"
+			],
+			[
+				"cre",
+				"createSettingGroupItem"
+			],
+			[
+				"s",
+				"setting_group_separator"
+			],
+			[
+				"d",
+				"description_wrapper"
+			],
+			[
+				"se",
+				"setting_item_wrapper"
+			],
+			[
+				"de",
+				"description"
+			],
+			[
+				"mai",
+				"main_section_shrinker"
+			],
+			[
+				"c",
+				"content"
+			],
+			[
+				"pa",
+				"page_container_section_wrapper"
+			],
+			[
+				"sectio",
+				"page_container_section"
+			],
+			[
+				"pag",
+				"page_container_section"
+			],
+			[
+				"e",
+				"extension_link_span"
+			],
+			[
+				"ex",
+				"extension_link_span"
+			],
+			[
+				"exten",
+				"extension_link_span"
+			],
+			[
+				"data",
+				"dataDiv"
+			],
+			[
+				"lis",
+				"listing"
+			],
+			[
+				"mod",
+				"modifyListing"
+			],
+			[
+				"for",
+				"for"
+			],
+			[
+				"li",
+				"listing"
+			],
+			[
+				"cos",
+				"console"
+			],
+			[
+				"da",
+				"dataDiv"
+			],
+			[
+				"l",
+				"listings"
+			],
+			[
+				"bo",
+				"bottom"
+			],
+			[
+				"map",
+				"mapUrl"
+			],
+			[
+				"img",
+				"imgUrlParams"
+			],
+			[
+				"locatio",
+				"locationLng"
+			],
+			[
+				"location",
+				"locationLat"
+			],
+			[
+				"sea",
+				"searchTerm"
+			],
+			[
+				"sear",
+				"searchTermUnified"
+			],
+			[
+				"u",
+				"unifyStringInput"
+			],
+			[
+				"search",
+				"searchTerm"
+			],
+			[
+				"fu",
+				"fun"
+			],
+			[
+				"form",
+				"formReset"
+			],
+			[
+				"row",
+				"rowIndex"
+			],
+			[
+				"tbo",
+				"tbodyOld"
+			],
+			[
+				"table",
+				"tableSectionHeaderRegEx"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Snippet: html",
+				"Snippet: html"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 130.0,
+		"history":
+		[
+			"git -status",
+			"git status"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/E/Dokumenty/Github/custom-context-menu-search"
+	],
+	"file_history":
+	[
+		"/E/Dokumenty/Github/tab-dump-extension/src/gui/bootstrap-reboot.css",
+		"/E/Dokumenty/Github/custom-context-menu-search/src/manifest.json",
+		"/E/Dokumenty/Github/custom-context-menu-search/src/background/context-menu.js",
+		"/E/Dokumenty/Github/tab-dump-extension/src/gui/page.js",
+		"/E/Dokumenty/Github/custom-context-menu-search/src/gui/page.css",
+		"/E/Dokumenty/Github/tab-dump-extension/src/gui/page.html",
+		"/E/Dokumenty/Github/tab-dump-extension/src/manifest.json",
+		"/E/Dokumenty/Github/tab-dump-extension/README.md",
+		"/E/Dokumenty/Github/tab-dump-extension/src/background/worker.js",
+		"/E/Dokumenty/Github/custom-context-menu-search/src/README.md",
+		"/E/Dokumenty/Github/side-ordbok-extension/context-menu-search/manifest.json",
+		"/E/Dokumenty/Github/tab-dump-extension/extension/manifest.json",
+		"/E/Dokumenty/Github/tab-dump-extension/extension/gui/page.js",
+		"/E/Dokumenty/Github/tab-dump-extension/extension/background/worker.js",
+		"/E/Dokumenty/Github/tab-dump-extension/extension/gui/page.html",
+		"/E/Dokumenty/Github/tab-dump-extension/extension/gui/page.css",
+		"/E/Dokumenty/Github/tab-dump-extension/extension/worker.js",
+		"/E/Dokumenty/Github/tab-dump-extension/extension/find.js",
+		"/E/Dokumenty/Github/tab-dump-extension/extension/find.html",
+		"/E/Dokumenty/Github/tab-dump-extension/extension/background.js",
+		"/C/Users/karol/Documents/American Truck Simulator/global_controls.sii",
+		"/C/Users/karol/Documents/American Truck Simulator/profiles/417373656E7A696F/controls.sii",
+		"/C/Users/karol/Documents/American Truck Simulator/profiles/417373656E7A696F/config.cfg",
+		"/C/Users/karol/Documents/American Truck Simulator/config.cfg",
+		"/E/Dokumenty/Github/side-ordbok-extension/side-ordbok/manifest.json",
+		"/E/Dokumenty/OneDrive - OsloMet/Vår-2021/DATA1700/oblig-3-Parafrantas/README.md",
+		"/E/Dokumenty/Github/side-ordbok-extension/side-ordbok/background/context-menu.js",
+		"/E/Dokumenty/Github/side-ordbok-extension/side-ordbok/sidebar/background.js",
+		"/E/Dokumenty/Github/side-ordbok-extension/side-ordbok/sidebar/panel.html",
+		"/E/Dokumenty/Github/side-ordbok-extension/side-ordbok/sidebar/panel.js",
+		"/E/Dokumenty/Dev/webextensions-examples-master/quicknote/README.md",
+		"/E/Dokumenty/Github/figma-explorer/extension/index.html",
+		"/E/Dokumenty/Github/figma-explorer/extension/worker.js",
+		"/E/Dokumenty/Github/monitor-light-bar/client-prototype/script.js",
+		"/E/Dokumenty/Github/figma-explorer/extension/link.js",
+		"/E/Dokumenty/Github/figma-explorer/extension/explorer.html",
+		"/E/Dokumenty/Github/figma-explorer/extension/manifest.json",
+		"/E/Dokumenty/Github/github-folders/extension/manifest.json",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/manifest.json",
+		"/E/Dokumenty/Github/finn-extension-suite/README.md",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/modules/square-meters.js",
+		"/E/Dokumenty/Github/windowSwaper/README.md",
+		"/E/Dokumenty/OneDrive - OsloMet/Vår-2021/DATA1700/oblig-3-Parafrantas/src/main/java/webprogrammering/oblig/TicketController.java",
+		"/E/Dokumenty/OneDrive - OsloMet/Vår-2020/DATA1600/PersonRegistry/PersonRegistry/src/main/java/org/openjfx/Controller.java",
+		"/E/Dokumenty/Github/backend-task-main/README.md",
+		"/E/Dokumenty/OneDrive - OsloMet/Vår-2021/DATA1700/oblig-3-Parafrantas/src/main/java/webprogrammering/oblig/TicketRepository.java",
+		"/E/Dokumenty/OneDrive - OsloMet/Vår-2021/DATA1700/oblig-3-Parafrantas/src/main/java/webprogrammering/oblig/ObligApplication.java",
+		"/E/Dokumenty/OneDrive - OsloMet/Vår-2021/DATA1700/oblig-3-Parafrantas/src/main/java/webprogrammering/oblig/Ticket.java",
+		"/E/Dokumenty/OneDrive - OsloMet/Vår-2021/DATA1700/oblig-3-Parafrantas/src/main/resources/schema.sql",
+		"/E/Dokumenty/OneDrive - OsloMet/Vår-2021/DATA1700/oblig-3-Parafrantas/src/main/resources/application.properties",
+		"/E/Dokumenty/OneDrive - OsloMet/Vår-2021/DATA1700/oblig-3-Parafrantas/pom.xml",
+		"/E/Dokumenty/OneDrive - OsloMet/Vår-2021/DATA1700/oblig-2-Parafrantas/src/main/java/webprogrammering/oblig/controller/TicketController.java",
+		"/C/Users/karol/Downloads/backend-task-main/backend-task-main/README.md",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/modules/scroll-top.js",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/modules/css/scroll-top.css",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/prototypes/component.js",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/prototypes/base-component.js",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/prototypes/module-component.js",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/core/component-dispatcher.js",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/prototypes/components.js",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/main.js",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/modules/map-viewer.js",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/base/settings-page.js",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/base/settings-button.js",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/core/storage-manager.js",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/base/component-dispatcher.js",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/components/scrollToTop.js",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/components/squareMeters.js",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/components/mapViewer.js",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/base/extension-config.js",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/base/extension-link.js",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/components/toTopButton/scrollToTop.js",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/components/mapViewer/mapViewer.js",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/components/toTopButton/manifest.json",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/icons/icon-gui.svg",
+		"/E/Dokumenty/Github/finn-extension-suite/funn/static/extension-gui.js",
+		"/C/Users/karol/Desktop/index.js",
+		"/E/Dokumenty/Github/finn-extension-suite/squareMeters/manifest.json",
+		"/E/Dokumenty/Github/finn-extension-suite/meterRatio/manifest.json",
+		"/E/Dokumenty/Github/finn-extension-suite/meterRatio/meterRatio.js",
+		"/E/Dokumenty/Github/finn-extension-suite/toTopButton/scrollToTop.css",
+		"/E/Dokumenty/Github/finn-extension-suite/toTopButton/scrollToTop.js",
+		"/E/Dokumenty/Github/finn-extension-suite/toTopButton/manifest.json",
+		"/E/Dokumenty/Github/finn-extension-suite/mapViewer/mapViewer.js",
+		"/E/Dokumenty/Github/finn-extension-suite/mapViewer/manifest.json",
+		"/E/Dokumenty/Github/sprakradet-avloseord-search/src/table.js",
+		"/E/Dokumenty/Github/sprakradet-avloseord-search/src/utilities.js",
+		"/E/Dokumenty/Github/sprakradet-avloseord-search/src/manifest.json",
+		"/E/Dokumenty/Github/sprakradet-avloseord-search/README.md"
+	],
+	"find":
+	{
+		"height": 29.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "E:\\Dokumenty\\Github\\custom-context-menu-search"
+		}
+	],
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 29.0
+	},
+	"input":
+	{
+		"height": 41.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 54.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 298.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

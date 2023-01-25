@@ -10,7 +10,7 @@
   },
 
   "background": {
-    "scripts":["background/context-menu.js"]
+    "scripts":["utils/input-validation.js","background/context-menu.js"]
   },
 
   "options_ui": {

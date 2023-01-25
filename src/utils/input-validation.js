@@ -1,23 +1,23 @@
 //global regex values
-const title_regex = /[\w]{1,30}/gm;
-const action_regex = /[\w]{1,30}/gm;
+const title_regex = /[\w]{1,30}/;
+const action_regex = /[\w]{1,30}/; //this need to be changed as this does not allow "?, &" etc.
 
-const selection_regex = /[\w]{1,30}/gm;
+const protocol_regex = /\S{1,5}:\/\/\S*/; //match values that begins with protocol
+
+const selection_regex = /[\w]{1,30}/;
 
 
-function validateRowValues(row) {
-	const title = row.cells[0].children[0].value;
-	const action = row.cells[2].children[0].value;
+function validateTitle(title) {
+	return title_regex.test(title);
+}
 
-	if (!title_regex.test(title)) {
-		return false;
-	}
-
-	if (!action_regex.test(action)) {
-		return false;
-	}
-
+function validateAction(action) {
 	return true;
+	//return action_regex.test(action);
+}
+
+function startsWithProtocol(link) {
+	return protocol_regex.test(link);
 }
 
 function validateSelection(selection) {

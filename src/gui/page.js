@@ -7,7 +7,7 @@ function onSuccess(status) {
 
 //upon failed reading from storage
 function onError(error) {
-	console.log(error);
+	console.err(error);
 }
 
 //upon receiving context menu items from storage
@@ -24,9 +24,9 @@ function onReceivied(item) {
 	}
 }
 
-
+//function that retrives values from rows and convert then into array
 function collectItems(table) {
-	const items = new Array();
+	let items = new Array();
 	
 	for(row of table.rows) {
 		let item = collectItem(row);
@@ -36,28 +36,43 @@ function collectItems(table) {
 		}
 	}
 
+	console.log(items);
 	return items;
 }
 
+//function that create object from row, returns nothing if values in row are invalid
 function collectItem(row) {
-	
-	//input validation of values in row
-	if (!validateRowValues(row)) {
-		//return; //TODO: input validation does fail on second and upwards items (they are rejected even though they are righ)
+
+	//extract values to validaton
+	let title = row.cells[0].children[0].value;
+	let action = row.cells[2].children[0].value;
+
+	//prepare values for validation
+	title = title.trim();
+	action = action.trim();
+
+	//return if any of the following validation fails
+	if (!validateTitle(title)) {
+		return;
 	}
 
-	let timestamp = Date.now();
+	if (!validateAction(action)) {
+		return;
+	}
+
+	//if checked values are valid, continue with creation of object
+	let random = (Math.random() * 1000); //convert this to int
 
 	const contextMenuItem = {
-		id: new String(timestamp),
-		title: row.cells[0].children[0].value,
+		id: random.toString(),
+		title: title,
 		contexts: [row.cells[1].children[0].value],
-		action: row.cells[2].children[0].value
+		action: action
 	}
 
+	//return object
 	return contextMenuItem;
 }
-
 
 //removes row in table
 function deleteRow(row) {
@@ -125,21 +140,24 @@ function createRow(title, context, url) {
 
 //table
 const table_body = document.getElementById("table_body");
+const add_new_row = document.getElementById("add_new_row");
+const save = document.getElementById("save");
 
 //load previously defined context menu items from storage
 browser.storage.local.get().then(onReceivied, onError);
 
 //event listener for "add_new_row" button
-document.getElementById("add_new_row").addEventListener("click", function(e) {
+add_new_row.addEventListener("click", function(e) {
 	//create new row and append it to table
 	const row = createRow("","","");
 	table_body.appendChild(row);
 });
 
 //event listener for "save" button
-document.getElementById("save").addEventListener("click", function(e) {
+save.addEventListener("click", function(e) {
 	//save defined context menu items to storage 
 	const items = collectItems(table_body);
+
 	browser.storage.local.set({items}).then(onSuccess, onError);
 });
 

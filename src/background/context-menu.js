@@ -1,6 +1,6 @@
 //upon failed reading from storage
 function onError(error) {
-  console.log(error);
+  console.err(error);
 }
 
 //upon receiving context menu items from storage
@@ -30,7 +30,7 @@ function onReceivied(item) {
 
 }
 
-//message responder, update request comes here from page.js via messages
+//message respondent, update request comes here from page.js via messages
 function respondToMessage(request, sender, response) {
 
   //if message contains a upate request
@@ -38,6 +38,24 @@ function respondToMessage(request, sender, response) {
     browser.storage.local.get().then(onReceivied, onError);
   }
   
+}
+
+function createUrl(link, term) {
+  const defaultProtocol = "https://"; //protocol to append if link does not contain such
+  let final = link;
+
+  //check if provided link does start with an protocol, if not, prepend one
+  if (!startsWithProtocol(final)) {
+    final = defaultProtocol + final;
+  }
+
+  //if link does not contain wildcard, append provided at the end
+  if (final.search(/%s/gm) === -1) {
+    return final + term;
+  }
+
+  //if wildcard does exist, replace it with provided term
+  return final.replaceAll(/%s/gm, term);
 }
 
 
@@ -65,9 +83,7 @@ browser.contextMenus.onClicked.addListener((info) => {
       //TODO: select suitable origin ("linkText", "selectionText") of term value
       const term = info.selectionText;
 
-      //TODO: add support for wildcard (%s)
-      //TODO: append https:// to link if missing
-      const url = contextMenuItem.action + term;
+      const url = createUrl(contextMenuItem.action, term);
 
       browser.tabs.create({
           "url": url

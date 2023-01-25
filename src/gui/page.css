@@ -1,0 +1,30 @@
+table {
+	table-layout: auto;
+	width: 100%;
+}
+
+
+
+input {
+	width: 100%;
+}
+
+td > button {
+	/*width: 30%;*/
+}
+
+select {
+	width: 100%;
+}
+
+button {
+	/*width: 20%;*/
+}
+button {
+	width: 100%;
+}
+
+.right {
+	display: flex;
+	justify-content: flex-end;
+}

@@ -1,16 +1,19 @@
+body {
+	margin: 0.4em;
+}
+
+hr {
+	width: 100%;
+}
+
 table {
+	margin: 0.4em 0em;
 	table-layout: auto;
 	width: 100%;
 }
 
-
-
 input {
 	width: 100%;
-}
-
-td > button {
-	/*width: 30%;*/
 }
 
 select {
@@ -18,13 +21,19 @@ select {
 }
 
 button {
-	/*width: 20%;*/
-}
-button {
 	width: 100%;
 }
 
-.right {
-	display: flex;
-	justify-content: flex-end;
+.save {
+	bottom: 0px;
+	
 }
+
+.save button {
+	margin: 0.2em 0.4em;
+	position: relative;
+	float: right;
+	width: auto;
+}
+
+

@@ -7,6 +7,7 @@
 	<title></title>
 </head>
 <body>
+
 	<span id="test">Define your context menu searches here:</span>
 	<table id="table">
 		<thead>
@@ -21,12 +22,21 @@
 			<!-- here rows are dynamically created -->
 		</tbody>
 		<tbody>
-			<tr><td></td><td></td><td></td><td><button id="add_new_row">add new row</button></td></tr>
-			<tr><td></td><td></td><td></td><td><button id="save">save</button></td></tr>
-	
-			
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
 		</tbody>
 	</table>
+	Tip: use "%s" as a wildcard in links.
+	
+
+	<div class="save">
+		<hr>
+		<button id="save">Save</button>
+		<button id="add_new_row">Add new search</button>
+	</div>
+
 	<script src="../utils/input-validation.js"></script>
 	<script src="page.js"></script>
 </body>

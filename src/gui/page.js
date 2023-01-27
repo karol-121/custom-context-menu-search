@@ -19,7 +19,7 @@ function onReceivied(item) {
 
 	//create row for each menu item
 	for(item of item.items) {
-		const row = createRow(item.title, item.contexts, item.action);
+		const row = createRow(item.title, item.action);
 		table_body.appendChild(row);
 	}
 }
@@ -45,7 +45,7 @@ function collectItem(row) {
 
 	//extract values to validaton
 	let title = row.cells[0].children[0].value;
-	let action = row.cells[2].children[0].value;
+	let action = row.cells[1].children[0].value;
 
 	//prepare values for validation
 	title = title.trim();
@@ -66,7 +66,7 @@ function collectItem(row) {
 	const contextMenuItem = {
 		id: random.toString(),
 		title: title,
-		contexts: [row.cells[1].children[0].value],
+		contexts: ["selection"],
 		action: action
 	}
 
@@ -80,42 +80,21 @@ function deleteRow(row) {
 }
 
 //creates row in table
-function createRow(title, context, url) {
+function createRow(title, url) {
 	//row
 	const row = document.createElement('tr');
 
 	//title cell
 	const cell_title = document.createElement('td');
 	const title_input = document.createElement('input');
+		title_input.placeholder = "example search"
 		title_input.value = title;
 	cell_title.appendChild(title_input);
-
-	//context cell
-	const context_options = ["link", "selection"];
-
-	const cell_context = document.createElement('td');
-	const context_select = document.createElement('select');
-
-	for (option of context_options) {
-		
-		const context_option = document.createElement('option');
-			context_option.value = option;
-			context_option.append(option);
-
-		//if provided context value matches option -> make it selected
-		if (option === context[0]) {
-			context_option.selected = true;
-		}
-		
-		context_select.appendChild(context_option);
-	}
-
-	//context_select.value = context;
-	cell_context.appendChild(context_select);
 	
 	//url cell
 	const cell_url = document.createElement('td');
 	const url_input = document.createElement('input');
+		url_input.placeholder = "www.example.com/?q=%s"
 		url_input.value = url;
 	cell_url.appendChild(url_input);
 
@@ -127,7 +106,6 @@ function createRow(title, context, url) {
 	cell_manage.appendChild(del_button);
 	
 	row.appendChild(cell_title);
-	row.appendChild(cell_context);
 	row.appendChild(cell_url);
 	row.appendChild(cell_manage);
 
@@ -149,7 +127,7 @@ browser.storage.local.get().then(onReceivied, onError);
 //event listener for "add_new_row" button
 add_new_row.addEventListener("click", function(e) {
 	//create new row and append it to table
-	const row = createRow("","","");
+	const row = createRow("","");
 	table_body.appendChild(row);
 });
 

@@ -1,10 +1,9 @@
 //global regex values
-const title_regex = /[\w]{1,30}/;
-const action_regex = /[\w]{1,30}/; //this need to be changed as this does not allow "?, &" etc.
+const title_regex = /^.{1,30}$/;
+const action_regex = /^\S{3,200}$/;
+const selection_regex = /^.{1,50}$/;
 
-const protocol_regex = /\S{1,5}:\/\/\S*/; //match values that begins with protocol
-
-const selection_regex = /[\w]{1,30}/;
+const protocol_regex = /^\S{1,5}:\/\//; //match values that begins with protocol
 
 
 function validateTitle(title) {
@@ -12,8 +11,7 @@ function validateTitle(title) {
 }
 
 function validateAction(action) {
-	return true;
-	//return action_regex.test(action);
+	return action_regex.test(action);
 }
 
 function startsWithProtocol(link) {

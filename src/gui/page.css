@@ -12,15 +12,7 @@ table {
 	width: 100%;
 }
 
-input {
-	width: 100%;
-}
-
-select {
-	width: 100%;
-}
-
-button {
+input, select, button {
 	width: 100%;
 }
 

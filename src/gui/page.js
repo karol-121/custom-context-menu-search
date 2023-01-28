@@ -102,7 +102,7 @@ function createRow(title, url) {
 	const cell_manage = document.createElement('td');
 	const del_button = document.createElement('button');
 		del_button.addEventListener('click', function () { deleteRow(row) }, false);
-		del_button.append("Delete search");
+		del_button.append("Delete item");
 	cell_manage.appendChild(del_button);
 	
 	row.appendChild(cell_title);

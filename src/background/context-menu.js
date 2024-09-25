@@ -1,3 +1,13 @@
+//for now, later make it a function that will return epoch as "random" value
+let random = (Math.random() * 1000);
+
+const options_page_shortcut = {
+  id: random.toString(),
+  title: "Create new...",
+  contexts: ["selection"],
+  action: "%options%",
+}
+
 //upon failed reading from storage
 function onError(error) {
   console.err(error);
@@ -6,9 +16,13 @@ function onError(error) {
 //upon receiving context menu items from storage
 function onReceivied(item) {
 
-  //if the storage is empty, then return
-  if(!item.items) {
-    return;
+  //if no items are defined, add default one
+  if(!item.items || item.items.length === 0) {
+
+    const default_item = new Array();
+    default_item.push(options_page_shortcut);
+
+    item.items = default_item; 
   }
 
   //remove all previously created context menu items
@@ -87,13 +101,19 @@ browser.contextMenus.onClicked.addListener((info) => {
     if(info.menuItemId === contextMenuItem.id) {
       //handle action using context menu's defined attributes
 
+      //if content menu item points to options page
+      if (contextMenuItem.action === "%options%") {
+        browser.runtime.openOptionsPage();
+        return;
+      }
+
       const term = info.selectionText; //get selected text. NOTE: this is assumed as context for menu items is hard coded
       const url = prepareUrl(contextMenuItem.action, term);
 
       //open new tab with prepared URL
       if (url) {
         browser.tabs.create({
-            "url": url
+          "url": url
         });
       }
     }

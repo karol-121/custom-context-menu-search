@@ -23,17 +23,19 @@ input, button {
 input {
 	margin: 0.2em;
 	padding: 0.4em;
-	border-width: 1.5px;
-	border-radius: 0.2em;
+	border-width: 1px;
 	border-style: solid;
+	border-radius: 0.2em;
 }
 
 button {
 	text-align: center;
 	padding: 0.4em;
 	margin: 0.2em;
-	border-width: 1.5px;
+	border-width: 1px;
+	border-style: solid;
 	border-radius: 0.2em;
+	
 }
 
 .footer {

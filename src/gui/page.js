@@ -87,14 +87,16 @@ function createRow(title, url) {
 	//title cell
 	const cell_title = document.createElement('td');
 	const title_input = document.createElement('input');
-		title_input.placeholder = "example search"
+		title_input.type = "text";
+		title_input.placeholder = "example search";
 		title_input.value = title;
 	cell_title.appendChild(title_input);
 	
 	//url cell
 	const cell_url = document.createElement('td');
 	const url_input = document.createElement('input');
-		url_input.placeholder = "www.example.com/?q=%s"
+		url_input.type = "text";
+		url_input.placeholder = "www.example.com/?q=%s";
 		url_input.value = url;
 	cell_url.appendChild(url_input);
 

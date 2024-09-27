@@ -12,8 +12,11 @@ function onError(error) {
 
 //upon receiving context menu items from storage
 function onReceivied(item) {
-	//if items does not exist, return
-	if (!item.items) {
+	//if items does not exist or there is none of them, print default and return
+	if (!item.items || item.items.length === 0) {
+		// print first table row as default
+		const row = createRow("", "");
+		table_body.appendChild(row);
 		return;
 	}
 

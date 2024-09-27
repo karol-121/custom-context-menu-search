@@ -10,13 +10,9 @@ button {
 }
 
 input[type="text"] {
-	background-color: #eeeeee;
+	background-color: #ffffff;
 	border-color: #9e9ea0;
 	color: #15141a;
-}
-
-input[type="text"]::placeholder {
-	color: #9e9ea0;
 }
 
 hr {
@@ -43,12 +39,8 @@ hr {
 
 	input[type="text"] {
 		background-color: #2b2a33;
-		border-color: #8f8f9d;
+		border-color: #7c7b82;
 		color: #fbfbfe;
-	}
-
-	input[type="text"]::placeholder {
-		color: #8f8f9d;
 	}
 
 	hr {

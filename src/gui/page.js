@@ -89,6 +89,7 @@ function createRow(title, url) {
 
 	//title cell
 	const cell_title = document.createElement('td');
+		cell_title.className = "cell-width-main";
 	const title_input = document.createElement('input');
 		title_input.type = "text";
 		title_input.placeholder = "example search";
@@ -97,6 +98,7 @@ function createRow(title, url) {
 	
 	//url cell
 	const cell_url = document.createElement('td');
+		cell_url.className = "cell-width-main";
 	const url_input = document.createElement('input');
 		url_input.type = "text";
 		url_input.placeholder = "www.example.com/?q=%s";
@@ -105,6 +107,7 @@ function createRow(title, url) {
 
 	//manage cell
 	const cell_manage = document.createElement('td');
+		cell_manage.className = "cell-width-secondary";
 	const del_button = document.createElement('button');
 		del_button.addEventListener('click', function () { deleteRow(row) }, false);
 		del_button.append("Delete item");

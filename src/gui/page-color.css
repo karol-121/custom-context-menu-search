@@ -9,10 +9,23 @@ button {
 	border-color: #eeeeee;
 }
 
+button:hover {
+	background-color: #ceced0;
+	border-color: #ceced0;
+}
+
+button:focus-visible {
+	outline-color: #0060df;
+}
+
 input[type="text"] {
 	background-color: #ffffff;
 	border-color: #9e9ea0;
 	color: #15141a;
+}
+
+input[type="text"]:focus {
+	border-color: #0060df;
 }
 
 hr {
@@ -37,10 +50,23 @@ hr {
 		border-color: #484854;
 	}
 
+	button:hover {
+		background-color: #5d5c6e;
+		border-color: #5d5c6e;
+	}
+
+	button:focus-visible {
+		outline-color: #00ddff;
+	}
+
 	input[type="text"] {
 		background-color: #2b2a33;
 		border-color: #7c7b82;
 		color: #fbfbfe;
+	}
+
+	input[type="text"]:focus {
+		border-color: #00ddff;
 	}
 
 	hr {

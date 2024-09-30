@@ -11,8 +11,19 @@ hr {
 
 table {
 	margin: 0.4em 0em;
-	table-layout: auto;
 	width: 100%;
+}
+
+td {
+	height: 2.8em;
+}
+
+.cell-width-main {
+	width: 40%;
+}
+
+.cell-width-secondary {
+	width: 20%;
 }
 
 input, button {
@@ -28,23 +39,31 @@ input[type="text"] {
 	border-radius: 0.3em;
 }
 
+input[type="text"]:focus {
+	border-width: 2px;
+	outline: none;
+}
+
 button {
-	text-align: center;
-	padding: 0.4em;
 	margin: 0.2em;
+	padding: 0.4em 0.8em;
 	border-width: 1px;
 	border-style: solid;
 	border-radius: 0.3em;
-	
+	text-align: center;
 }
 
-.footer {
-	bottom: 0px;
+button:focus-visible {
+	outline-width: 2px;
+	outline-offset: 2px;
+	outline-style: solid;
+}
+
+.footer-buttons {
+	float: right;
 }
 
 .footer button {
-	position: relative;
-	float: right;
 	width: auto;
 }
 

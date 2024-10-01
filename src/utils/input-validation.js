@@ -1,7 +1,7 @@
 //global regex values
 const title_regex = /^.{1,30}$/;
 const action_regex = /^\S{3,200}$/;
-const selection_regex = /^.{1,50}$/;
+const selection_regex = /^.{1,200}$/;
 
 const protocol_regex = /^\S{1,5}:\/\//; //match values that begins with protocol
 

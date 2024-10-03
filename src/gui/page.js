@@ -1,8 +1,8 @@
 //upon successful reading from storage
 function onSuccess(status) {
 	browser.runtime.sendMessage({updated: true});
-	window.location.reload();
-	console.log(status);
+	//todo: inform user about success 
+	window.location.reload(); //do page reset manually as reload will cancel any message
 }
 
 //upon failed reading from storage
@@ -34,34 +34,51 @@ function collectItems(table) {
 	for(row of table.rows) {
 		let item = collectItem(row);
 
-		if (item) {
-			items.push(item);
+		//if item does not exist, return
+		if (!item) {
+			return;
 		}
+
+		//otherwise push item to array
+		items.push(item);
+
 	}
 
-	console.log(items);
+	// when all items are collected, return items
 	return items;
 }
 
-//function that create object from row, returns nothing if values in row are invalid
+//function that create object from row, returns nothing if any value is invalid
 function collectItem(row) {
 
+	//referance to input fields
+	let title_field = row.cells[0].children[0];
+	let action_field = row.cells[1].children[0];
+
 	//extract values to validaton
-	let title = row.cells[0].children[0].value;
-	let action = row.cells[1].children[0].value;
+	let title = title_field.value;
+	let action = action_field.value;
 
 	//prepare values for validation
 	title = title.trim();
 	action = action.trim();
 
-	//return if any of the following validation fails
+	//if input is invalid, set invalid validity and return
 	if (!validateTitle(title)) {
+		title_field.setCustomValidity("invalid title");
 		return;
 	}
 
+	//otherwise set valid validty (needed to remove invalid validity if input has been corrected)
+	title_field.setCustomValidity("");
+
+	//do the same as above for the second input
 	if (!validateAction(action)) {
+		action_field.setCustomValidity("invalid url");
 		return;
 	}
+
+	action_field.setCustomValidity("");
 
 	//if checked values are valid, continue with creation of object
 	let random = (Math.random() * 1000); //convert this to int
@@ -143,6 +160,13 @@ add_new_row.addEventListener("click", function(e) {
 save.addEventListener("click", function(e) {
 	//save defined context menu items to storage 
 	const items = collectItems(table_body);
+
+	//if items has not been collected, then return
+	if (!items) {
+		//todo: here inform user that something went wrong and items could not be collected thus saved
+		//its probably because of invalid input
+		return;
+	}
 
 	browser.storage.local.set({items}).then(onSuccess, onError);
 });

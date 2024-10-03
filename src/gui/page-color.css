@@ -28,6 +28,11 @@ input[type="text"]:focus {
 	border-color: #0060df;
 }
 
+/*todo: do styling acoridng to both themes (dark/light)*/
+input[type="text"]:invalid {
+	border-color: red;
+}
+
 hr {
 	background-color: #d7d7db;
 }

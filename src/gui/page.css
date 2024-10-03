@@ -44,6 +44,12 @@ input[type="text"]:focus {
 	outline: none;
 }
 
+/*todo: do styling acoridng to both themes (dark/light)*/
+input[type="text"]:invalid {
+	border-width: 2px;
+	outline: none;
+}
+
 button {
 	margin: 0.2em;
 	padding: 0.4em 0.8em;

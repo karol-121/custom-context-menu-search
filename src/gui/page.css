@@ -73,4 +73,12 @@ button:focus-visible {
 	width: auto;
 }
 
+/*todo: add animation to admonition update*/
+
+.admonition-info, .admonition-error {
+	display: block;
+	margin: 0.2em;
+	padding: 0.4em 0.8em;
+}
+
 

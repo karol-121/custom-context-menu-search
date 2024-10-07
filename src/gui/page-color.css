@@ -28,9 +28,8 @@ input[type="text"]:focus {
 	border-color: #0060df;
 }
 
-/*todo: do styling acoridng to both themes (dark/light)*/
 input[type="text"]:invalid {
-	border-color: red;
+	border-color: #c50042;
 }
 
 hr {
@@ -39,6 +38,16 @@ hr {
 
 .txt-secondary {
 	color: #79797c;
+}
+
+.admonition-error {
+	background-color: #c50042;
+	color: #ffffff;
+}
+
+.admonition-info {
+	background-color: #0060df;
+	color: #ffffff;
 }
 
 
@@ -74,12 +83,26 @@ hr {
 		border-color: #00ddff;
 	}
 
+	input[type="text"]:invalid {
+		border-color: #ff9aa2;
+	}
+
 	hr {
 		background-color: #4e4d54;
 	}
 
 	.txt-secondary {
 		color: #89888f;
+	}
+
+	.admonition-error {
+		background-color: #ff9aa2;
+		color: #23222b;
+	}
+
+	.admonition-info {
+		background-color: #00ddff;
+		color: #23222b;
 	}
 }
 

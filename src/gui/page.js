@@ -1,8 +1,16 @@
 //upon successful reading from storage
 function onSuccess(status) {
 	browser.runtime.sendMessage({updated: true});
-	//todo: inform user about success 
-	window.location.reload(); //do page reset manually as reload will cancel any message
+	//inform user about success
+	createAdmonition("Items has been saved!", "info")
+	
+	//todo: evaluate if removing admonition upon altering the table would be better idea
+	setTimeout(() => {
+		removeAdmonition();
+	}, "2000")
+
+	//load newly saved items from storage for user to show
+	loadFromStorage();
 }
 
 //upon failed reading from storage
@@ -12,6 +20,9 @@ function onError(error) {
 
 //upon receiving context menu items from storage
 function onReceivied(item) {
+	//firstly remove all rows from table
+	resetTable(table_body);
+
 	//if items does not exist or there is none of them, print default and return
 	if (!item.items || item.items.length === 0) {
 		// print first table row as default
@@ -65,7 +76,8 @@ function collectItem(row) {
 
 	//if input is invalid, set invalid validity and return
 	if (!validateTitle(title)) {
-		title_field.setCustomValidity("invalid title");
+		title_field.setCustomValidity(MESSAGE_INVALID_TITLE);
+		createAdmonition(MESSAGE_INVALID_TITLE, "error");
 		return;
 	}
 
@@ -74,7 +86,8 @@ function collectItem(row) {
 
 	//do the same as above for the second input
 	if (!validateAction(action)) {
-		action_field.setCustomValidity("invalid url");
+		action_field.setCustomValidity(MESSAGE_INVALID_URL);
+		createAdmonition(MESSAGE_INVALID_URL, "error");
 		return;
 	}
 
@@ -137,17 +150,56 @@ function createRow(title, url) {
 	return row;
 }
 
+//removes all rows from table
+function resetTable(table) {
+
+	while (table.firstChild) {
+    table.removeChild(table.lastChild);
+  }
+}
+
+function createAdmonition(info, type) {
+	//todo: add enum here
+	const types = {
+		error: "admonition-error",
+		info: "admonition-info"
+	}
+	let a;
+
+	if (type === "error") {
+		a = "admonition-error";
+	}
+
+	if (type === "info") {
+		a = "admonition-info";
+	}
+
+	admonition_span.innerText = info;
+	admonition_span.className = a;
+}
+
+function removeAdmonition() {
+	admonition_span.innerText = "";
+	admonition_span.className = "";
+}
+
+function loadFromStorage() {
+	browser.storage.local.get().then(onReceivied, onError);
+}
+
 
 //entry point
 //this is where javaScript start executing code
+const admonition_span = document.getElementById("admonition");
 
 //table
 const table_body = document.getElementById("table_body");
 const add_new_row = document.getElementById("add_new_row");
 const save = document.getElementById("save");
 
+
 //load previously defined context menu items from storage
-browser.storage.local.get().then(onReceivied, onError);
+loadFromStorage();
 
 //event listener for "add_new_row" button
 add_new_row.addEventListener("click", function(e) {
@@ -158,8 +210,10 @@ add_new_row.addEventListener("click", function(e) {
 
 //event listener for "save" button
 save.addEventListener("click", function(e) {
-	//save defined context menu items to storage 
+	//save defined context menu items to storage
 	const items = collectItems(table_body);
+
+	//todo: prevent empty array from being saved
 
 	//if items has not been collected, then return
 	if (!items) {

@@ -2,11 +2,11 @@
 function onSuccess(status) {
 	browser.runtime.sendMessage({updated: true});
 	//inform user about success
-	createAdmonition("Items has been saved!", "info")
+	showAdmonition("Items has been saved!", "info");
 	
 	//todo: evaluate if removing admonition upon altering the table would be better idea
 	setTimeout(() => {
-		removeAdmonition();
+		hideAdmonition();
 	}, "2000")
 
 	//load newly saved items from storage for user to show
@@ -77,7 +77,7 @@ function collectItem(row) {
 	//if input is invalid, set invalid validity and return
 	if (!validateTitle(title)) {
 		title_field.setCustomValidity(MESSAGE_INVALID_TITLE);
-		createAdmonition(MESSAGE_INVALID_TITLE, "error");
+		showAdmonition(MESSAGE_INVALID_TITLE, "error");
 		return;
 	}
 
@@ -87,7 +87,7 @@ function collectItem(row) {
 	//do the same as above for the second input
 	if (!validateAction(action)) {
 		action_field.setCustomValidity(MESSAGE_INVALID_URL);
-		createAdmonition(MESSAGE_INVALID_URL, "error");
+		showAdmonition(MESSAGE_INVALID_URL, "error");
 		return;
 	}
 
@@ -158,31 +158,25 @@ function resetTable(table) {
   }
 }
 
-function createAdmonition(info, type) {
-	//todo: add enum here
+//function shows admonition to the user
+function showAdmonition(message, type) {
 	const types = {
 		error: "admonition-error",
 		info: "admonition-info"
 	}
-	let a;
 
-	if (type === "error") {
-		a = "admonition-error";
-	}
+	admonition_span.innerText = message;
+	admonition_span.className = types[type];
 
-	if (type === "info") {
-		a = "admonition-info";
-	}
-
-	admonition_span.innerText = info;
-	admonition_span.className = a;
+	admonition_body.className = "admonition-visible";
 }
 
-function removeAdmonition() {
-	admonition_span.innerText = "";
-	admonition_span.className = "";
+//function that hides admonition
+function hideAdmonition() {
+	admonition_body.className = "admonition-hidden";
 }
 
+//get saved items from storage
 function loadFromStorage() {
 	browser.storage.local.get().then(onReceivied, onError);
 }
@@ -190,7 +184,10 @@ function loadFromStorage() {
 
 //entry point
 //this is where javaScript start executing code
-const admonition_span = document.getElementById("admonition");
+
+//admonition
+const admonition_body = document.getElementById("admonition");
+const admonition_span = document.getElementById("admonition-text");
 
 //table
 const table_body = document.getElementById("table_body");
@@ -217,8 +214,6 @@ save.addEventListener("click", function(e) {
 
 	//if items has not been collected, then return
 	if (!items) {
-		//todo: here inform user that something went wrong and items could not be collected thus saved
-		//its probably because of invalid input
 		return;
 	}
 

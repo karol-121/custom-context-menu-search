@@ -43,11 +43,13 @@ hr {
 .admonition-error {
 	background-color: #c50042;
 	color: #ffffff;
+	border-color: #c50042;
 }
 
 .admonition-info {
 	background-color: #0060df;
 	color: #ffffff;
+	border-color: #0060df;
 }
 
 
@@ -98,11 +100,14 @@ hr {
 	.admonition-error {
 		background-color: #ff9aa2;
 		color: #23222b;
+		border-color: #ff9aa2;
+
 	}
 
 	.admonition-info {
 		background-color: #00ddff;
 		color: #23222b;
+		border-color: #00ddff;
 	}
 }
 

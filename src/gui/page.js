@@ -2,7 +2,7 @@
 function onSuccess(status) {
 	browser.runtime.sendMessage({updated: true});
 	//inform user about success
-	showAdmonition("Items has been saved!", "info");
+	showAdmonition("Items has been saved!", "info"); //todo: make this message a constant
 	
 	//todo: evaluate if removing admonition upon altering the table would be better idea
 	setTimeout(() => {
@@ -40,6 +40,12 @@ function onReceivied(item) {
 
 //function that retrives values from rows and convert then into array
 function collectItems(table) {
+	//if table is empty, return as there is no point of proceeding
+	if (table.rows.length < 1) {
+		showAdmonition(MESSAGE_INVALID_EMPTY, "error");
+		return;
+	}
+
 	let items = new Array();
 	
 	for(row of table.rows) {
@@ -165,9 +171,19 @@ function showAdmonition(message, type) {
 		info: "admonition-info"
 	}
 
-	admonition_span.innerText = message;
-	admonition_span.className = types[type];
+	const titles = {
+		error: "Error: ",
+		info: "Success: "
+	}
 
+	//set text
+	admonition_title.innerText = titles[type];
+	admonition_text.innerText = message;
+
+	//set apprioate class
+	admonition_content.className = types[type];
+
+	//show
 	admonition_body.className = "admonition-visible";
 }
 
@@ -187,7 +203,9 @@ function loadFromStorage() {
 
 //admonition
 const admonition_body = document.getElementById("admonition");
-const admonition_span = document.getElementById("admonition-text");
+const admonition_content = document.getElementById("admonition-content");
+const admonition_title = document.getElementById("admonition-title")
+const admonition_text = document.getElementById("admonition-text");
 
 //table
 const table_body = document.getElementById("table_body");
@@ -209,8 +227,6 @@ add_new_row.addEventListener("click", function(e) {
 save.addEventListener("click", function(e) {
 	//save defined context menu items to storage
 	const items = collectItems(table_body);
-
-	//todo: prevent empty array from being saved
 
 	//if items has not been collected, then return
 	if (!items) {

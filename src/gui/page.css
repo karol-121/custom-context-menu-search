@@ -73,7 +73,7 @@ button:focus-visible {
 	width: auto;
 }
 
-#admonition > span {
+#admonition > div {
 	display: block;
 	margin: 0.2em;
 	padding: 0.4em 0.8em;

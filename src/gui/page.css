@@ -18,11 +18,15 @@ td {
 	height: 2.8em;
 }
 
-.cell-width-main {
-	width: 40%;
+.cell-width-title {
+	width: 30%;
 }
 
-.cell-width-secondary {
+.cell-width-url {
+	width: 50%;
+}
+
+.cell-width-manage {
 	width: 20%;
 }
 

@@ -57,10 +57,18 @@ function respondToMessage(request, sender, response) {
 
 //function that creates final URL that new tab should have. Returns undefined if term is invalid
 function prepareUrl(link, term) {
-  //check if provided term/selection is valid, return if not
-  if (!validateSelection(term)) {
-    return;
-  }
+
+  //trim term length to 200 chars
+  term = term.substring(0,200);
+
+  //trim start and end
+  term = term.trim();
+
+  //fix potentially wrongly formated string to avoid error while uri encoding
+  term = term.toWellFormed();
+
+  //uri encode term
+  term = encodeURIComponent(term);
 
   const defaultProtocol = "https://"; //protocol to append if link does not contain such
   let final = link;

@@ -10,7 +10,12 @@
   },
 
   "background": {
-    "scripts":["utils/input-validation.js","background/context-menu.js"]
+    "scripts":[
+      "utils/random-id.js",
+      "utils/input-validation.js",
+      "utils/compose-url.js",
+      "background/context-menu.js"
+    ]
   },
 
   "options_ui": {

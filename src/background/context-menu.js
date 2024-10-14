@@ -1,8 +1,6 @@
-//for now, later make it a function that will return epoch as "random" value
-let random = (Math.random() * 1000);
-
+//context menu item that leads to options page
 const options_page_shortcut = {
-  id: random.toString(),
+  id: generateNewId(),
   title: "Create new...",
   contexts: ["selection"],
   action: "%options%",
@@ -19,10 +17,10 @@ function onReceivied(item) {
   //if no items are defined, add default one
   if(!item.items || item.items.length === 0) {
 
-    const default_item = new Array();
-    default_item.push(options_page_shortcut);
+    const default_items = new Array();
+    default_items.push(options_page_shortcut);
 
-    item.items = default_item; 
+    item.items = default_items;
   }
 
   //remove all previously created context menu items
@@ -54,40 +52,6 @@ function respondToMessage(request, sender, response) {
   
 }
 
-
-//function that creates final URL that new tab should have. Returns undefined if term is invalid
-function prepareUrl(link, term) {
-
-  //trim term length to 200 chars
-  term = term.substring(0,200);
-
-  //trim start and end
-  term = term.trim();
-
-  //fix potentially wrongly formated string to avoid error while uri encoding
-  term = term.toWellFormed();
-
-  //uri encode term
-  term = encodeURIComponent(term);
-
-  const defaultProtocol = "https://"; //protocol to append if link does not contain such
-  let final = link;
-
-  //if link does not contain any protocol, prepend one.
-  //protocol in link is needed as otherwise it will be handled as local (for extension)
-  if (!startsWithProtocol(final)) {
-    final = defaultProtocol + final;
-  }
-
-  //if link does not contain wildcard, append term at the end
-  if (final.search(/%s/gm) === -1) {
-    return final + term;
-  }
-
-  //if wildcard does exist, replace it with term
-  return final.replaceAll(/%s/gm, term);
-}
-
 //entry point
 //this is where javaScript start executing code
 
@@ -115,10 +79,10 @@ browser.contextMenus.onClicked.addListener((info) => {
         return;
       }
 
-      const term = info.selectionText; //get selected text. NOTE: this is assumed as context for menu items is hard coded
-      const url = prepareUrl(contextMenuItem.action, term);
+      const selected_text = info.selectionText; //Assumed the context is text selection
+      const url = composeURL(contextMenuItem.action, selected_text);
 
-      //open new tab with prepared URL
+      //open new tab with composed URL
       if (url) {
         browser.tabs.create({
           "url": url

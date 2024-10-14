@@ -99,11 +99,9 @@ function collectItem(row) {
 
 	action_field.setCustomValidity("");
 
-	//if checked values are valid, continue with creation of object
-	let random = (Math.random() * 1000); //convert this to int
-
+	//when all inputs are valid, create object
 	const contextMenuItem = {
-		id: random.toString(),
+		id: generateNewId(),
 		title: title,
 		contexts: ["selection"],
 		action: action

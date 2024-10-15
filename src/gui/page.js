@@ -1,10 +1,12 @@
-//upon successful reading from storage
-function onSuccess(status) {
+//upon successful saving to storage
+function onSaveSuccess(status) {
+	//inform background script about updated storage
 	browser.runtime.sendMessage({updated: true});
-	//inform user about success
-	showAdmonition("Items has been saved!", "info"); //todo: make this message a constant
 	
-	//todo: evaluate if removing admonition upon altering the table would be better idea
+	//inform user about success
+	showAdmonition(MESSAGE_SAVE_SUCCESS, "info");
+
+	//hide admonition afterwards
 	setTimeout(() => {
 		hideAdmonition();
 	}, "2000")
@@ -13,8 +15,9 @@ function onSuccess(status) {
 	loadFromStorage();
 }
 
-//upon failed reading from storage
+//upon failed reading/saving from/to storage
 function onError(error) {
+	//todo: show admonition upon error, but firstly redo admonitions
 	console.err(error);
 }
 
@@ -70,15 +73,15 @@ function collectItem(row) {
 
 	//referance to input fields
 	let title_field = row.cells[0].children[0];
-	let action_field = row.cells[1].children[0];
+	let url_field = row.cells[1].children[0];
 
 	//extract values to validaton
 	let title = title_field.value;
-	let action = action_field.value;
+	let url = url_field.value;
 
 	//prepare values for validation
 	title = title.trim();
-	action = action.trim();
+	url = url.trim();
 
 	//if input is invalid, set invalid validity and return
 	if (!validateTitle(title)) {
@@ -91,20 +94,20 @@ function collectItem(row) {
 	title_field.setCustomValidity("");
 
 	//do the same as above for the second input
-	if (!validateAction(action)) {
-		action_field.setCustomValidity(MESSAGE_INVALID_URL);
+	if (!validateUrl(url)) {
+		url_field.setCustomValidity(MESSAGE_INVALID_URL);
 		showAdmonition(MESSAGE_INVALID_URL, "error");
 		return;
 	}
 
-	action_field.setCustomValidity("");
+	url_field.setCustomValidity("");
 
 	//when all inputs are valid, create object
 	const contextMenuItem = {
 		id: generateNewId(),
 		title: title,
 		contexts: ["selection"],
-		action: action
+		action: url
 	}
 
 	//return object
@@ -163,6 +166,7 @@ function resetTable(table) {
 }
 
 //function shows admonition to the user
+//todo: redo admonitions
 function showAdmonition(message, type) {
 	const types = {
 		error: "admonition-error",
@@ -231,7 +235,7 @@ save.addEventListener("click", function(e) {
 		return;
 	}
 
-	browser.storage.local.set({items}).then(onSuccess, onError);
+	browser.storage.local.set({items}).then(onSaveSuccess, onError);
 });
 
 

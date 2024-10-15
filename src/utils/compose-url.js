@@ -1,4 +1,3 @@
-
 //constants
 const SELECTION_TEXT_MAXLENGTH = 200; //maximum length for selection text
 const PROTOCOL_REGEX = /^\S{1,5}:\/\//; //match values that begins with protocol

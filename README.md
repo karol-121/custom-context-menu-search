@@ -25,7 +25,7 @@ Extension implements options page where the user can create, modify and delete d
 #### Create items:
 In order to create a context menu item, one has to press on "Add new item" button. This will create new row where a title (this is what will show up in context menu) and a URL (this is what this context menu item will open in new tab) has to be entered. Note that wildcard `%s` is supported in links. This allows to define where selection text should be put in link. To use it, just place `%s` in URL. I.e in case of this URL; `www.example.com/?q=%s&scope=all` the selection text will be put between "=" and "&" like so: `www.example.com/?q=foo&scope=all`. If no `%s` is placed in URL, the selection text will be appended at the end of the URL.
 
-**Note** that extension does implement soft input validation. In practice this means that titles are restricted to 30 chars, URL to 200 chars and cannot contain spaces and selection text cannot exceed 50 chars. Soft input validation also means that it can lead to unexpected situations as unwanted chars will not be blocked. Therefore enter values with caution.
+**Note** that extension does implement soft input validation. In practice this means that titles are restricted to 30 chars, URL to 200 chars and cannot contain spaces and selection text will be limited to 200 chars. Soft input validation also means that it can lead to unexpected situations as unwanted chars will not be blocked. Therefore enter values with caution.
 
 #### Modify items:
 One can modify defined context menu items by directly modifying previously entered values.

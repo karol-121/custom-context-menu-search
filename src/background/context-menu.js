@@ -1,6 +1,6 @@
 //context menu item that leads to options page
 const options_page_shortcut = {
-  id: generateNewId(),
+  id: randomId.generateNewId(),
   title: "Create new...",
   contexts: ["selection"],
   action: "%options%",

@@ -1,15 +1,18 @@
-//key that modifies generated id
-const STATIC_KEY = "0";
-
 //functions that creates unique id
-//id is a unix epoch that is modified by a static key
-//this is to prevent conflict with other generators using the same concept
-function generateNewId() {
-	let id = Date.now();
+//id is a unix epoch that is modified by a count
+//this is to prevent conflict with other generators using the same concept &
+//to ensure that unix epoch value is unique in case the insturcion is executed on the same time
+const randomId = {
+	count: 0,
 
-	id = id.toString();
+	generateNewId() {
+		let id = Date.now();
 
-	id = id + STATIC_KEY;
+		id = id.toString();
 
-	return id;
+		id = id + this.count.toString();
+
+		this.count++;
+		return id;
+	}
 }

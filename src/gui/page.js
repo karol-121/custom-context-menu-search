@@ -104,7 +104,7 @@ function collectItem(row) {
 
 	//when all inputs are valid, create object
 	const contextMenuItem = {
-		id: generateNewId(),
+		id: randomId.generateNewId(),
 		title: title,
 		contexts: ["selection"],
 		action: url

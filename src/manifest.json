@@ -3,7 +3,7 @@
   "manifest_version": 2,
   "name": "Custom context menu searches",
   "description": "Customizable context menu search items.",
-  "version": "2.1",
+  "version": "2.2",
   
   "icons": {
     "48": "icons/icon-48.png"
@@ -14,7 +14,9 @@
       "utils/random-id.js",
       "utils/input-validation.js",
       "utils/compose-url.js",
-      "background/context-menu.js"
+      "background/storageController.js",
+      "background/contextMenuController.js",
+      "tests/storageTestData.js"
     ]
   },
 

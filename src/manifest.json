@@ -14,9 +14,11 @@
       "utils/random-id.js",
       "utils/input-validation.js",
       "utils/compose-url.js",
+      "background/tabController.js",
       "background/storageController.js",
       "background/contextMenuController.js",
-      "tests/storageTestData.js"
+      "background/main.js",
+      "tests/testData.js"
     ]
   },
 

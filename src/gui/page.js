@@ -1,12 +1,17 @@
 async function getUserDataFromStorage() {
 
-	let userItems = await browser.runtime.sendMessage({action: "getStorage"});
-
 	table.resetTable();
+
+	let userItems = await browser.runtime.sendMessage({action: "getData"});
+
+	if (!userItems) {
+		admonitions.showAdmonition("Couldnt load data", "error");
+		return;
+	}
 
 	if (!userItems.items || userItems.items.length === 0) {
 		
-		// print first table row as default
+		// print first table row as default if there is nothing to show
 		table.createRow("", "");
 		return;
 
@@ -43,8 +48,12 @@ save_button.addEventListener("click", async function(e) {
 
 	}
 
-	//todo: await set storage results, however currently it only does return undefined
-	let a = await browser.runtime.sendMessage({action: "setStorage", payload: userItems});
+	let success = await browser.runtime.sendMessage({action: "setData", payload: userItems});
+
+	if (!success) {
+		admonitions.showAdmonition("Couldnt save data!", "error");
+		return;	
+	}
 
 	admonitions.showAdmonition(MESSAGE_SAVE_SUCCESS, "info");
 

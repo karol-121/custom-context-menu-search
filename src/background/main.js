@@ -50,8 +50,28 @@ function onContextMenusClicked(info) {
 
 }
 
+//message respondent, update request from page.js is handled here
+function respondToMessage(request, sender, response) {
+
+	if (request.action === "getStorage") {
+
+    return storageController.getStorage();
+
+  }
+
+  if (request.action === "setStorage") {
+
+  	return storageController.setStorage(request.payload);
+
+  }
+
+  
+}
+
 storageController.onStorageSet = setContextMenuItems;
 
 browser.contextMenus.onClicked.addListener(onContextMenusClicked);
+
+browser.runtime.onMessage.addListener(respondToMessage);
 
 setContextMenuItems();

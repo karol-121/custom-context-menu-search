@@ -1,9 +1,9 @@
 const storageController = {
 	onStorageSet: null,
 
-	setStorage(data) {
+	async setStorage(data) {
 
-		browser.storage.local.set(data);
+		await browser.storage.local.set(data);
 		this.onStorageSet();
 
 	},

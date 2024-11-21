@@ -8,13 +8,15 @@
 	<title></title>
 </head>
 <body>
-	<span id="test">Define your context menu searches here:</span>
+	<p>Define your context menu searches here:</p>
+	<p>
 	<div id="admonition" class="admonition-hidden">
 		<div id="admonition-content">
 			<b><span id="admonition-title"></span></b>
 			<span id="admonition-text"></span>
 		</div>
 	</div>
+	</p>
 	<table id="table">
 		<thead>
 			<tr>
@@ -27,13 +29,29 @@
 			<!-- here rows are dynamically created -->
 		</tbody>
 	</table>
+
+	<hr>
+
+	<table>
+		<tbody>
+			<tr>
+				<td class="cell-width-title"></td>
+				<td class="cell-width-url"></td>
+				<td class="cell-width-manage"><button class="" id="add_new_row">Add item</button></td>
+			</tr>
+		</tbody>
+	</table>
+	
 	<span class="txt-secondary">Tip: use "%s" as a wildcard in links.</span>
 
 	
 	<div class="footer">
 		<hr>
 		<div class="footer-buttons">
-			<button id="add_new_row" class="btn-primary">Add new item</button>
+			<label tabindex="0" for="file_import">Import from file</label>
+			<input type="file" name="file_import" id="file_import">
+			<button id="file_export" class="btn-primary">Export to file</button>
+			
 			<button id="save" class="btn-primary">Save</button>	
 		</div>
 	</div>

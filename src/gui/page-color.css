@@ -3,18 +3,18 @@ body {
 	color: #15141a;
 }
 
-button {
+button, label{
 	color: #15141a;
 	background-color: #eeeeee;
 	border-color: #eeeeee;
 }
 
-button:hover {
+button:hover, label:hover {
 	background-color: #ceced0;
 	border-color: #ceced0;
 }
 
-button:focus-visible {
+button:focus-visible, label:focus-visible {
 	outline-color: #0060df;
 }
 
@@ -60,18 +60,18 @@ hr {
 		color: #fbfbfe;
 	}
 
-	button {
+	button, label {
 		color: #fbfbfe;
 		background-color: #484854;
 		border-color: #484854;
 	}
 
-	button:hover {
+	button:hover, label:hover {
 		background-color: #5d5c6e;
 		border-color: #5d5c6e;
 	}
 
-	button:focus-visible {
+	button:focus-visible, label:focus-visible {
 		outline-color: #00ddff;
 	}
 

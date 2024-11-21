@@ -10,8 +10,11 @@ hr {
 }
 
 table {
-	margin: 0.4em 0em;
 	width: 100%;
+}
+
+p {
+	margin: 0.2em 0em;
 }
 
 td {
@@ -31,8 +34,15 @@ td {
 }
 
 input, button {
-	width: 100%;
 	font-size: 15px;
+}
+
+td > input {
+	width: 100%;
+}
+
+td > button {
+	width: 100%;
 }
 
 input[type="text"] {
@@ -48,10 +58,13 @@ input[type="text"]:focus {
 	outline: none;
 }
 
-/*todo: do styling acoridng to both themes (dark/light)*/
 input[type="text"]:invalid {
 	border-width: 2px;
 	outline: none;
+}
+
+input[type="file"] {
+	display: none;
 }
 
 button {
@@ -63,7 +76,14 @@ button {
 	text-align: center;
 }
 
-button:focus-visible {
+label {
+	margin: 0.2em;
+	padding: 0.4em 0.8em;
+	border-radius: 0.3em;
+	text-align: center;
+}
+
+button:focus-visible, label:focus-visible {
 	outline-width: 2px;
 	outline-offset: 2px;
 	outline-style: solid;
@@ -73,8 +93,8 @@ button:focus-visible {
 	float: right;
 }
 
-.footer button {
-	width: auto;
+.table-footer {
+	width: 100%;
 }
 
 #admonition > div {

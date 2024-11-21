@@ -70,6 +70,20 @@ save_button.addEventListener("click", async function(e) {
 
 });
 
+file_export.addEventListener("click", function(e) {
+
+	console.log("file export");
+
+});
+
+file_import.addEventListener("change", function(e) {
+
+	//some examples about input type file 
+	// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file
+	console.log("file import");
+
+});
+
 
 
 

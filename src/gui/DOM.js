@@ -174,3 +174,5 @@ const admonitions = {
 
 const add_row_button = document.getElementById("add_new_row");
 const save_button = document.getElementById("save");
+const file_export = document.getElementById("file_export");
+const file_import = document.getElementById("file_import");

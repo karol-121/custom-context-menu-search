@@ -7,7 +7,9 @@ const storageController = {
 		let success = await this.setStorage(data);
 
 		if (success) {
+
 			this.onStorageChanged();
+
 		} 
 
 		return success;
@@ -17,33 +19,39 @@ const storageController = {
 
 	async getData() {
 
-		 return await this.getStorage();
+		return await this.getStorage();
 
 	},
 
 	setStorage(data) {
 
-		//todo: refactor onSuccess, onError functions
 		return browser.storage.local.set(data).then(this.onSetSuccess, this.onError);
 
 	},
 
 	getStorage() {
 
-		//todo: refactor onSuccess, onError functions
-		return browser.storage.local.get().then(this.onSuccess, this.onError);
+		return browser.storage.local.get().then(this.onGetSuccess, this.onError);
 		
 	},
 
-	onError() {
-		return false;
-	},
 
-	onSuccess(e) {
+	onGetSuccess(e) {
+
 		return e;
+
 	},
 
 	onSetSuccess() {
+
 		return true;
+
+	},
+
+	onError() {
+
+		return false;
+
 	}
+
 }

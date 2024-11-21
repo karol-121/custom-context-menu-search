@@ -5,8 +5,10 @@ async function getUserDataFromStorage() {
 	let userItems = await browser.runtime.sendMessage({action: "getData"});
 
 	if (!userItems) {
-		admonitions.showAdmonition("Couldnt load data", "error");
+
+		admonitions.showAdmonition(MESSAGE_STORAGE_GET_FAIL, "error");
 		return;
+		
 	}
 
 	if (!userItems.items || userItems.items.length === 0) {
@@ -51,8 +53,10 @@ save_button.addEventListener("click", async function(e) {
 	let success = await browser.runtime.sendMessage({action: "setData", payload: userItems});
 
 	if (!success) {
-		admonitions.showAdmonition("Couldnt save data!", "error");
+
+		admonitions.showAdmonition(MESSAGE_STORAGE_SET_FAIL, "error");
 		return;	
+
 	}
 
 	admonitions.showAdmonition(MESSAGE_SAVE_SUCCESS, "info");

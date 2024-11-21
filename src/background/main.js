@@ -58,7 +58,6 @@ function onContextMenusClicked(info) {
 
 }
 
-//message respondent, update request from page.js is handled here
 function respondToMessage(request, sender, response) {
 
 	if (request.action === "getData") {

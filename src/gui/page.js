@@ -78,33 +78,32 @@ file_export.addEventListener("click", function(e) {
 
 file_import.addEventListener("change", async function(e) {
 
+	const importedUserData =  await file.extractFromFile(e.target.files[0]);
 
-	const data =  await file.extractFromFile(e.target.files[0]);
+	if (importedUserData.error) {
 
-	if (data.error) {
-
-		admonitions.showAdmonition(data.errorMessage, "error");
+		admonitions.showAdmonition(importedUserData.errorMessage, "error");
 		return;
 
 	}
 
-	admonitions.hideAdmonition(); //for now to reset
+	let success = await browser.runtime.sendMessage({action: "setData", payload: importedUserData});
 
-	//const success = await browser.runtime.sendMessage({action: "setData"});
+	if (!success) {
 
-	//if !success 
+		admonitions.showAdmonition(MESSAGE_STORAGE_SET_FAIL, "error");
+		return;	
 
-	//admonitions.show("error", something went wrong)
-	//return
+	}
 
+	admonitions.showAdmonition(MESSAGE_SAVE_SUCCESS, "info");
 
-	//getUserDataFromStorage();
+	setTimeout(() => {
+		admonitions.hideAdmonition();
+	}, "2000")
 
-
-
-
-
-
+	//load newly saved items from storage for user to show
+	getUserDataFromStorage();
 
 });
 

@@ -1,19 +1,15 @@
 const file = {
 
 	async extractFromFile (file) {
-
-		console.log(file);
 		
 		const userItems = {
 			items: []
 		}
 
-		//test for size && format
-		if (file.type != "application/json" || file.size > 1000) {
+		if (file.type != "application/json" || file.size > 10000 || file.size < 1) {
 
-			//todo: change max file size later 
 			userItems.error = true;
-			userItems.errorMessage = "wrong file format or file size too big";
+			userItems.errorMessage = MESSAGE_INVALID_FILE_TYPE;
 			return userItems;
 
 		} 		
@@ -21,41 +17,72 @@ const file = {
 		// idunno what file.text() returns in case of failure
 		// todo: find that out and test for it
 		// seems to work ok for now
-		const result = await file.text();
+		const rawText = await file.text();
 
-		if (!result) {
+		if (!rawText) {
 
 			userItems.error = true;
-			userItems.errorMessage = "unable to read the file";
+			userItems.errorMessage = MESSAGE_FAILED_FILE_READING;
 			return userItems;
 
 		}
 
-		console.log(result);
-
-		//try to parse to json
-		let resultJSON;
+		let genericJSON;
 
 		try {
 
-			resultJSON = JSON.parse(result);	
+			genericJSON = JSON.parse(rawText);	
 
-		} catch(e) {
+		} catch (e) {
 
 			userItems.error = true;
-			userItems.errorMessage = "invalid json format";
+			userItems.errorMessage = MESSAGE_INVALID_JSON;
 			return userItems;
 
 		}
 
-		console.log(resultJSON);
+		if (!genericJSON.items || genericJSON.items.length === 0) {
 
-		//convert generic json to compatibile user data
+			userItems.error = true;
+			userItems.errorMessage = MESSAGE_NO_DATA;
+			return userItems;
 
-		//return compatibile user data 
+		}
+
+		let itemCount = 1;
+
+		for (item of genericJSON.items) {
+
+			if (!validateTitle(item.title)) {
+
+				userItems.error = true;
+				userItems.errorMessage = "(Item: " + itemCount + ") " + MESSAGE_INVALID_TITLE;
+				return userItems;
+
+			}
+
+			if (!validateUrl(item.action)) {
+
+				userItems.error = true;
+				userItems.errorMessage = "(Item: " + itemCount + ") " + MESSAGE_INVALID_URL;
+				return userItems;
+
+			}
+
+			const userItem = {
+				id: randomId.generateNewId(),
+				title: item.title,
+				context: ['selection'],
+				action: item.action
+			}
+
+			userItems.items.push(userItem);
+			itemCount++;
+
+		}
 
 		return userItems;
-	}
 
+	}
 
 }

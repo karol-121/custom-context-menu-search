@@ -76,11 +76,35 @@ file_export.addEventListener("click", function(e) {
 
 });
 
-file_import.addEventListener("change", function(e) {
+file_import.addEventListener("change", async function(e) {
 
-	//some examples about input type file 
-	// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file
-	console.log("file import");
+
+	const data =  await file.extractFromFile(e.target.files[0]);
+
+	if (data.error) {
+
+		admonitions.showAdmonition(data.errorMessage, "error");
+		return;
+
+	}
+
+	admonitions.hideAdmonition(); //for now to reset
+
+	//const success = await browser.runtime.sendMessage({action: "setData"});
+
+	//if !success 
+
+	//admonitions.show("error", something went wrong)
+	//return
+
+
+	//getUserDataFromStorage();
+
+
+
+
+
+
 
 });
 

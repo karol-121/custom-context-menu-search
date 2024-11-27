@@ -72,6 +72,12 @@ function respondToMessage(request, sender, response) {
 
   }
 
+	if (request.action === "exportData") {
+
+		return downloadController.downloadFile(request.payload.file, request.payload.name);
+
+	}
+
   
 }
 

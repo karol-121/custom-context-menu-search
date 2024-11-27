@@ -85,7 +85,7 @@ const file = {
 
 	},
 
-	create (data) {
+	createFromData (data) {
 
 		//todo: convert data to generic json (stip uneeded data)
 

@@ -72,32 +72,16 @@ save_button.addEventListener("click", async function(e) {
 
 file_export.addEventListener("click", async function(e) {
 
-	console.log("file export");
-
 	let userItems = await browser.runtime.sendMessage({action: "getData"});
 
-	const blob = file.create(userItems);
+	const userItemsFile = file.createFromData(userItems);
 
+	const exportConfig = {
+		file: userItemsFile,
+		name: "items.json"
+	}
 
-	//this could also be moved to background script
-	const fileUrl = URL.createObjectURL(blob);
-
-	//todo probably move it to downloadController in background script to override
-	//the default return promise (make it return false upon fail, and id upon success)
-	let downloading = await browser.downloads.download({
-		url: fileUrl,
-		filename: "items.json",
-		saveAs: true
-	});
-
-	console.log(downloading);
-
-	//and this also can be moved to background script
-	browser.downloads.onChanged.addListener(function (e) {
-		//revoke file url using downloads.onchanged
-		console.log(e);
-	});
-
+	let exporting = await browser.runtime.sendMessage({action: "exportData", payload: exportConfig});
 
 
 });

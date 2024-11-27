@@ -83,6 +83,18 @@ const file = {
 
 		return userItems;
 
+	},
+
+	create (data) {
+
+		//todo: convert data to generic json (stip uneeded data)
+
+		const blob = new Blob([JSON.stringify(data, null, 2)], {
+  		type: "application/json",
+		});
+
+		return blob;
+
 	}
 
 }

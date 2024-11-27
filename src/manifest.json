@@ -30,7 +30,8 @@
   "permissions": [
     "storage", 
     "tabs",
-    "contextMenus"
+    "contextMenus",
+    "downloads"
   ]
 
 }

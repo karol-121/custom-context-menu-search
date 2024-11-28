@@ -1,6 +1,6 @@
 const file = {
 
-	async extractFromFile (file) {
+	async extractFromFile(file) {
 		
 		const userItems = {
 			items: []
@@ -14,9 +14,6 @@ const file = {
 
 		} 		
 
-		// idunno what file.text() returns in case of failure
-		// todo: find that out and test for it
-		// seems to work ok for now
 		const rawText = await file.text();
 
 		if (!rawText) {
@@ -41,7 +38,7 @@ const file = {
 
 		}
 
-		if (!genericJSON.items || genericJSON.items.length === 0) {
+		if (!genericJSON.context_menu_items || genericJSON.context_menu_items.length === 0) {
 
 			userItems.error = true;
 			userItems.errorMessage = MESSAGE_NO_DATA;
@@ -51,7 +48,7 @@ const file = {
 
 		let itemCount = 1;
 
-		for (item of genericJSON.items) {
+		for (item of genericJSON.context_menu_items) {
 
 			if (!validateTitle(item.title)) {
 
@@ -61,7 +58,7 @@ const file = {
 
 			}
 
-			if (!validateUrl(item.action)) {
+			if (!validateUrl(item.url)) {
 
 				userItems.error = true;
 				userItems.errorMessage = "(Item: " + itemCount + ") " + MESSAGE_INVALID_URL;
@@ -72,8 +69,8 @@ const file = {
 			const userItem = {
 				id: randomId.generateNewId(),
 				title: item.title,
-				context: ['selection'],
-				action: item.action
+				contexts: ['selection'],
+				action: item.url
 			}
 
 			userItems.items.push(userItem);
@@ -85,11 +82,30 @@ const file = {
 
 	},
 
-	createFromData (data) {
+	createFromStorageData(storageData) {
 
-		//todo: convert data to generic json (stip uneeded data)
+		if (!storageData.items) {
 
-		const blob = new Blob([JSON.stringify(data, null, 2)], {
+			return;
+
+		}
+
+		const exportJSON = {
+			context_menu_items: []
+		};
+
+		for (item of storageData.items) {
+
+			const exportItem = {
+				title: item.title,
+				url: item.action
+			}
+
+			exportJSON.context_menu_items.push(exportItem);
+
+		}
+
+		const blob = new Blob([JSON.stringify(exportJSON, null, 2)], {
   		type: "application/json",
 		});
 

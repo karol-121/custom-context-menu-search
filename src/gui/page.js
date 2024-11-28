@@ -74,11 +74,18 @@ file_export.addEventListener("click", async function(e) {
 
 	let userItems = await browser.runtime.sendMessage({action: "getData"});
 
-	const userItemsFile = file.createFromData(userItems);
+	if (!userItems) {
+
+		admonitions.showAdmonition(MESSAGE_STORAGE_GET_FAIL, "error");
+		return;
+		
+	}
+
+	const userItemsFile = file.createFromStorageData(userItems);
 
 	const exportConfig = {
 		file: userItemsFile,
-		name: "items.json"
+		name: "context_menu_items.json"
 	}
 
 	let exporting = await browser.runtime.sendMessage({action: "exportData", payload: exportConfig});

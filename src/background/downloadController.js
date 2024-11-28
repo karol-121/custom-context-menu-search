@@ -2,11 +2,13 @@ const downloadController = {
 
 	async downloadFile(file, name) {
 
-		//todo: test paramteres
+		if (!file || !name) {
+
+			return false;
+
+		}
 
 		let fileUrl = URL.createObjectURL(file);
-
-		//todo: test for fileUrl
 
 		const downloadConfig = {
 			url: fileUrl,
@@ -18,9 +20,8 @@ const downloadController = {
 
 		if (!download) {
 
-			console.log("revoking object url");
 			URL.revokeObjectURL(fileUrl);
-			return download; //check if this is really needed,
+			return download;
 
 		}
 
@@ -29,7 +30,6 @@ const downloadController = {
 			browser.downloads.onChanged.addListener(this.afterDownload);
 
 		}
-
 
 		return download;
 
@@ -53,12 +53,23 @@ const downloadController = {
 
 	},
 
-	afterDownload(e) {
-		
-		console.log("revoking object url");
-		// this.fileUrl = URL.revokeObjectURL(this.fileUrl);
+	async afterDownload(e) {
 
-		//todo: use downloads.search() to find and revoke fileurl in question
+		if (!e.id) {
+
+			return;
+
+		}
+		
+		let downloaded = await browser.downloads.search({id: e.id});
+
+		if (!downloaded[0].url) {
+
+			return;
+			
+		}
+
+		URL.revokeObjectURL(downloaded[0].url);
 
 	}
 

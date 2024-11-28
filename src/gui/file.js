@@ -1,6 +1,6 @@
 const file = {
 
-	async extractFromFile(file) {
+	async getUserData(file) {
 		
 		const userItems = {
 			items: []
@@ -24,11 +24,11 @@ const file = {
 
 		}
 
-		let genericJSON;
+		let importJSON;
 
 		try {
 
-			genericJSON = JSON.parse(rawText);	
+			importJSON = JSON.parse(rawText);	
 
 		} catch (e) {
 
@@ -38,7 +38,7 @@ const file = {
 
 		}
 
-		if (!genericJSON.context_menu_items || genericJSON.context_menu_items.length === 0) {
+		if (!importJSON.context_menu_items || importJSON.context_menu_items.length === 0) {
 
 			userItems.error = true;
 			userItems.errorMessage = MESSAGE_NO_DATA;
@@ -48,9 +48,9 @@ const file = {
 
 		let itemCount = 1;
 
-		for (item of genericJSON.context_menu_items) {
+		for (importItem of importJSON.context_menu_items) {
 
-			if (!validateTitle(item.title)) {
+			if (!validateTitle(importItem.title)) {
 
 				userItems.error = true;
 				userItems.errorMessage = "(Item: " + itemCount + ") " + MESSAGE_INVALID_TITLE;
@@ -58,7 +58,7 @@ const file = {
 
 			}
 
-			if (!validateUrl(item.url)) {
+			if (!validateUrl(importItem.url)) {
 
 				userItems.error = true;
 				userItems.errorMessage = "(Item: " + itemCount + ") " + MESSAGE_INVALID_URL;
@@ -68,9 +68,9 @@ const file = {
 
 			const userItem = {
 				id: randomId.generateNewId(),
-				title: item.title,
+				title: importItem.title,
 				contexts: ['selection'],
-				action: item.url
+				action: importItem.url
 			}
 
 			userItems.items.push(userItem);
@@ -82,19 +82,19 @@ const file = {
 
 	},
 
-	createFromStorageData(storageData) {
-
-		if (!storageData.items) {
-
-			return;
-
-		}
+	createFromUserData(userData) {
 
 		const exportJSON = {
 			context_menu_items: []
 		};
 
-		for (item of storageData.items) {
+		if (!userData.items) {
+
+			return this.jsonToBlob(exportJSON);
+
+		}
+
+		for (item of userData.items) {
 
 			const exportItem = {
 				title: item.title,
@@ -105,11 +105,15 @@ const file = {
 
 		}
 
-		const blob = new Blob([JSON.stringify(exportJSON, null, 2)], {
+		return this.jsonToBlob(exportJSON);
+
+	},
+
+	jsonToBlob(json) {
+
+		return new Blob([JSON.stringify(json, null, 2)], {
   		type: "application/json",
 		});
-
-		return blob;
 
 	}
 

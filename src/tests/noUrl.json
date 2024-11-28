@@ -1,0 +1,16 @@
+{
+  "context_menu_items": [
+    {
+      "title": "Youtube",
+      "url": "https://www.youtube.com/results?search_query="
+    },
+    {
+      "title": "Soundcloud",
+      "link": "soundcloud.com/search?q="
+    },
+    {
+      "title": "Bandcamp",
+      "url": "https://bandcamp.com/search?q=%s&item_type"
+    }
+  ]
+}

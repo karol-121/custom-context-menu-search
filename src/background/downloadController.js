@@ -8,7 +8,17 @@ const downloadController = {
 
 		}
 
-		let fileUrl = URL.createObjectURL(file);
+		let fileUrl; 
+
+		try {
+
+			fileUrl = URL.createObjectURL(file);
+
+		} catch(e) {
+
+			return false;
+
+		}
 
 		const downloadConfig = {
 			url: fileUrl,
@@ -16,7 +26,7 @@ const downloadController = {
 			saveAs: true
 		}
 
-		let download = await this.setDownload(downloadConfig);
+		const download = await this.setDownload(downloadConfig);
 
 		if (!download) {
 
@@ -37,7 +47,15 @@ const downloadController = {
 
 	setDownload(data) {
 
-		return browser.downloads.download(data).then(this.onSuccess, this.onError);
+		try {
+
+			return browser.downloads.download(data).then(this.onSuccess, this.onError);
+
+		} catch(e) {
+
+			return false;
+
+		}
 
 	},
 
@@ -47,7 +65,15 @@ const downloadController = {
 
 	},
 
-	onError() {
+	onError(e) {
+
+		//prevent browser.downloads.download() from returning an error while user cancels the download
+		//this is so it can be treaded different that other errors
+		if (e == "Error: Download canceled by the user") {
+
+			return -1;
+
+		}
 
 		return false;
 
@@ -66,7 +92,7 @@ const downloadController = {
 		if (!downloaded[0].url) {
 
 			return;
-			
+
 		}
 
 		URL.revokeObjectURL(downloaded[0].url);

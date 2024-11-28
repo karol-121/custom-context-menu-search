@@ -72,7 +72,7 @@ save_button.addEventListener("click", async function(e) {
 
 file_export.addEventListener("click", async function(e) {
 
-	let userItems = await browser.runtime.sendMessage({action: "getData"});
+	const userItems = await browser.runtime.sendMessage({action: "getData"});
 
 	if (!userItems) {
 
@@ -81,21 +81,47 @@ file_export.addEventListener("click", async function(e) {
 		
 	}
 
-	const userItemsFile = file.createFromStorageData(userItems);
+	const userItemsFile = file.createFromUserData(userItems);
+
+	if (!userItemsFile) {
+
+		admonitions.showAdmonition(MESSAGE_FAILED_FILE_CREATING, "error");
+		return;
+
+	}
 
 	const exportConfig = {
 		file: userItemsFile,
 		name: "context_menu_items.json"
 	}
 
-	let exporting = await browser.runtime.sendMessage({action: "exportData", payload: exportConfig});
+	const exporting = await browser.runtime.sendMessage({action: "exportData", payload: exportConfig});
 
+	if (!exporting) {
+		
+		admonitions.showAdmonition(MESSAGE_FAILED_FILE_DOWNLOAD, "error");
+		return;
+
+	}
+
+	//"exportData" will return -1 if user cancels the download
+	if (exporting === -1) {
+
+		return;
+
+	}
+
+	admonitions.showAdmonition(MESSAGE_EXPORT_SUCCESS, "info");
+
+	setTimeout(() => {
+		admonitions.hideAdmonition();
+	}, "2000");
 
 });
 
 file_import.addEventListener("change", async function(e) {
 
-	const importedUserData =  await file.extractFromFile(e.target.files[0]);
+	const importedUserData =  await file.getUserData(e.target.files[0]);
 
 	if (importedUserData.error) {
 
@@ -104,7 +130,7 @@ file_import.addEventListener("change", async function(e) {
 
 	}
 
-	let success = await browser.runtime.sendMessage({action: "setData", payload: importedUserData});
+	const success = await browser.runtime.sendMessage({action: "setData", payload: importedUserData});
 
 	if (!success) {
 
@@ -113,7 +139,7 @@ file_import.addEventListener("change", async function(e) {
 
 	}
 
-	admonitions.showAdmonition(MESSAGE_SAVE_SUCCESS, "info");
+	admonitions.showAdmonition(MESSAGE_IMPORT_SUCCESS, "info");
 
 	setTimeout(() => {
 		admonitions.hideAdmonition();

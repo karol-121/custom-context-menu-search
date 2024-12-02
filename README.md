@@ -31,7 +31,17 @@ In order to create a context menu item, one has to press on "Add new item" butto
 One can modify defined context menu items by directly modifying previously entered values.
 
 #### Delete items:
-In order to delete context menu item, one has to press on "Delete item" button next to item that should be deleted. 
+In order to delete context menu item, one has to press on "Delete item" button next to item that should be deleted.
+
+#### Export items:
+It is also possible to export defined context menu items to a .json file. Note that the export functionality exports directly from the storage meaning that any unsaved change will not be reflected in the exported file. Items are exported to a file by utilizing the "Export to file" button on the extensions options page.
+
+#### Import items:
+Context menu items can also be directly imported from a .json file. Doing so will override all previously defined items with what is defined in the file. The context menu items are defined in the .json file by following format:
+
+`{"context_menu_items": [{"title": "Example 1","url": "www.example.com/?search="},{"title": "Example 2","url": "www.example.com/?search="}]}`  
+
+Note that the .json file size are restricted to 10 000 bytes meaning it is possible to import about 100 context menu items (depending on the length of the titles and urls). Items are imported by utilizing the "Import from file" button on the extensions options page and selecting a file.
 
 ## Installation
 Available for Firefox via: https://addons.mozilla.org/en-US/firefox/addon/custom-context-menu-searches/

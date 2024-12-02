@@ -1,0 +1,16 @@
+{
+  "context_menu_items": [
+    {
+      "title": "Example",
+      "url": "www.example.com/?search="
+    },
+    {
+      "title": "Example Foo",
+      "url": "www.example.com/?search=%s&foo=bar"
+    },
+    {
+      "title": "Example https",
+      "url": "https://www.example.com/?search=%s"
+    }
+  ]
+}

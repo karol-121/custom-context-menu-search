@@ -31,15 +31,15 @@ const testData = {
 		items: [
 			{
 				id: "17319286340290",
-				title: "Foo",
+				title: "Soundcloud",
 				contexts: ["selection"],
-				action: "www.example.com/?foo="
+				action: "https://soundcloud.com/search?q="
 			},
 			{
 				id: "17319286340291",
-				title: "Bar",
+				title: "Bandcamp",
 				contexts: ["selection"],
-				action: "www.example.com/?bar=%s&bar=foo"
+				action: "https://bandcamp.com/search?q=%s&item_type"
 			}
 		]
 	}

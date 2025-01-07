@@ -142,11 +142,23 @@ const admonitions = {
 	admonition_content: document.getElementById("admonition-content"),
 	admonition_title: document.getElementById("admonition-title"),
 	admonition_text: document.getElementById("admonition-text"),
+	admonition_duration: undefined,
 
 	//function shows admonition to the user
-	//todo: redo admonitions
-	showAdmonition(message, type) {
+	showAdmonition(message, type, duration) {
 		
+		clearTimeout(this.admonition_duration);
+		
+		if (duration) {
+
+			this.admonition_duration = setTimeout(() => {
+
+				this.hideAdmonition();
+
+			}, duration); 
+
+		}
+
 		const types = {
 			error: "admonition-error",
 			info: "admonition-info"

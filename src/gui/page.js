@@ -59,11 +59,7 @@ save_button.addEventListener("click", async function(e) {
 
 	}
 
-	admonitions.showAdmonition(MESSAGE_SAVE_SUCCESS, "info");
-
-	setTimeout(() => {
-		admonitions.hideAdmonition();
-	}, "2000")
+	admonitions.showAdmonition(MESSAGE_SAVE_SUCCESS, "info", "2000");
 
 	//load newly saved items from storage for user to show
 	getUserDataFromStorage();

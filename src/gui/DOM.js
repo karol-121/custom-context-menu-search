@@ -128,7 +128,7 @@ const table = {
 
 		userItem.id = randomId.generateNewId();
 		userItem.title = title;
-		userItem.context = ['selection'];
+		userItem.contexts = ['selection'];
 		userItem.action = url;
 
 		return userItem;

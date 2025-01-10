@@ -3,10 +3,16 @@ body {
 	color: #15141a;
 }
 
-button, label{
+.btn-primary, label {
 	color: #15141a;
 	background-color: #eeeeee;
 	border-color: #eeeeee;
+}
+
+.btn-secondary {
+	color: #15141a;
+	background-color: #ffffff;
+	border-color: #ffffff;
 }
 
 button:hover, label:hover {
@@ -60,10 +66,16 @@ hr {
 		color: #fbfbfe;
 	}
 
-	button, label {
+	.btn-primary, label {
 		color: #fbfbfe;
 		background-color: #484854;
 		border-color: #484854;
+	}
+
+	.btn-secondary {
+		color: #fbfbfe;
+		background-color: #23222b;
+		border-color: #23222b;
 	}
 
 	button:hover, label:hover {

@@ -21,16 +21,24 @@ td {
 	height: 2.8em;
 }
 
-.cell-width-title {
+.width-20 {
+	width: 20%;
+}
+
+.width-30 {
 	width: 30%;
 }
 
-.cell-width-url {
+.width-50 {
 	width: 50%;
 }
 
-.cell-width-manage {
-	width: 20%;
+.width-80 {
+	width: 80%;
+}
+
+.width-100 {
+	width: 100%;
 }
 
 input, button {

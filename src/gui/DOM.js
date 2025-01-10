@@ -12,7 +12,7 @@ const table = {
 		const row = document.createElement('tr');
 
 		const cell_title = document.createElement('td');
-			cell_title.className = "cell-width-title";
+			cell_title.className = "width-30";
 		const title_input = document.createElement('input');
 			title_input.type = "text";
 			title_input.placeholder = "example search";
@@ -20,7 +20,7 @@ const table = {
 		cell_title.appendChild(title_input);
 	
 		const cell_url = document.createElement('td');
-			cell_url.className = "cell-width-url";
+			cell_url.className = "width-50";
 		const url_input = document.createElement('input');
 			url_input.type = "text";
 			url_input.placeholder = "www.example.com/?q=%s";
@@ -28,8 +28,9 @@ const table = {
 		cell_url.appendChild(url_input);
 
 		const cell_manage = document.createElement('td');
-			cell_manage.className = "cell-width-manage";
+			cell_manage.className = "width-20";
 		const del_button = document.createElement('button');
+			del_button.className = "btn-primary";
 			del_button.parentRow = row;
 			del_button.addEventListener('click', function (e) {
 				table.deleteRow(e.target.parentRow);
@@ -127,7 +128,7 @@ const table = {
 		url_field.setCustomValidity("");
 
 		return new contextMenuItem(title, url);
-		
+
 	}
 
 }

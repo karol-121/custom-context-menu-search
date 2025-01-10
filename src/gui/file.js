@@ -66,14 +66,7 @@ const file = {
 
 			}
 
-			const userItem = {
-				id: randomId.generateNewId(),
-				title: importItem.title,
-				contexts: ['selection'],
-				action: importItem.url
-			}
-
-			userItems.items.push(userItem);
+			userItems.items.push(new contextMenuItem(importItem.title, importItem.url));
 			itemCount++;
 
 		}

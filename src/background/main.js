@@ -1,11 +1,3 @@
-//default context menu item
-const options_page_shortcut = {
-  id: randomId.generateNewId(),
-  title: "Create new...",
-  contexts: ["selection"],
-  action: "%options%",
-}
-
 async function setContextMenuItems() {
 
 	let userContextMenuItems = await storageController.getData();
@@ -18,10 +10,10 @@ async function setContextMenuItems() {
 
 	}
 
-	//if no data from storage -> add default
+	//if no data from storage -> create shortcut as default
 	if (!userContextMenuItems.items || userContextMenuItems.items.length === 0) {
 
-		userContextMenuItems.items = [options_page_shortcut];
+		userContextMenuItems.items = [new contextMenuItem("Create new...","%options%")];
 
 	}
 

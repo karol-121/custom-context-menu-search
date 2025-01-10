@@ -126,12 +126,8 @@ const table = {
 		//reset custom validity, in case the value has been corrected
 		url_field.setCustomValidity("");
 
-		userItem.id = randomId.generateNewId();
-		userItem.title = title;
-		userItem.contexts = ['selection'];
-		userItem.action = url;
-
-		return userItem;
+		return new contextMenuItem(title, url);
+		
 	}
 
 }

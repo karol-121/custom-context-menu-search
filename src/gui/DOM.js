@@ -181,7 +181,46 @@ const admonitions = {
 
 }
 
+const suggestions = {
+	suggestions_box: document.getElementById("suggestions_box"),
+	onSuggestionClicked: undefined,
+
+	populate(suggestions) {
+
+		this.reset();
+
+		if (!suggestions || suggestions.length === 0) {
+
+			const info_span = document.createElement("span");
+				info_span.className = "txt-secondary"
+				info_span.innerText = "nothing to show"; //todo: add warning to localization
+
+				this.suggestions_box.append(info_span);
+				return;
+		}
+
+		for (suggestion of suggestions) {
+			
+			const suggestion_button = document.createElement("button");
+				suggestion_button.className = "btn-secondary";
+				suggestion_button.innerText = suggestion.title;
+				suggestion_button.origin = this;
+				suggestion_button.addEventListener('click', function (e) {
+					this.origin.onSuggestionClicked(this.innerText);
+				});
+
+				this.suggestions_box.append(suggestion_button);
+		}
+
+	},
+
+	reset() {
+		this.suggestions_box.innerHTML = "";
+	}
+}
+
 const add_row_button = document.getElementById("add_new_row");
+const search_suggestions = document.getElementById("search_suggestions");
 const save_button = document.getElementById("save");
 const file_export = document.getElementById("file_export");
 const file_import = document.getElementById("file_import");

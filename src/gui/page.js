@@ -27,15 +27,40 @@ async function getUserDataFromStorage() {
 
 }
 
+function populateSuggestions(keyword) {
+
+	suggestions.populate(getSuggestions(keyword, 5));
+
+}
+
 
 //entry point
 //this is where javaScript start executing code
 
 getUserDataFromStorage();
+populateSuggestions("");
+
+suggestions.onSuggestionClicked = function(title) {
+
+	const item = getSuggestionByTitle(title);
+
+	//todo: add check if item was found (-1 if not);
+	//if so add admonitions or smt
+
+	table.createRow(item.title, item.url);
+}
+
+
 
 add_row_button.addEventListener("click", function(e) {
 	
 	table.createRow("","");
+
+});
+
+search_suggestions.addEventListener("input", function(e) {
+
+	populateSuggestions(e.target.value);
 
 });
 

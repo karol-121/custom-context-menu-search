@@ -5,6 +5,7 @@ const MESSAGE_STORAGE_GET_FAIL = "An error occurred while loading the data!";
 const MESSAGE_FAILED_FILE_READING = "An error occurred while reading the file!";
 const MESSAGE_FAILED_FILE_CREATING = "An error occurred while creating the file!";
 const MESSAGE_FAILED_FILE_DOWNLOAD = "An error occurred while downloading the file!";
+const MESSAGE_NOTHING_FOUND = "Nothing to show";
 
 //user errors
 const MESSAGE_INVALID_TITLE = "Provided title is invalid!";

@@ -42,12 +42,17 @@ populateSuggestions("");
 
 suggestions.onSuggestionClicked = function(title) {
 
-	const item = getSuggestionByTitle(title);
+	const suggested_item = getSuggestionByTitle(title);
 
-	//todo: add check if item was found (-1 if not);
-	//if so add admonitions or smt
+	if (suggested_item < 0) {
 
-	table.createRow(item.title, item.url);
+		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		return;
+
+	}
+
+	table.createRow(suggested_item.title, suggested_item.url);
+
 }
 
 

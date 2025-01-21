@@ -182,6 +182,7 @@ const admonitions = {
 }
 
 const suggestions = {
+
 	suggestions_box: document.getElementById("suggestions_box"),
 	onSuggestionClicked: undefined,
 
@@ -193,7 +194,7 @@ const suggestions = {
 
 			const info_span = document.createElement("span");
 				info_span.className = "txt-secondary"
-				info_span.innerText = "nothing to show"; //todo: add warning to localization
+				info_span.innerText = MESSAGE_NOTHING_FOUND;
 
 				this.suggestions_box.append(info_span);
 				return;
@@ -206,7 +207,9 @@ const suggestions = {
 				suggestion_button.innerText = suggestion.title;
 				suggestion_button.origin = this;
 				suggestion_button.addEventListener('click', function (e) {
+
 					this.origin.onSuggestionClicked(this.innerText);
+
 				});
 
 				this.suggestions_box.append(suggestion_button);
@@ -215,8 +218,11 @@ const suggestions = {
 	},
 
 	reset() {
+
 		this.suggestions_box.innerHTML = "";
+
 	}
+
 }
 
 const add_row_button = document.getElementById("add_new_row");

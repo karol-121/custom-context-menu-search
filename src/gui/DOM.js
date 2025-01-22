@@ -215,6 +215,15 @@ const suggestions = {
 				this.suggestions_box.append(suggestion_button);
 		}
 
+		if (suggestions.length > 4) {
+
+			const more_span = document.createElement("span");
+				more_span.innerText = "...";
+
+			this.suggestions_box.append(more_span);
+
+		}
+
 	},
 
 	reset() {

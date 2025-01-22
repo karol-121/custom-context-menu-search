@@ -29,7 +29,7 @@ async function getUserDataFromStorage() {
 
 function populateSuggestions(keyword) {
 
-	suggestions.populate(getSuggestions(keyword, 5));
+	suggestions.populate(getSearchItems(keyword, 5));
 
 }
 
@@ -42,16 +42,16 @@ populateSuggestions("");
 
 suggestions.onSuggestionClicked = function(title) {
 
-	const suggested_item = getSuggestionByTitle(title);
+	const suggestedItem = getSearchItemByTitle(title);
 
-	if (suggested_item < 0) {
+	if (suggestedItem < 0) {
 
 		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
 		return;
 
 	}
 
-	table.createRow(suggested_item.title, suggested_item.url);
+	table.createRow(suggestedItem.title, suggestedItem.url);
 
 }
 

@@ -53,16 +53,28 @@ const searchItems = [
 		url: "https://www.google.com/search?q=",	
 	},
 	{
-		title: "DuckDuckGo",
-		url: "https://duckduckgo.com/?t=ffab&q=",	
+		title: "Startpage",
+		url: "https://www.startpage.com/sp/search?q=",	
+	},
+	{
+		title: "Google Maps",
+		url: "https://www.google.com/maps/search/",	
+	},
+	{
+		title: "TheFreeDictionary",
+		url: "https://www.thefreedictionary.com/",	
+	},
+	{
+		title: "Youtube",
+		url: "https://www.youtube.com/results?search_query=",	
 	},
 	{
 		title: "Bing",
 		url: "https://www.bing.com/search?q=",	
 	},
 	{
-		title: "Startpage",
-		url: "https://www.startpage.com/sp/search?q=",	
+		title: "DuckDuckGo",
+		url: "https://duckduckgo.com/?t=ffab&q=",	
 	},
 	{
 		title: "Ecosia",
@@ -77,10 +89,6 @@ const searchItems = [
 		url: "https://soundcloud.com/search?q=",	
 	},
 	{
-		title: "Youtube",
-		url: "https://www.youtube.com/results?search_query=",	
-	},
-	{
 		title: "Reddit",
 		url: "https://www.reddit.com/search/?q=",	
 	},
@@ -88,17 +96,10 @@ const searchItems = [
 		title: "OpenStreetMap",
 		url: "https://www.openstreetmap.org/search?query=",	
 	},
-	{
-		title: "Google Maps",
-		url: "https://www.google.com/maps/search/",	
-	},
+	
 	{
 		title: "Stack Overflow",
 		url: "https://stackoverflow.com/search?q=",	
-	},
-	{
-		title: "TheFreeDictionary",
-		url: "https://www.thefreedictionary.com/",	
 	},
 	{
 		title: "Google Translate",

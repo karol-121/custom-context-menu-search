@@ -1,5 +1,5 @@
 body {
-	margin: 0.4em;
+	margin: 0.2em;
 	font-size: 15px;
 }
 
@@ -13,12 +13,17 @@ table {
 	width: 100%;
 }
 
-p {
-	margin: 0.2em 0em;
+span {
+	margin: 0.2em;
 }
 
 td {
 	height: 2.8em;
+	margin: 0;
+}
+
+div {
+	margin: 0.2em 0em;
 }
 
 .width-20 {
@@ -105,8 +110,7 @@ button:focus-visible, label:focus-visible {
 	width: 100%;
 }
 
-#admonition > div {
-	display: block;
+#admonition-content {
 	margin: 0.2em;
 	padding: 0.4em 0.8em;
 	border-width: 1px;

@@ -1,21 +1,21 @@
 const contextMenuController = {
 
-	contextMenuItems: [],
+	menuItems: [],
 
-	setContextMenuItems(contextMenuItems) {
+	setContextMenuItems(newMenuItems) {
 		
 		browser.contextMenus.removeAll();
-		this.contextMenuItems = [];
+		this.menuItems = [];
 
-		for (contextMenuItem of contextMenuItems) {
+		for (menuItem of newMenuItems) {
 
 			browser.contextMenus.create({
-      	id: contextMenuItem.id,
-      	title: contextMenuItem.title,
-      	contexts: contextMenuItem.contexts,
+      	id: menuItem.id,
+      	title: menuItem.title,
+      	contexts: menuItem.contexts,
     	});
 
-    	this.contextMenuItems.push(contextMenuItem);
+    	this.menuItems.push(menuItem);
 
 		}
 
@@ -23,11 +23,11 @@ const contextMenuController = {
 
 	getContextMenuItem(id) {
 
-		for (contextMenuItem of this.contextMenuItems) {
+		for (menuItem of this.menuItems) {
 
-			if (contextMenuItem.id === id) {
+			if (menuItem.id === id) {
 
-				return contextMenuItem;
+				return menuItem;
 
 			}
 

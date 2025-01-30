@@ -61,14 +61,6 @@ const table = {
 		const userItems = {
 			items: []
 		}
-
-		if (this.table_body.rows.length < 1) {
-
-			userItems.error = true;
-			userItems.errorMessage = MESSAGE_INVALID_EMPTY;
-			return userItems;
-
-		}
 	
 		for (row of this.table_body.rows) {
 
@@ -82,7 +74,11 @@ const table = {
 
 			}
 
-			userItems.items.push(userItem);
+			if (!userItem.empty) {
+
+				userItems.items.push(userItem);
+
+			}
 
 		}
 
@@ -102,6 +98,13 @@ const table = {
 
 		title = title.trim();
 		url = url.trim();
+
+		if (title === "" && url === "") {
+
+			userItem.empty = true;
+			return userItem;
+
+		}
 
 		if (!validateTitle(title)) {
 

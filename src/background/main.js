@@ -23,22 +23,22 @@ async function setContextMenuItems() {
 
 function onContextMenusClicked(info) {
 
-	let contextMenuItem = contextMenuController.getContextMenuItem(info.menuItemId);
+	let clickedMenuItem = contextMenuController.getContextMenuItem(info.menuItemId);
 
-	if (!contextMenuItem) {
+	if (!clickedMenuItem) {
 
 		return;
 
 	}
 
-	if (contextMenuItem.action === "%options%") {
+	if (clickedMenuItem.action === "%options%") {
 
 		tabController.setOptionsPage();
 		return;
 
 	}
 
-	let url = composeURL(contextMenuItem.action, info.selectionText)
+	let url = composeURL(clickedMenuItem.action, info.selectionText)
 
 	if (!url) {
 

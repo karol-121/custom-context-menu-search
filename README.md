@@ -43,6 +43,9 @@ Context menu items can also be directly imported from a .json file. Doing so wil
 
 Note that the .json file size are restricted to 10 000 bytes meaning it is possible to import about 100 context menu items (depending on the length of the titles and urls). Items are imported by utilizing the "Import from file" button on the extensions options page and selecting a file.
 
+### Suggestions:
+The extension include predefined searches that user can make use of. In order to do that, the user has to press on one of titles shown below the search box. Clicked item will be automatically added to the list. As there is more predefined items than it is shown, searching for given item may become helpful. Currently there is around 15 predefined searches which mostly consist of search engines, more may come in the future. 
+
 ## Installation
 Available for Firefox via: https://addons.mozilla.org/en-US/firefox/addon/custom-context-menu-searches/
 

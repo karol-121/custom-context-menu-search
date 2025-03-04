@@ -26,12 +26,20 @@ div {
 	margin: 0.2em 0em;
 }
 
+.width-10 {
+	width: 10%;
+}
+
 .width-20 {
 	width: 20%;
 }
 
 .width-30 {
 	width: 30%;
+}
+
+.width-40 {
+	width: 40%;
 }
 
 .width-50 {
@@ -55,7 +63,7 @@ td > input {
 }
 
 td > button {
-	width: 100%;
+	/*width: 100%;*/
 }
 
 input[type="text"] {

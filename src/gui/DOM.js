@@ -1,9 +1,12 @@
 const table = {
 	table_body: document.getElementById("table_body"),
+	selected_row: null,
+	onRowSelectionUpdate: null,
 
 	deleteRow(row) {
 
 		this.table_body.removeChild(row);
+		this.deselectRow();
 
 	},
 
@@ -11,8 +14,28 @@ const table = {
 		
 		const row = document.createElement('tr');
 
+		const cell_select = document.createElement('td');
+			cell_select.className = "width-10";
+
+		const select_input = document.createElement('input');
+			select_input.type = "checkbox";
+			select_input.parentRow = row;
+			select_input.addEventListener('change', function (e) {
+
+				if (this.checked) {
+					table.selectRow(e.target.parentRow);
+				}
+
+				if (!this.checked) {
+					table.deselectRow(e.target.parentRow);
+				}
+
+			});
+
+		cell_select.appendChild(select_input);
+
 		const cell_title = document.createElement('td');
-			cell_title.className = "width-30";
+			cell_title.className = "width-40";
 		const title_input = document.createElement('input');
 			title_input.type = "text";
 			title_input.placeholder = "example search";
@@ -26,23 +49,59 @@ const table = {
 			url_input.placeholder = "www.example.com/?q=%s";
 			url_input.value = url;
 		cell_url.appendChild(url_input);
-
-		const cell_manage = document.createElement('td');
-			cell_manage.className = "width-20";
-		const del_button = document.createElement('button');
-			del_button.className = "btn-primary";
-			del_button.parentRow = row;
-			del_button.addEventListener('click', function (e) {
-				table.deleteRow(e.target.parentRow);
-			});
-			del_button.append("Delete item");
-		cell_manage.appendChild(del_button);
 	
+		row.appendChild(cell_select);
 		row.appendChild(cell_title);
 		row.appendChild(cell_url);
-		row.appendChild(cell_manage);
-
+		
 		this.table_body.appendChild(row);
+
+	},
+
+	deselectRow() {
+
+		if (this.selected_row) {
+
+			this.selected_row.cells[0].children[0].checked = false;
+
+		}
+
+		this.selected_row = null;
+		this.onRowSelectionUpdate(true); //check if function is defined
+
+	},
+
+	selectRow(row) {
+
+		if (this.selected_row) {
+
+			this.selected_row.cells[0].children[0].checked = false;
+
+		}
+
+		this.selected_row = row;
+		this.onRowSelectionUpdate(false); //check if function is defined
+		this.selected_row.cells[0].children[0].checked = true;
+
+	},
+
+	moveRowUp(row) {
+
+		if (row.previousSibling) {
+			
+			this.table_body.insertBefore(row, row.previousSibling);
+
+		} 
+
+	},
+
+	moveRowDown(row) {
+
+		if (row.nextSibling) {
+
+			this.table_body.insertBefore(row.nextSibling, row);
+			
+		} 
 
 	},
 
@@ -53,6 +112,8 @@ const table = {
     	this.table_body.removeChild(this.table_body.lastChild);
 
   	}
+
+  	this.deselectRow();
 
 	},
 
@@ -90,8 +151,8 @@ const table = {
 
 		const userItem = {};
 
-		let title_field = row.cells[0].children[0];
-		let url_field = row.cells[1].children[0];
+		let title_field = row.cells[1].children[0];
+		let url_field = row.cells[2].children[0];
 
 		let title = title_field.value;
 		let url = url_field.value;
@@ -238,6 +299,10 @@ const suggestions = {
 }
 
 const add_row_button = document.getElementById("add_new_row");
+const remove_row_button = document.getElementById("remove_row");
+const move_row_up_button = document.getElementById("move_up_row");
+const move_row_down_button = document.getElementById("move_down_row");
+
 const search_suggestions = document.getElementById("search_suggestions");
 const save_button = document.getElementById("save");
 const file_export = document.getElementById("file_export");

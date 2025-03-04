@@ -15,25 +15,26 @@
 			<span id="admonition-text"></span>
 		</div>
 	</div>
+
+	<div>
+		<div class="">
+			<button id="add_new_row" class="btn-primary">Add item</button>	
+			<button id="move_up_row" class="btn-primary" disabled>Move up</button>
+			<button id="move_down_row" class="btn-primary" disabled>Move down</button>
+			<button id="remove_row" class="btn-primary" disabled>Delete item</button>
+		</div>
+	</div>
+
 	<table id="table">
 		<thead>
 			<tr>
+				<th></th>
 				<th>Title:</th>
 				<th>Url:</th>
-				<th>Manage:</th>
 			</tr>
 		</thead>
 		<tbody id="table_body">
 			<!-- here rows are dynamically created -->
-		</tbody>
-	</table>
-
-	<table>
-		<tbody>
-			<tr>
-				<td class="width-80"><span class="txt-secondary">Tip: use "%s" as a wildcard in links.</span></td>
-				<td class="width-20"><button class="btn-primary" id="add_new_row">Add item</button></td>
-			</tr>
 		</tbody>
 	</table>
 	

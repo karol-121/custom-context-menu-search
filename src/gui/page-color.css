@@ -15,6 +15,12 @@ body {
 	border-color: #ffffff;
 }
 
+button:disabled {
+	background-color: #ffffff;
+	border-color: #ffffff;
+	color: #79797c;
+}
+
 button:hover, label:hover {
 	background-color: #ceced0;
 	border-color: #ceced0;
@@ -76,6 +82,13 @@ hr {
 		color: #fbfbfe;
 		background-color: #23222b;
 		border-color: #23222b;
+	}
+
+	button:disabled {
+		/*todo: remove hover style on disabled buttons*/
+		background-color: #2b2a33;
+		border-color: #2b2a33;
+		color: #89888f;
 	}
 
 	button:hover, label:hover {

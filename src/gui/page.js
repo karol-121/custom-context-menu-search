@@ -40,6 +40,12 @@ function populateSuggestions(keyword) {
 getUserDataFromStorage();
 populateSuggestions("");
 
+table.onRowSelectionUpdate = function(state) {
+	remove_row_button.disabled = state;
+	move_row_up_button.disabled = state;
+	move_row_down_button.disabled = state;
+};
+
 suggestions.onSuggestionClicked = function(title) {
 
 	const suggestedItem = getSearchItemByTitle(title);
@@ -60,6 +66,24 @@ suggestions.onSuggestionClicked = function(title) {
 add_row_button.addEventListener("click", function(e) {
 	
 	table.createRow("","");
+
+});
+
+remove_row_button.addEventListener("click", function(e) {
+
+	table.deleteRow(table.selected_row);
+
+});
+
+move_row_up_button.addEventListener("click", function(e) {
+
+	table.moveRowUp(table.selected_row);
+
+});
+
+move_row_down_button.addEventListener("click", function(e) {
+
+	table.moveRowDown(table.selected_row);
 
 });
 

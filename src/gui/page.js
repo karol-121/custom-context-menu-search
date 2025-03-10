@@ -14,14 +14,14 @@ async function getUserDataFromStorage() {
 	if (!userItems.items || userItems.items.length === 0) {
 		
 		// print first table row as default if there is nothing to show
-		table.createRow("", "");
+		table.createRow("", "","normal");
 		return;
 
 	}
 
 	for (item of userItems.items) {
 
-		table.createRow(item.title, item.action);
+		table.createRow(item.title, item.action, item.type);
 
 	}
 
@@ -37,14 +37,14 @@ function populateSuggestions(keyword) {
 //entry point
 //this is where javaScript start executing code
 
-getUserDataFromStorage();
-populateSuggestions("");
-
 table.onRowSelectionUpdate = function(state) {
 	remove_row_button.disabled = state;
 	move_row_up_button.disabled = state;
 	move_row_down_button.disabled = state;
-};
+}
+
+getUserDataFromStorage();
+populateSuggestions("");
 
 suggestions.onSuggestionClicked = function(title) {
 
@@ -65,7 +65,13 @@ suggestions.onSuggestionClicked = function(title) {
 
 add_row_button.addEventListener("click", function(e) {
 	
-	table.createRow("","");
+	table.createRow("","","normal");
+
+});
+
+add_separator_button.addEventListener("click", function(e) {
+
+	table.createRow("","","separator");
 
 });
 

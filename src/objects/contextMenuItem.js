@@ -1,6 +1,14 @@
-function contextMenuItem(title, action) {
+function contextMenuItem(title, action, type) {
 	this.id = randomId.generateNewId();
-  this.title = title;
+  this.type = type;
   this.contexts = ["selection"];
+
+  if (type === "separator") {
+
+    return;
+
+  }
+  
+  this.title = title;
   this.action = action;
 }

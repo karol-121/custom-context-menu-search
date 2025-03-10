@@ -50,6 +50,14 @@ const file = {
 
 		for (importItem of importJSON.context_menu_items) {
 
+			if (importItem.separator) {
+
+				userItems.items.push(new contextMenuItem(importItem.title, importItem.url, "separator"));
+				itemCount++;
+				continue;
+
+			}
+
 			if (!validateTitle(importItem.title)) {
 
 				userItems.error = true;
@@ -66,7 +74,7 @@ const file = {
 
 			}
 
-			userItems.items.push(new contextMenuItem(importItem.title, importItem.url));
+			userItems.items.push(new contextMenuItem(importItem.title, importItem.url, "normal"));
 			itemCount++;
 
 		}
@@ -89,9 +97,19 @@ const file = {
 
 		for (item of userData.items) {
 
-			const exportItem = {
-				title: item.title,
-				url: item.action
+			const exportItem = {};
+
+			if (item.type === "separator") {
+
+				exportItem.separator = "separator";
+
+			}
+
+			if (item.type != "separator") {
+
+				exportItem.title = item.title;
+				exportItem.url = item.action;
+
 			}
 
 			exportJSON.context_menu_items.push(exportItem);

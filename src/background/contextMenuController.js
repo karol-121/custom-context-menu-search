@@ -13,6 +13,7 @@ const contextMenuController = {
       	id: menuItem.id,
       	title: menuItem.title,
       	contexts: menuItem.contexts,
+      	type: ((menuItem.type) ? menuItem.type : "normal")
     	});
 
     	this.menuItems.push(menuItem);

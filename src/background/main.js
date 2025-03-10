@@ -13,7 +13,7 @@ async function setContextMenuItems() {
 	//if no data from storage -> create shortcut as default
 	if (!userContextMenuItems.items || userContextMenuItems.items.length === 0) {
 
-		userContextMenuItems.items = [new contextMenuItem("Create new...","%options%")];
+		userContextMenuItems.items = [new contextMenuItem("Create new...","%options%", "normal")];
 
 	}
 

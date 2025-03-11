@@ -21,7 +21,7 @@ button:disabled {
 	color: #79797c;
 }
 
-button:hover, label:hover {
+button:hover:enabled, label:hover {
 	background-color: #ceced0;
 	border-color: #ceced0;
 }
@@ -85,13 +85,12 @@ hr {
 	}
 
 	button:disabled {
-		/*todo: remove hover style on disabled buttons*/
 		background-color: #2b2a33;
 		border-color: #2b2a33;
 		color: #89888f;
 	}
 
-	button:hover, label:hover {
+	button:hover:enabled, label:hover {
 		background-color: #5d5c6e;
 		border-color: #5d5c6e;
 	}

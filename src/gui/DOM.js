@@ -1,7 +1,7 @@
 const table = {
 	table_body: document.getElementById("table_body"),
 	selected_row: null,
-	onRowSelectionUpdate: null,
+	onRowSelectionUpdate: undefined,
 
 	deleteRow(row) {
 
@@ -41,8 +41,6 @@ const table = {
 		cell_select.appendChild(select_input);		
 	
 		row.appendChild(cell_select);
-
-		// todo: try to add second hr tag to the url cell in order to make separator appear on the whole width
 
 		if (type === "separator") {
 
@@ -163,15 +161,58 @@ const table = {
 			}
 
 			if (!userItem.empty) {
-
+				
 				userItems.items.push(userItem);
-
+				
 			}
+
+		}
+
+		if (userItems.items.length > 0) {
+
+			userItems.items = this.filterUserItems(userItems.items);
 
 		}
 
 		return userItems;
 
+	},
+
+
+	filterUserItems(userItems) {
+
+		let items = [];
+
+		for (userItem of userItems) {
+
+			if (userItem.type === "separator") {
+
+				if (items.length < 1) {
+
+					continue;
+
+				}
+
+				if (userItem.type === items[items.length -1].type) {
+
+					continue;
+
+				}
+
+			}
+
+			items.push(userItem);
+
+		}
+
+		if (items.length > 1 && items[items.length-1].type === "separator") {
+
+			items.pop();
+
+		}
+
+		return items;
+		
 	},
 
 	getUserItem(row) {
@@ -180,11 +221,10 @@ const table = {
 
 		if (row.cells[0].children[0].value === "separator") {
 
-			// todo do not add separator if previous checked row was also spearator
-			// this should ensure that is not possible to save multipe separators in row 
 			return new contextMenuItem("", "", "separator");
 
 		}
+
 
 		let title_field = row.cells[1].children[0];
 		let url_field = row.cells[2].children[0];

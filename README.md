@@ -1,11 +1,11 @@
 # ![logo](src/icons/icon-48.png) Custom context menu searches
 
-Browser extension for Firefox that allows to define custom search items for context menu. In another words, the user is able to assign custom URLs to context menu items. Then it is possible to pass selected text to that URL using context menu. In practice this allows to create custom search engines, dictionaries, maps, etc. in form of context menu items.  
+Browser extension for Firefox that allows to define custom search items for context menu. In other words, the user is able to search by custom URLs directly from context menu. In practice this allows to create custom search engines, dictionaries, maps, etc. in form of context menu items. 
 
 ## Overview & Instruction
 
 ### Context menu
-Defined context menu items will appear in context menu, menu that is opened by right mouse button. Note that these items will only appear in context of selected text. This means that only when there is selected text, the items will show up in context menu. Then by pressing on one of these items, a new tab will appear. The tab will contain previously defined URL of that item together with selected text. 
+Custom defined URLs will appear in the context menu, menu that is opened by right mouse button. Note that these items will only appear when a text is selected.
 
 ![screenshot of custom context menu items](assets/screenshot-1.jpg)
 
@@ -16,7 +16,7 @@ Defined context menu items will appear in context menu, menu that is opened by r
 *Results of custom context menu item. A new tab with specified URL containing selection text was opened*
 
 ### Options page
-Extension implements options page where the user can create, modify and delete defined context menu items. This page is located in extensions details in "Manage Your Extensions" page in Browser. Note that any changes made on option page needs to be saved. This is done by clicking on "Save" button.
+The extension implements a options page where the user can create, modify and delete defined URLs. This page is located in extensions details in "Manage Your Extensions" page in Browser. Note that any changes made on option page needs to be saved. This is done by clicking on "Save" button.
 
 ![screenshot of extension's option page where custom context menu items are defined](assets/screenshot-3.jpg)
 

@@ -70,6 +70,12 @@ function respondToMessage(request, sender, response) {
 
 	}
 
+	if (request.action === "addItem") {
+
+		return dataController.addItem(request.payload);
+		
+	}
+
   
 }
 

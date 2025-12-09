@@ -19,6 +19,7 @@
       "background/storageController.js",
       "background/contextMenuController.js",
       "background/downloadController.js",
+      "background/dataController.js",
       "background/main.js"
     ]
   },

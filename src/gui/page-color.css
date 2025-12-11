@@ -3,7 +3,7 @@ body {
 	color: #15141a;
 }
 
-.btn-primary, label {
+.btn-primary {
 	color: #15141a;
 	background-color: #eeeeee;
 	border-color: #eeeeee;
@@ -15,32 +15,32 @@ body {
 	border-color: #ffffff;
 }
 
-button:disabled {
+.btn:disabled {
 	background-color: #ffffff;
 	border-color: #ffffff;
 	color: #79797c;
 }
 
-button:hover:enabled, label:hover {
+.btn:hover:enabled {
 	background-color: #ceced0;
 	border-color: #ceced0;
 }
 
-button:focus-visible, label:focus-visible {
+.btn:focus-visible {
 	outline-color: #0060df;
 }
 
-input[type="text"] {
+input[type="text"], input[type="url"] {
 	background-color: #ffffff;
 	border-color: #9e9ea0;
 	color: #15141a;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus, input[type="url"]:focus {
 	border-color: #0060df;
 }
 
-input[type="text"]:invalid {
+input[type="text"]:invalid, input[type="url"]:invalid {
 	border-color: #c50042;
 }
 
@@ -72,7 +72,7 @@ hr {
 		color: #fbfbfe;
 	}
 
-	.btn-primary, label {
+	.btn-primary {
 		color: #fbfbfe;
 		background-color: #484854;
 		border-color: #484854;
@@ -84,32 +84,32 @@ hr {
 		border-color: #23222b;
 	}
 
-	button:disabled {
+	.btn:disabled {
 		background-color: #2b2a33;
 		border-color: #2b2a33;
 		color: #89888f;
 	}
 
-	button:hover:enabled, label:hover {
+	.btn:hover:enabled {
 		background-color: #5d5c6e;
 		border-color: #5d5c6e;
 	}
 
-	button:focus-visible, label:focus-visible {
+	.btn:focus-visible  {
 		outline-color: #00ddff;
 	}
 
-	input[type="text"] {
+	input[type="text"], input[type="url"] {
 		background-color: #2b2a33;
 		border-color: #7c7b82;
 		color: #fbfbfe;
 	}
 
-	input[type="text"]:focus {
+	input[type="text"]:focus, input[type="url"]:focus {
 		border-color: #00ddff;
 	}
 
-	input[type="text"]:invalid {
+	input[type="text"]:invalid, input[type="url"]:invalid {
 		border-color: #ff9aa2;
 	}
 

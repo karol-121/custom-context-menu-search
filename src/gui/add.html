@@ -8,14 +8,17 @@
 	<title></title>
 </head>
 <body>
-	<span>Add item</span>
+	<span>Add new item</span>
 
-	<div>
-		<div class="">
-			<button id="add_new_item" class="btn-primary">Add item</button>
-			<a href="page.html">back</a>
-		</div>
-	</div>
+	<form id="add_new_item" action="page.html">
+		<label for="title">Title:</label>
+		<input id="title_field" type="text" name="title" placeholder="example search" required>
+		<label for="url">Url:</label>
+		<input id="url_field" type="text" name="url" placeholder="www.example.com/?q=%s" required>
+		<br>
+		<input class="btn btn-primary" type="submit" value="Add">
+		<a class="btn btn-secondary" href="page.html">Cancel</a>
+	</form>
 
 	<script src="../utils/localization.js"></script>
 	<script src="../utils/searchItems.js"></script>

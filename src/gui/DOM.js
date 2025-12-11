@@ -342,7 +342,7 @@ const suggestions = {
 		for (suggestion of suggestions) {
 			
 			const suggestion_button = document.createElement("button");
-				suggestion_button.className = "btn-secondary";
+				suggestion_button.className = "btn btn-secondary";
 				suggestion_button.innerText = suggestion.title;
 				suggestion_button.origin = this;
 				suggestion_button.addEventListener('click', function (e) {

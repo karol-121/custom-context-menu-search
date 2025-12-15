@@ -8,23 +8,30 @@
 	<title></title>
 </head>
 <body>
-	<span>Add new item</span>
+	<span>Manage Items here:</span>
+	<a class="btn btn-primary" href="add.html">add new item</a>
 
-	<form id="add_new_item" action="manage.html">
-		<label for="title">Title:</label>
-		<input id="title_field" type="text" name="title" placeholder="example search" required>
-		<label for="url">Url:</label>
-		<input id="url_field" type="text" name="url" placeholder="www.example.com/?q=%s" required>
-		<br>
-		<input class="btn btn-primary" type="submit" value="Add">
-		<a class="btn btn-secondary" href="manage.html">Cancel</a>
-	</form>
+	<table id="table">
+	<thead>
+		<tr>
+			<th>Title:</th>
+			<th>Url:</th>
+			<th>Manage:</th>
+		</tr>
+	</thead>
+	<tbody id="table_body">
+		<!-- here rows are dynamically created -->
+	</tbody>
+</table>
 
+
+	<a href="page.html">old manage page</a>
 	<script src="../utils/localization.js"></script>
 	<script src="../utils/searchItems.js"></script>
 	<script src="../utils/random-id.js"></script>
 	<script src="../utils/input-validation.js"></script>
 	<script src="../objects/contextMenuItem.js"></script>
-	<script src="add.js"></script>
+	<script src="table.js"></script>
+	<script src="manage.js"></script>
 </body>
 </html>

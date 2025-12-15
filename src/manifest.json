@@ -25,7 +25,7 @@
   },
 
   "options_ui": {
-    "page": "gui/page.html",
+    "page": "gui/manage.html",
     "browser_style": true
   },
 

@@ -28,7 +28,8 @@ async function getUserDataFromStorage() {
 
 function editItem(item) {
 	// wrap function so item_id is parameter
-	console.log(item.target.item_id);
+	let id = item.target.item_id;
+	window.location.replace("edit.html?item_id="+id,);
 }
 
 function deleteItem(item) {

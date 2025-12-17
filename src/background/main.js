@@ -70,9 +70,21 @@ function respondToMessage(request, sender, response) {
 
 	}
 
+	if (request.action === "getItem") {
+
+		return dataController.getItem(request.payload);
+		
+	}
+
 	if (request.action === "addItem") {
 
 		return dataController.addItem(request.payload);
+		
+	}
+
+	if (request.action === "editItem") {
+
+		return dataController.editItem(request.payload);
 		
 	}
 

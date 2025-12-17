@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/page.css">
+	<link rel="stylesheet" type="text/css" href="css/page-color.css">
+	<title></title>
+</head>
+<body>
+	<span>Edit item</span>
+
+	<form id="add_new_item" action="manage.html">
+		<label for="title">Title:</label>
+		<input id="title_field" type="text" name="title" placeholder="example search" required>
+		<label for="url">Url:</label>
+		<input id="url_field" type="text" name="url" placeholder="www.example.com/?q=%s" required>
+		<br>
+		<input class="btn btn-primary" type="submit" value="Edit">
+		<a class="btn btn-secondary" href="manage.html">Cancel</a>
+	</form>
+
+	<script src="../utils/localization.js"></script>
+	<script src="../utils/searchItems.js"></script>
+	<script src="../utils/random-id.js"></script>
+	<script src="../utils/input-validation.js"></script>
+	<script src="../objects/contextMenuItem.js"></script>
+	<script src="edit.js"></script>
+</body>
+</html>

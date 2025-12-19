@@ -35,27 +35,40 @@ const dataController = {
 
 	},
 
-	async editItem(itemEdited) {
+	async editItem(item) {
 
 		let data = await storageController.getData();
 
-		data.items.forEach((element, index) => {
+		let index = data.items.findIndex((element) => element.id === item.id);
 
-    	if(element.id === itemEdited.id) {
+		if (index < 0) {
 
-        data.items[index] = itemEdited;
-        return; //use break or something that stops forEach 
+			return false;
 
-    	}
+		}
 
-		});
+		data.items[index] = item;
 
 		return await storageController.setData(data);
 
 
 	},
 
-	async deleteItem(item) {
+	async deleteItem(id) {
+
+		let data = await storageController.getData();
+
+		let index = data.items.findIndex((element) => element.id === id);
+
+		if (index < 0) {
+
+			return false;
+
+		}
+
+		data.items.splice(index, 1);
+
+		return await storageController.setData(data);
 
 	}
 

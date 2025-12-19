@@ -88,6 +88,12 @@ function respondToMessage(request, sender, response) {
 		
 	}
 
+	if (request.action === "deleteItem") {
+
+		return dataController.deleteItem(request.payload);
+
+	}
+
   
 }
 

@@ -9,23 +9,29 @@
 </head>
 <body>
 	<span>Manage Items here:</span>
-	<a class="btn btn-primary" href="add.html">add new item</a>
+
+	<div>
+		<a class="btn btn-primary" href="add.html">add new item</a>
+		<button class="btn btn-primary">add separator</button>
+		<a href="page.html" class="btn btn-secondary">old manage page</a>
+	</div>
+
+	<hr>
+	
 
 	<table id="table">
-	<thead>
-		<tr>
-			<th>Title:</th>
-			<th>Url:</th>
-			<th>Manage:</th>
-		</tr>
-	</thead>
-	<tbody id="table_body">
-		<!-- here rows are dynamically created -->
-	</tbody>
-</table>
-
-
-	<a href="page.html">old manage page</a>
+		<thead>
+			<tr>
+<!-- 				<th>Title:</th>
+				<th>Url:</th>
+				<th>Manage:</th> -->
+			</tr>
+		</thead>
+		<tbody id="table_body">
+			<!-- here rows are dynamically created -->
+		</tbody>
+	</table>
+	
 	<script src="../utils/localization.js"></script>
 	<script src="../utils/searchItems.js"></script>
 	<script src="../utils/random-id.js"></script>

@@ -70,7 +70,17 @@ const dataController = {
 
 		return await storageController.setData(data);
 
+	},
+
+	async moveItemUp(id) {
+
+	},
+
+	async moveItemDown(id) {
+		
 	}
+
+
 
 
 

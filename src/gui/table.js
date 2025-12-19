@@ -1,6 +1,8 @@
 const table = {
 	table_body: document.getElementById("table_body"),
 	onEditButton: null,
+	onMoveUpButton: null,
+	onMoveDownButton: null,
 	onDeleteButton: null,
 
 	createRow(id, title, url, type) {
@@ -36,20 +38,34 @@ const table = {
 			const cell_manage = document.createElement('td');
 				cell_manage.className = "width-40";
 
+			const move_up_button = document.createElement('button');
+				move_up_button.className = "btn btn-secondary";
+				move_up_button.innerText = "˄";
+				move_up_button.item_id = id;
+				move_up_button.onclick = this.onMoveUpButton;
+
+			const move_down_button = document.createElement('button');
+				move_down_button.className = "btn btn-secondary";
+				move_down_button.innerText = "˅";
+				move_down_button.item_id = id;
+				move_down_button.onclick = this.onMoveUpButton;
+
 			const edit_button = document.createElement('button');
-				edit_button.className = "btn btn-primary";
+				edit_button.className = "btn btn-secondary";
 				edit_button.innerText = "Edit";
 				edit_button.item_id = id;
 				edit_button.onclick = this.onEditButton;
 
 			const delete_button = document.createElement('button');
-				delete_button.className = "btn btn-primary";
-				delete_button.innerText = "Delete";
+				delete_button.className = "btn btn-secondary";
+				delete_button.innerText = "Del";
 				delete_button.item_id = id;
 				delete_button.onclick = this.onDeleteButton;
 
 			cell_title.appendChild(title_span);
 			cell_url.appendChild(url_span);
+			cell_manage.appendChild(move_up_button);
+			cell_manage.appendChild(move_down_button);
 			cell_manage.appendChild(edit_button);
 			cell_manage.appendChild(delete_button);
 

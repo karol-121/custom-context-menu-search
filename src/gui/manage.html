@@ -8,27 +8,33 @@
 	<title></title>
 </head>
 <body>
-	<span>Manage Items here:</span>
+
+	<div id="admonition" class="admonition-hidden">
+		<div id="admonition-content">
+			<b><span id="admonition-title"></span></b>
+			<span id="admonition-text"></span>
+		</div>
+	</div>
 
 	<div>
-		<a class="btn btn-primary" href="add.html">add new item</a>
-		<button class="btn btn-primary">add separator</button>
-		<a href="page.html" class="btn btn-secondary">old manage page</a>
+		<button id="add-button" class="btn btn-primary">Add item</button>
+		<button id="add-separator-button" class="btn btn-primary">Add separator</button>
+		<label class="btn btn-primary" tabindex="0" for="file_import">Import from file</label>
+		<input type="file" name="file_import" id="file_import" accept=".json">
+		<button id="file_export" class="btn btn-primary">Export to file</button>
+		<a href="page.html" class="btn btn-secondary">Legacy page</a>
 	</div>
 
 	<hr>
-	
 
 	<table id="table">
 		<thead>
 			<tr>
-<!-- 				<th>Title:</th>
-				<th>Url:</th>
-				<th>Manage:</th> -->
+				<th>Current list:</th>
 			</tr>
 		</thead>
 		<tbody id="table_body">
-			<!-- here rows are dynamically created -->
+			<!-- rows are dynamically created -->
 		</tbody>
 	</table>
 	
@@ -38,6 +44,8 @@
 	<script src="../utils/input-validation.js"></script>
 	<script src="../objects/contextMenuItem.js"></script>
 	<script src="table.js"></script>
+	<script src="admonitions.js"></script>
+	<script src="file.js"></script>
 	<script src="manage.js"></script>
 </body>
 </html>

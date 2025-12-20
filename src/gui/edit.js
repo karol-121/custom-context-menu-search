@@ -1,6 +1,7 @@
-const add_new_item = document.getElementById("add_new_item");
-const title_field = document.getElementById("title_field");
-const url_field = document.getElementById("url_field");
+const form = document.getElementById("edit-item-form");
+const titleField = document.getElementById("title-field");
+const urlField = document.getElementById("url-field");
+const cancelButton = document.getElementById("cancel-button");
 
 let item;
 
@@ -19,12 +20,12 @@ async function getItem() {
 		// print error message
 	}
 
-	title_field.value = item.title;
-	url_field.value = item.action;
+	titleField.value = item.title;
+	urlField.value = item.action;
 
 }
 
-add_new_item.addEventListener("submit", async function(e) {
+async function editItem() {
 
 	// consider using html5 form input validation instead
 
@@ -32,13 +33,20 @@ add_new_item.addEventListener("submit", async function(e) {
 		return;
 	}
 
-	item.title = title_field.value;
-	item.action = url_field.value;
+	item.title = titleField.value;
+	item.action = urlField.value;
 
 	let success = await browser.runtime.sendMessage({action: "editItem", payload: item});
 
+}
 
-});
+function cancel() {
 
+	window.location.replace("manage.html");
+
+}
+
+form.onsubmit = editItem;
+cancelButton.onclick = cancel;
 
 getItem();

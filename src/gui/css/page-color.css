@@ -21,7 +21,7 @@ body {
 	color: #79797c;
 }
 
-.btn:hover:enabled {
+.btn:hover {
 	background-color: #ceced0;
 	border-color: #ceced0;
 }
@@ -90,7 +90,7 @@ hr {
 		color: #89888f;
 	}
 
-	.btn:hover:enabled {
+	.btn:hover {
 		background-color: #5d5c6e;
 		border-color: #5d5c6e;
 	}

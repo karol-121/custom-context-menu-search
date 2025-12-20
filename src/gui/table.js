@@ -9,10 +9,12 @@ const table = {
 		
 		const row = document.createElement('tr');
 
+		// todo redo way the row are created based on type
+
 		if (type === "separator") {
 
 			const cell_title = document.createElement('td');
-				cell_title.className = "width-35";
+				cell_title.setAttribute("colspan", "2");
 
 			const title_text = document.createElement('hr');
 			
@@ -33,46 +35,48 @@ const table = {
 				cell_url.className = "width-30";
 
 			const url_span = document.createElement('span');
-				url_span.innerText = url;
-
-			const cell_manage = document.createElement('td');
-				cell_manage.className = "width-40";
-
-			const move_up_button = document.createElement('button');
-				move_up_button.className = "btn btn-secondary";
-				move_up_button.innerText = "˄";
-				move_up_button.item_id = id;
-				move_up_button.onclick = this.onMoveUpButton;
-
-			const move_down_button = document.createElement('button');
-				move_down_button.className = "btn btn-secondary";
-				move_down_button.innerText = "˅";
-				move_down_button.item_id = id;
-				move_down_button.onclick = this.onMoveDownButton;
-
-			const edit_button = document.createElement('button');
-				edit_button.className = "btn btn-secondary";
-				edit_button.innerText = "Edit";
-				edit_button.item_id = id;
-				edit_button.onclick = this.onEditButton;
-
-			const delete_button = document.createElement('button');
-				delete_button.className = "btn btn-secondary";
-				delete_button.innerText = "Del";
-				delete_button.item_id = id;
-				delete_button.onclick = this.onDeleteButton;
+				url_span.innerText = url;	
 
 			cell_title.appendChild(title_span);
 			cell_url.appendChild(url_span);
-			cell_manage.appendChild(move_up_button);
-			cell_manage.appendChild(move_down_button);
-			cell_manage.appendChild(edit_button);
-			cell_manage.appendChild(delete_button);
 
 			row.appendChild(cell_title);
 			row.appendChild(cell_url);
-			row.appendChild(cell_manage);
 		}
+		
+		const cell_manage = document.createElement('td');
+			cell_manage.className = "width-40";
+
+		const move_up_button = document.createElement('button');
+			move_up_button.className = "btn btn-secondary";
+			move_up_button.innerText = "˄";
+			move_up_button.item_id = id;
+			move_up_button.onclick = this.onMoveUpButton;
+
+		const move_down_button = document.createElement('button');
+			move_down_button.className = "btn btn-secondary";
+			move_down_button.innerText = "˅";
+			move_down_button.item_id = id;
+			move_down_button.onclick = this.onMoveDownButton;
+
+		const edit_button = document.createElement('button');
+			edit_button.className = "btn btn-secondary";
+			edit_button.innerText = "Edit";
+			edit_button.item_id = id;
+			edit_button.onclick = this.onEditButton;
+
+		const delete_button = document.createElement('button');
+			delete_button.className = "btn btn-secondary";
+			delete_button.innerText = "Del";
+			delete_button.item_id = id;
+			delete_button.onclick = this.onDeleteButton;
+
+		cell_manage.appendChild(move_up_button);
+		cell_manage.appendChild(move_down_button);
+		cell_manage.appendChild(edit_button);
+		cell_manage.appendChild(delete_button);
+
+		row.appendChild(cell_manage);
 		
 		this.table_body.appendChild(row);
 

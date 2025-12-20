@@ -11,13 +11,18 @@ async function getItem() {
 	let id = params.get("item_id");
 
 	if (!id) {
-		// print error message
+
+		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		return;
 	}
 
 	item = await browser.runtime.sendMessage({action: "getItem", payload: id});
 
 	if (!item) {
-		// print error message
+		
+		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		return;
+
 	}
 
 	titleField.value = item.title;
@@ -25,18 +30,31 @@ async function getItem() {
 
 }
 
-async function editItem() {
+async function editItem(e) {
 
 	// consider using html5 form input validation instead
+	e.preventDefault();
 
 	if (!item) {
+
+		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
 		return;
+		
 	}
 
 	item.title = titleField.value;
 	item.action = urlField.value;
 
 	let success = await browser.runtime.sendMessage({action: "editItem", payload: item});
+
+	if (success) {
+
+		window.location.replace("manage.html");
+		return;
+
+	}
+
+	admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
 
 }
 

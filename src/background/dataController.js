@@ -4,17 +4,21 @@ const dataController = {
 
 		let data = await storageController.getData();
 
-		for (item of data.items) {
+		if (!data.items) {
 
-			if (item.id === id) {
-
-				return item;
-				
-			}
+			return false;
 
 		}
 
-		return false;
+		let index = data.items.findIndex((element) => element.id === id);
+
+		if (index < 0) {
+
+			return false;
+
+		}
+
+		return data.items[index];
 
 	},
 
@@ -39,6 +43,12 @@ const dataController = {
 
 		let data = await storageController.getData();
 
+		if (!data.items) {
+
+			return false;
+
+		}
+
 		let index = data.items.findIndex((element) => element.id === item.id);
 
 		if (index < 0) {
@@ -58,6 +68,12 @@ const dataController = {
 
 		let data = await storageController.getData();
 
+		if (!data.items) {
+
+			return false;
+
+		}
+
 		let index = data.items.findIndex((element) => element.id === id);
 
 		if (index < 0) {
@@ -76,11 +92,23 @@ const dataController = {
 
 		let data = await storageController.getData();
 
+		if (!data.items) {
+
+			return false;
+
+		}
+
 		let index = data.items.findIndex((element) => element.id === id);
 
-		if (index <= 0) {
+		if (index < 0) {
 
-			return true;
+			return false;
+
+		}
+
+		if (index === 0) {
+
+			return true; //as item is first, no moving is required
 
 		}
 
@@ -97,11 +125,23 @@ const dataController = {
 
 		let data = await storageController.getData();
 
+		if (!data.items) {
+
+			return false;
+
+		}
+
 		let index = data.items.findIndex((element) => element.id === id);
 
-		if (index < 0 || index >= (data.items.length - 1)) {
+		if (index < 0) {
 
-			return true;
+			return false;
+
+		}
+
+		if (index === (data.items.length - 1)) {
+
+			return true; //as items is last, no moving is required
 
 		}
 

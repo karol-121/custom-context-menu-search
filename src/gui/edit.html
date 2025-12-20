@@ -8,9 +8,15 @@
 	<title></title>
 </head>
 <body>
-	<span>Edit item</span>
+	
+	<div id="admonition" class="admonition-hidden">
+		<div id="admonition-content">
+			<b><span id="admonition-title"></span></b>
+			<span id="admonition-text"></span>
+		</div>
+	</div>
 
-	<form id="edit-item-form" action="manage.html">
+	<form id="edit-item-form" action="">
 		<label for="title">Title:</label>
 		<input id="title-field" type="text" name="title" placeholder="example search" required>
 		<label for="url">Url:</label>
@@ -21,10 +27,9 @@
 	</form>
 
 	<script src="../utils/localization.js"></script>
-	<script src="../utils/searchItems.js"></script>
-	<script src="../utils/random-id.js"></script>
 	<script src="../utils/input-validation.js"></script>
 	<script src="../objects/contextMenuItem.js"></script>
+	<script src="admonitions.js"></script>
 	<script src="edit.js"></script>
 </body>
 </html>

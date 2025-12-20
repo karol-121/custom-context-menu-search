@@ -11,7 +11,7 @@ async function getUserDataFromStorage() {
 
 	if (!userItems) {
 
-		// admonitions.showAdmonition(MESSAGE_STORAGE_GET_FAIL, "error");
+		admonitions.showAdmonition(MESSAGE_STORAGE_GET_FAIL, "error");
 		return;
 		
 	}
@@ -38,7 +38,10 @@ async function addSeparator() {
 	let success = await browser.runtime.sendMessage({action: "addItem", payload: separator});
 
 	if (!success) {
-		// notify about failure
+		
+		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		return;
+
 	} 
 
 	getUserDataFromStorage();
@@ -52,6 +55,7 @@ function addItem() {
 }
 
 function editItem(item) {
+	
 	// wrap function so item_id is parameter
 	let id = item.target.item_id;
 	window.location.replace("edit.html?item_id="+id,);
@@ -59,13 +63,13 @@ function editItem(item) {
 }
 
 async function deleteItem(item) {
+	
 	// wrap function so item_id is parameter
-
 	let success = await browser.runtime.sendMessage({action: "deleteItem", payload: item.target.item_id});
 
 	if (!success) {
 
-		// todo: show information to the user
+		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
 		return;
 
 	}
@@ -80,7 +84,7 @@ async function moveItemUp(item) {
 
 	if (!success) {
 
-		// todo: show information to the user
+		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
 		return;
 
 	}
@@ -95,7 +99,7 @@ async function moveItemDown(item) {
 
 	if (!success) {
 
-		// todo: show information to the user
+		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
 		return;
 
 	}

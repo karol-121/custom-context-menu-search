@@ -74,14 +74,43 @@ const dataController = {
 
 	async moveItemUp(id) {
 
+		let data = await storageController.getData();
+
+		let index = data.items.findIndex((element) => element.id === id);
+
+		if (index <= 0) {
+
+			return true;
+
+		}
+
+		let temp_item = data.items[index - 1];
+		data.items[index - 1] = data.items[index];
+		data.items[index] = temp_item;
+
+		return await storageController.setData(data);
+
+
 	},
 
 	async moveItemDown(id) {
+
+		let data = await storageController.getData();
+
+		let index = data.items.findIndex((element) => element.id === id);
+
+		if (index < 0 || index >= (data.items.length - 1)) {
+
+			return true;
+
+		}
+
+		let temp_item = data.items[index + 1];
+		data.items[index + 1] = data.items[index];
+		data.items[index] = temp_item;
+
+		return await storageController.setData(data);
 		
 	}
-
-
-
-
 
 }

@@ -48,7 +48,7 @@ const table = {
 				move_down_button.className = "btn btn-secondary";
 				move_down_button.innerText = "˅";
 				move_down_button.item_id = id;
-				move_down_button.onclick = this.onMoveUpButton;
+				move_down_button.onclick = this.onMoveDownButton;
 
 			const edit_button = document.createElement('button');
 				edit_button.className = "btn btn-secondary";

@@ -52,9 +52,41 @@ function onDeleteItem(item) {
 	deleteItem(item.target.item_id);
 }
 
+async function moveItemUp(item) {
+
+	let success = await browser.runtime.sendMessage({action: "moveItemUp", payload: item.target.item_id});
+
+	if (!success) {
+
+		// todo: show information to the user
+		return;
+
+	}
+
+	getUserDataFromStorage();
+
+}
+
+async function moveItemDown(item) {
+
+	let success = await browser.runtime.sendMessage({action: "moveItemDown", payload: item.target.item_id});
+
+	if (!success) {
+
+		// todo: show information to the user
+		return;
+
+	}
+
+	getUserDataFromStorage();
+
+}
+
 
 table.onEditButton = onEditItem;
 table.onDeleteButton = onDeleteItem;
+table.onMoveUpButton = moveItemUp;
+table.onMoveDownButton = moveItemDown;
 getUserDataFromStorage();
 
 

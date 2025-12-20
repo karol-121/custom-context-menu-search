@@ -94,6 +94,18 @@ function respondToMessage(request, sender, response) {
 
 	}
 
+	if (request.action === "moveItemUp") {
+
+		return dataController.moveItemUp(request.payload);
+
+	}
+
+	if (request.action === "moveItemDown") {
+
+		return dataController.moveItemDown(request.payload);
+
+	}
+
   
 }
 

@@ -1,6 +1,6 @@
-const form = document.getElementById("edit-item-form");
 const titleField = document.getElementById("title-field");
 const urlField = document.getElementById("url-field");
+const submitButton = document.getElementById("submit-button");
 const cancelButton = document.getElementById("cancel-button");
 
 let item;
@@ -18,7 +18,7 @@ async function getItem() {
 
 	item = await browser.runtime.sendMessage({action: "getItem", payload: id});
 
-	if (!item) {
+	if (!item || item.type !== "normal") {
 		
 		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
 		return;
@@ -32,14 +32,33 @@ async function getItem() {
 
 async function editItem(e) {
 
-	// consider using html5 form input validation instead
 	e.preventDefault();
 
-	if (!item) {
+	if (!item || item.type !== "normal") {
 
 		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
 		return;
 		
+	}
+
+	//add required attribute after submiting to prevent :invalid pseudoclass being applied before user input
+	titleField.setAttribute("required", "");
+	urlField.setAttribute("required", "");
+
+	if (!titleField.checkValidity()) {
+
+		titleField.reportValidity();
+		admonitions.showAdmonition(MESSAGE_INVALID_TITLE,"error");
+		return;
+
+	}
+
+	if (!urlField.checkValidity()) {
+
+		urlField.reportValidity();
+		admonitions.showAdmonition(MESSAGE_INVALID_URL,"error");
+		return;
+
 	}
 
 	item.title = titleField.value;
@@ -58,13 +77,14 @@ async function editItem(e) {
 
 }
 
-function cancel() {
+function cancel(e) {
 
+	e.preventDefault();
 	window.location.replace("manage.html");
 
 }
 
-form.onsubmit = editItem;
+submitButton.onclick = editItem;
 cancelButton.onclick = cancel;
 
 getItem();

@@ -9,6 +9,8 @@
 </head>
 <body>
 
+	<h3>Add new context menu search item</h3>
+
 	<div id="admonition" class="admonition-hidden">
 		<div id="admonition-content">
 			<b><span id="admonition-title"></span></b>
@@ -16,13 +18,19 @@
 		</div>
 	</div>
 
-	<form id="new-item-form" action="">
-		<label for="title">Title:</label>
-		<input id="title-field" type="text" name="title" placeholder="example search" required>
-		<label for="url">Url:</label>
-		<input id="url-field" type="text" name="url" placeholder="www.example.com/?q=%s" required>
-		<br>
-		<input class="btn btn-primary" type="submit" value="Add">
+	<form>
+		<div class="flex-element">
+			<div class="flex-grow-1">
+				<label class="block-element" for="title">Name:</label>
+				<input class="input-text form-element width-80" id="title-field" type="text" name="title" placeholder="Example" pattern=".{1,30}">
+			</div>
+			<div class="flex-grow-2">
+				<label class="block-element" for="url">Url:</label>
+				<input class="input-text form-element width-80" id="url-field" type="text" name="url" placeholder="www.example.com/?q=%s" pattern="\S{3,200}">
+			</div>
+		</div>
+		<span class="txt-secondary block-element">Tip: Use "%s" as a wildcard for search value in links. Additionaly use "%options%" as url to create shorcut to manage page.</span>
+		<input id="submit-button" class="btn btn-primary" type="submit" value="Add">
 		<button id="cancel-button" class="btn btn-secondary">Cancel</button>
 	</form>
 

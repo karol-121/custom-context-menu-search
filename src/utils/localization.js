@@ -8,8 +8,8 @@ const MESSAGE_FAILED_FILE_DOWNLOAD = "An error occurred while downloading the fi
 const MESSAGE_NOTHING_FOUND = "Nothing to show";
 
 //user errors
-const MESSAGE_INVALID_TITLE = "Provided title is invalid!";
-const MESSAGE_INVALID_URL = "Provided url is invalid!";
+const MESSAGE_INVALID_TITLE = "Provided name is invalid! It should consist of 1-30 characters.";
+const MESSAGE_INVALID_URL = "Provided url is invalid! It should consist of 3-200 non-space characters.";
 const MESSAGE_INVALID_EMPTY = "There is nothing to be saved!";
 const MESSAGE_NO_DATA = "No items were found!";
 const MESSAGE_INVALID_FILE_TYPE = "Invalid file type or file size!";

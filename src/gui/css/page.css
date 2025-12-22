@@ -1,6 +1,9 @@
 body {
-	margin: 0.2em;
 	font-size: 15px;
+}
+
+h3 {
+	margin: 0.2em;
 }
 
 hr {
@@ -13,8 +16,12 @@ table {
 	width: 100%;
 }
 
-span {
+span, label, small{
 	margin: 0.2em;
+}
+
+input, button {
+	font-size: 15px;
 }
 
 td {
@@ -53,15 +60,25 @@ div {
 	width: 100%;
 }
 
-input, button {
-	font-size: 15px;
+.block-element {
+	display: block;
 }
 
-td > input {
-	width: 100%;
+.flex-element {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
-input[type="text"], input[type="url"] {
+.flex-grow-1 {
+	flex-grow: 1;
+}
+
+.flex-grow-2 {
+	flex-grow: 2;
+}
+
+.input-text {
 	margin: 0.2em;
 	padding: 0.4em;
 	border-width: 1px;
@@ -69,17 +86,17 @@ input[type="text"], input[type="url"] {
 	border-radius: 0.3em;
 }
 
-input[type="text"]:focus, input[type="url"]:focus {
+.input-text:focus {
 	border-width: 2px;
 	outline: none;
 }
 
-input[type="text"]:invalid, input[type="url"]:invalid {
+.input-text:invalid {
 	border-width: 2px;
 	outline: none;
 }
 
-input[type="file"] {
+.input-file {
 	display: none;
 }
 
@@ -93,25 +110,10 @@ input[type="file"] {
 	text-decoration: none;
 }
 
-/*label {
-	margin: 0.2em;
-	padding: 0.4em 0.8em;
-	border-radius: 0.3em;
-	text-align: center;
-}*/
-
 .btn:focus-visible {
 	outline-width: 2px;
 	outline-offset: 2px;
 	outline-style: solid;
-}
-
-.footer-buttons {
-	float: right;
-}
-
-.table-footer {
-	width: 100%;
 }
 
 #admonition-content {

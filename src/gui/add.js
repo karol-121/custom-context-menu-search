@@ -1,11 +1,31 @@
-const form = document.getElementById("new-item-form");
 const titleField = document.getElementById("title-field");
 const urlField = document.getElementById("url-field");
+const submitButton = document.getElementById("submit-button");
 const cancelButton = document.getElementById("cancel-button");
 
 async function addItem(e) {
 
 	e.preventDefault();
+
+	//add required attribute after submiting to prevent :invalid pseudoclass being applied before user input
+	titleField.setAttribute("required", "");
+	urlField.setAttribute("required", "");
+
+	if (!titleField.checkValidity()) {
+
+		titleField.reportValidity();
+		admonitions.showAdmonition(MESSAGE_INVALID_TITLE,"error");
+		return;
+
+	}
+
+	if (!urlField.checkValidity()) {
+
+		urlField.reportValidity();
+		admonitions.showAdmonition(MESSAGE_INVALID_URL,"error");
+		return;
+
+	}
 
 	const item = new contextMenuItem(titleField.value, urlField.value, "normal");
 
@@ -22,11 +42,13 @@ async function addItem(e) {
 
 }
 
-function cancel() {
+function cancel(e) {
+
+	e.preventDefault();
 
 	window.location.replace("manage.html");
 
 }
 
-form.onsubmit = addItem;
+submitButton.onclick = addItem;
 cancelButton.onclick = cancel;

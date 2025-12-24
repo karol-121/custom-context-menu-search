@@ -30,17 +30,17 @@ body {
 	outline-color: #0060df;
 }
 
-input[type="text"], input[type="url"] {
+.input-text {
 	background-color: #ffffff;
 	border-color: #9e9ea0;
 	color: #15141a;
 }
 
-input[type="text"]:focus, input[type="url"]:focus {
+.input-text:focus {
 	border-color: #0060df;
 }
 
-input[type="text"]:invalid, input[type="url"]:invalid {
+.input-text:invalid {
 	border-color: #c50042;
 }
 
@@ -50,6 +50,10 @@ hr {
 
 .txt-secondary {
 	color: #79797c;
+}
+
+.highlight-hover:hover {
+	background-color: #eeeeee;
 }
 
 .admonition-error {
@@ -99,17 +103,17 @@ hr {
 		outline-color: #00ddff;
 	}
 
-	input[type="text"], input[type="url"] {
+	.input-text {
 		background-color: #2b2a33;
 		border-color: #7c7b82;
 		color: #fbfbfe;
 	}
 
-	input[type="text"]:focus, input[type="url"]:focus {
+	.input-text:focus {
 		border-color: #00ddff;
 	}
 
-	input[type="text"]:invalid, input[type="url"]:invalid {
+	.input-text:invalid {
 		border-color: #ff9aa2;
 	}
 
@@ -119,6 +123,10 @@ hr {
 
 	.txt-secondary {
 		color: #89888f;
+	}
+
+	.highlight-hover:hover {
+		background-color: #484854;
 	}
 
 	.admonition-error {

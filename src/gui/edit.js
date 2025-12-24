@@ -1,6 +1,7 @@
 const titleField = document.getElementById("title-field");
 const urlField = document.getElementById("url-field");
 const submitButton = document.getElementById("submit-button");
+const deleteButton = document.getElementById("delete-button");
 const cancelButton = document.getElementById("cancel-button");
 
 let item;
@@ -77,6 +78,30 @@ async function editItem(e) {
 
 }
 
+async function deleteItem(e) {
+
+	e.preventDefault();
+
+	if (!item) {
+
+		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		return;
+		
+	}
+
+	let success = await browser.runtime.sendMessage({action: "deleteItem", payload: item.id});
+
+	if (success) {
+
+		window.location.replace("manage.html");
+		return;
+
+	}
+
+	admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+
+}
+
 function cancel(e) {
 
 	e.preventDefault();
@@ -85,6 +110,7 @@ function cancel(e) {
 }
 
 submitButton.onclick = editItem;
+deleteButton.onclick = deleteItem;
 cancelButton.onclick = cancel;
 
 getItem();

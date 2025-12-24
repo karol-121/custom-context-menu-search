@@ -5,6 +5,15 @@ const table = {
 	onMoveDownButton: null,
 	onDeleteButton: null,
 
+	printEmpty() {
+
+		const span = document.createElement('span');
+			span.className = "txt-secondary";	
+			span.innerText = "The list is empty";
+
+		table_body.appendChild(span);
+	},
+
 	createRow(id, title, url, type) {
 		
 		const row = document.createElement('tr');
@@ -28,13 +37,15 @@ const table = {
 			const cell_title = document.createElement('td');
 				cell_title.className = "width-30";
 
-			const title_span = document.createElement('span');
+			const title_span = document.createElement('div');
+				title_span.className = "hide-overflow";
 				title_span.innerText = title;
 
 			const cell_url = document.createElement('td');
-				cell_url.className = "width-30";
+				cell_url.className = "";
 
-			const url_span = document.createElement('span');
+			const url_span = document.createElement('div');
+				url_span.className = "txt-secondary hide-overflow";
 				url_span.innerText = url;	
 
 			cell_title.appendChild(title_span);
@@ -45,7 +56,7 @@ const table = {
 		}
 		
 		const cell_manage = document.createElement('td');
-			cell_manage.className = "width-40";
+			cell_manage.className = "width-30";
 
 		const move_up_button = document.createElement('button');
 			move_up_button.className = "btn btn-secondary";
@@ -61,13 +72,13 @@ const table = {
 
 		const edit_button = document.createElement('button');
 			edit_button.className = "btn btn-secondary";
-			edit_button.innerText = "Edit";
+			edit_button.innerText = "*";
 			edit_button.item_id = id;
 			edit_button.onclick = this.onEditButton;
 
 		const delete_button = document.createElement('button');
 			delete_button.className = "btn btn-secondary";
-			delete_button.innerText = "Del";
+			delete_button.innerText = "X";
 			delete_button.item_id = id;
 			delete_button.onclick = this.onDeleteButton;
 

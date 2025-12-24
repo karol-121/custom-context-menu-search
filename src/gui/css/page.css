@@ -1,39 +1,19 @@
-body {
+body, input, button {
 	font-size: 15px;
 }
 
-h3 {
+h3, span, label, ul{
 	margin: 0.2em;
-}
-
-hr {
-	width: 100%;
-	height: 1px;
-	border: none;
-}
-
-table {
-	width: 100%;
-}
-
-span, label, small{
-	margin: 0.2em;
-}
-
-input, button {
-	font-size: 15px;
-}
-
-td {
-	margin: 0;
 }
 
 div {
 	margin: 0.2em 0em;
 }
 
-.width-5 {
-	width: 5%;
+hr {
+	width: 100%;
+	height: 1px;
+	border: none;
 }
 
 .width-20 {
@@ -44,8 +24,8 @@ div {
 	width: 30%;
 }
 
-.width-35 {
-	width: 35%;
+.width-40 {
+	width: 40%;
 }
 
 .width-60 {
@@ -56,8 +36,35 @@ div {
 	width: 80%;
 }
 
+.width-90 {
+	width: 90%;
+}
+
 .width-100 {
 	width: 100%;
+}
+
+.from-right {
+	float: right;
+}
+
+.margin-02 {
+	margin: 0.2em;
+}
+
+.margin-04 {
+	margin: 0.4em;
+}
+
+.no-wrap {
+	white-space: nowrap;
+	overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.no-decoration {
+	text-decoration: none;
+	padding: 0em;
 }
 
 .block-element {
@@ -68,6 +75,7 @@ div {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	align-items: center;
 }
 
 .flex-grow-1 {
@@ -130,5 +138,14 @@ div {
 
 .admonition-hidden {
 	display: none;
+}
+
+.hover-show > div > button {
+	display: none;
+}
+
+/*todo: try to use class name rather than dom names*/
+.hover-show:hover > div > button {
+	display: initial;
 }
 

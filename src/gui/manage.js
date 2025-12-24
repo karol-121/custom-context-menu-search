@@ -2,10 +2,11 @@ const fileExportButton = document.getElementById("file_export");
 const	fileImportButton = document.getElementById("file_import");
 const addSeparatorButton = document.getElementById("add-separator-button");
 const addButton = document.getElementById("add-button");
+const searchSuggestionsButton = document.getElementById("search-suggestions");
 
 async function getUserDataFromStorage() {
 
-	table.resetTable();
+	list.resetList();
 
 	let userItems = await browser.runtime.sendMessage({action: "getData"});
 
@@ -18,14 +19,15 @@ async function getUserDataFromStorage() {
 
 	if (!userItems.items || userItems.items.length === 0) {
 		
-		//todo: show "no items" message to the user
+		list.printEmpty();
 		return;
 
 	}
 
 	for (item of userItems.items) {
 
-		table.createRow(item.id, item.title, item.action, item.type);
+		//table.createRow(item.id, item.title, item.action, item.type);
+		list.createListItem(item.id, item.title, item.action, item.type);
 
 	}
 
@@ -54,18 +56,38 @@ function addItem() {
 	
 }
 
-function editItem(item) {
+function editItem(id, type) {
+
+	if (type === "normal") {
+
+		window.location.replace("edit.html?item_id="+id);
+
+	}
+
+	if (type === "separator") {
+
+		window.location.replace("delete.html?item_id="+id);
+
+	}
 	
-	// wrap function so item_id is parameter
-	let id = item.target.item_id;
-	window.location.replace("edit.html?item_id="+id,);
+	
 
 }
 
-async function deleteItem(item) {
-	
-	// wrap function so item_id is parameter
-	let success = await browser.runtime.sendMessage({action: "deleteItem", payload: item.target.item_id});
+async function addPresetItem(title) {
+
+	const suggestedItem = getSearchItemByTitle(title);
+
+	if (suggestedItem < 0) {
+
+		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		return;
+
+	}
+
+	const item = new contextMenuItem(suggestedItem.title, suggestedItem.url, "normal");
+
+	let success = await browser.runtime.sendMessage({action: "addItem", payload: item});
 
 	if (!success) {
 
@@ -78,9 +100,9 @@ async function deleteItem(item) {
 
 }
 
-async function moveItemUp(item) {
+async function moveItemUp(id) {
 
-	let success = await browser.runtime.sendMessage({action: "moveItemUp", payload: item.target.item_id});
+	let success = await browser.runtime.sendMessage({action: "moveItemUp", payload: id});
 
 	if (!success) {
 
@@ -93,9 +115,9 @@ async function moveItemUp(item) {
 
 }
 
-async function moveItemDown(item) {
+async function moveItemDown(id) {
 
-	let success = await browser.runtime.sendMessage({action: "moveItemDown", payload: item.target.item_id});
+	let success = await browser.runtime.sendMessage({action: "moveItemDown", payload: id});
 
 	if (!success) {
 
@@ -188,18 +210,31 @@ async function importFromFile(e) {
 
 }
 
+function populateSuggestions(keyword) {
 
-table.onEditButton = editItem;
-table.onDeleteButton = deleteItem;
-table.onMoveUpButton = moveItemUp;
-table.onMoveDownButton = moveItemDown;
+	suggestions.populate(getSearchItems(keyword, 5));
+
+}
+
+function searchSuggestions(e) {
+
+	populateSuggestions(e.target.value);
+
+}
+
+list.onEditButton = editItem;
+list.onUpButton = moveItemUp;
+list.onDownButton = moveItemDown;
+suggestions.onSuggestionClicked = addPresetItem;
 
 addButton.onclick = addItem;
 addSeparatorButton.onclick = addSeparator;
 fileExportButton.onclick = exportToFile;
 fileImportButton.onchange = importFromFile;
+searchSuggestionsButton.oninput = searchSuggestions;
 
 
 getUserDataFromStorage();
+populateSuggestions("");
 
 

@@ -9,6 +9,8 @@
 </head>
 <body>
 
+	<h3>Manage context menu search items</h3>
+
 	<div id="admonition" class="admonition-hidden">
 		<div id="admonition-content">
 			<b><span id="admonition-title"></span></b>
@@ -16,33 +18,39 @@
 		</div>
 	</div>
 
-	<div>
-		<button id="add-button" class="btn btn-primary">Add item</button>
-		<button id="add-separator-button" class="btn btn-primary">Add separator</button>
-		<label class="btn btn-primary" tabindex="0" for="file_import">Import from file</label>
-		<input type="file" class="input-file" name="file_import" id="file_import" accept=".json">
-		<button id="file_export" class="btn btn-primary">Export to file</button>
-		<a href="page.html" class="btn btn-secondary">Legacy page</a>
+	<div class="block-element">
+		<div class="">
+			<button id="add-button" class="btn btn-primary">Add new</button>
+			<button id="add-separator-button" class="btn btn-primary">Add separator</button>
+			<label class="btn btn-primary" tabindex="0" for="file_import">Import 🡧</label>
+			<input type="file" class="input-file" name="file_import" id="file_import" accept=".json">
+			<button id="file_export" class="btn btn-primary">Export 🡥</button>
+		</div>
 	</div>
+
+	<ul id="list" class="no-decoration">
+		<!-- list items are dynamically created -->
+	</ul>
 
 	<hr>
 
-	<table id="table">
-		<thead>
-			<tr>
-				<th>Current list:</th>
-			</tr>
-		</thead>
-		<tbody id="table_body">
-			<!-- rows are dynamically created -->
-		</tbody>
-	</table>
+	<span>Suggestions:</span>
+	<div>
+		<input type="text" class="input-text width-80" placeholder="Type to search for items to add" id="search-suggestions"/>
+		<div class="" id="suggestions_box">
+			<!-- content dynamically created -->
+		</div>
+	</div>
 	
 	<script src="../utils/localization.js"></script>
+	<script src="../utils/input-validation.js"></script>
 	<script src="../utils/random-id.js"></script>
+	<script src="../utils/searchItems.js"></script>
 	<script src="../objects/contextMenuItem.js"></script>
+	<script src="list.js"></script>
 	<script src="table.js"></script>
 	<script src="admonitions.js"></script>
+	<script src="suggestions.js"></script>
 	<script src="file.js"></script>
 	<script src="manage.js"></script>
 </body>

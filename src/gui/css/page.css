@@ -2,12 +2,16 @@ body, input, button {
 	font-size: 15px;
 }
 
-h3, span, label, ul{
-	margin: 0.2em;
+body {
+	margin: 0em;
 }
 
-div {
-	margin: 0.2em 0em;
+div, ul {
+	margin: 0.3em 0em;
+}
+
+h3, span, label {
+	margin: 0.3em;
 }
 
 hr {
@@ -49,11 +53,7 @@ hr {
 }
 
 .margin-02 {
-	margin: 0.2em;
-}
-
-.margin-04 {
-	margin: 0.4em;
+	margin: 0.3em;
 }
 
 .no-wrap {
@@ -63,7 +63,7 @@ hr {
 }
 
 .no-decoration {
-	text-decoration: none;
+	list-style-type: none;
 	padding: 0em;
 }
 
@@ -87,9 +87,9 @@ hr {
 }
 
 .input-text {
-	margin: 0.2em;
+	margin: 0.3em;
 	padding: 0.4em;
-	border-width: 1px;
+	border-width: 2px;
 	border-style: solid;
 	border-radius: 0.3em;
 }
@@ -109,7 +109,7 @@ hr {
 }
 
 .btn {
-	margin: 0.2em;
+	margin: 0.3em;
 	padding: 0.4em 0.8em;
 	border-width: 1px;
 	border-style: solid;
@@ -118,14 +118,24 @@ hr {
 	text-decoration: none;
 }
 
-.btn:focus-visible {
+.btn-small {
+	margin: 0em;
+	padding: 0em, 0.2em;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 0.3em;
+	text-align: center;
+	text-decoration: none;
+}
+
+.btn-hover:focus-visible {
 	outline-width: 2px;
 	outline-offset: 2px;
 	outline-style: solid;
 }
 
 #admonition-content {
-	margin: 0.2em;
+	margin: 0.3em;
 	padding: 0.4em 0.8em;
 	border-width: 1px;
 	border-style: solid;
@@ -140,12 +150,16 @@ hr {
 	display: none;
 }
 
-.hover-show > div > button {
-	display: none;
+.highlight-selected, .highlight-hover {
+	border-radius: 0.3em;
 }
 
-/*todo: try to use class name rather than dom names*/
-.hover-show:hover > div > button {
-	display: initial;
+.icon {
+  width: 15px;
+  height: 15px;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
 }
 

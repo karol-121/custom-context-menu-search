@@ -2,6 +2,9 @@ const fileExportButton = document.getElementById("file_export");
 const	fileImportButton = document.getElementById("file_import");
 const addSeparatorButton = document.getElementById("add-separator-button");
 const addButton = document.getElementById("add-button");
+const editButton = document.getElementById("edit-button");
+const upButton = document.getElementById("up-button");
+const downButton = document.getElementById("down-button");
 const searchSuggestionsButton = document.getElementById("search-suggestions");
 
 async function getUserDataFromStorage() {
@@ -26,8 +29,7 @@ async function getUserDataFromStorage() {
 
 	for (item of userItems.items) {
 
-		//table.createRow(item.id, item.title, item.action, item.type);
-		list.createListItem(item.id, item.title, item.action, item.type);
+		list.createListItem(item);
 
 	}
 
@@ -46,7 +48,7 @@ async function addSeparator() {
 
 	} 
 
-	getUserDataFromStorage();
+	list.createListItem(separator);
 
 }
 
@@ -56,22 +58,35 @@ function addItem() {
 	
 }
 
-function editItem(id, type) {
+async function editItem() {
 
-	if (type === "normal") {
+	let id = list.getSelectionId();
+
+	if (id < 0) {
+		//nothing selected
+		return;
+	}
+
+	let item = await browser.runtime.sendMessage({action: "getItem", payload: id});
+
+	if (!item) {
+
+		return;
+
+	}
+
+	if (item.type === "separator") {
+
+		window.location.replace("delete.html?item_id="+id);
+			
+	}
+
+	if (item.type === "normal") {
 
 		window.location.replace("edit.html?item_id="+id);
 
 	}
-
-	if (type === "separator") {
-
-		window.location.replace("delete.html?item_id="+id);
-
-	}
 	
-	
-
 }
 
 async function addPresetItem(title) {
@@ -96,11 +111,18 @@ async function addPresetItem(title) {
 
 	}
 
-	getUserDataFromStorage();
+	list.createListItem(item);
 
 }
 
-async function moveItemUp(id) {
+async function moveItemUp() {
+
+	let id = list.getSelectionId();
+
+	if (id < 0) {
+		//nothing selected
+		return;
+	}
 
 	let success = await browser.runtime.sendMessage({action: "moveItemUp", payload: id});
 
@@ -111,11 +133,18 @@ async function moveItemUp(id) {
 
 	}
 
-	getUserDataFromStorage();
+	list.moveSelectedUp();
 
 }
 
-async function moveItemDown(id) {
+async function moveItemDown() {
+
+	let id = list.getSelectionId();
+
+	if (id < 0) {
+		//nothing selected
+		return;
+	}
 
 	let success = await browser.runtime.sendMessage({action: "moveItemDown", payload: id});
 
@@ -126,7 +155,7 @@ async function moveItemDown(id) {
 
 	}
 
-	getUserDataFromStorage();
+	list.moveSelectedDown();
 
 }
 
@@ -222,13 +251,36 @@ function searchSuggestions(e) {
 
 }
 
-list.onEditButton = editItem;
-list.onUpButton = moveItemUp;
-list.onDownButton = moveItemDown;
+function disableButtons() {
+
+	if (list.getSelectionId() < 0) {
+
+		editButton.setAttribute("disabled","");
+		upButton.setAttribute("disabled","");
+		downButton.setAttribute("disabled","");
+		return;
+
+	}
+
+	editButton.removeAttribute("disabled");
+	upButton.removeAttribute("disabled");
+	downButton.removeAttribute("disabled");
+
+
+}
+
+
+
 suggestions.onSuggestionClicked = addPresetItem;
 
 addButton.onclick = addItem;
 addSeparatorButton.onclick = addSeparator;
+editButton.onclick = editItem;
+upButton.onclick = moveItemUp;
+downButton.onclick = moveItemDown;
+
+list.onSelection = disableButtons;
+
 fileExportButton.onclick = exportToFile;
 fileImportButton.onchange = importFromFile;
 searchSuggestionsButton.oninput = searchSuggestions;
@@ -236,5 +288,6 @@ searchSuggestionsButton.oninput = searchSuggestions;
 
 getUserDataFromStorage();
 populateSuggestions("");
+disableButtons();
 
 

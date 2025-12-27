@@ -1,8 +1,20 @@
 const list = {
 	ul: document.getElementById("list"),
-	onEditButton: null,
-	onUpButton: null,
-	onDownButton: null,
+	selected: null,
+	onSelection: null,
+	emptySpan: null,
+
+	getSelectionId() {
+
+		if (!this.selected) {
+
+			return -1;
+
+		}
+
+		return this.selected.getAttribute("data-id");
+		
+	},
 
 	resetList() {
 
@@ -12,6 +24,10 @@ const list = {
 
   	}
 
+  	this.selected = null;
+  	this.emptySpan = null;
+  	this.onSelection();
+
 	},
 
 	printEmpty() {
@@ -19,83 +35,111 @@ const list = {
 			span.className = "txt-secondary";
 			span.innerText = "The list is empty";
 		this.ul.appendChild(span);
+		this.emptySpan = span;
 	},
 
-	createListItem(id, title, url, type) {
+	createListItem(item) {
 
 		const li = document.createElement('li');
-			li.className = "flex-element hover-show";
+			li.className = "margin-02";
 
-		if (type === "normal") {
-			const title_div = document.createElement('div');
-			title_div.className = "flex-grow-1 margin-02 no-wrap width-20";
-			title_div.innerText = title;
+		const button = document.createElement('button');
+			button.setAttribute("data-id", item.id);
+			button.className = ("flex-element width-100 btn-small btn-secondary btn-hover")
+			button.onclick = (e) => {
 
-			const url_div = document.createElement('div');
-				url_div.className = "flex-grow-1 margin-02 txt-secondary no-wrap width-20";
-				url_div.innerText = url;
+				let target = e.target;
 
-			li.appendChild(title_div);
-			li.appendChild(url_div);
-		}
+				while (!target.getAttribute("data-id")) {
 
-		if (type === "separator") {
-			const hr = document.createElement('hr');
+					target = target.parentElement;
 
-			const hr_div = document.createElement('div');
-				hr_div.className = "flex-grow-2 margin-04 width-40";
-				hr_div.appendChild(hr);
-			
-			li.appendChild(hr_div);
+				}
 
-		}
+				
 
-		const manage_div = document.createElement('div');
-			manage_div.className = "flex-grow-1 margin-02 width-20";
-			manage_div.setAttribute("data-id", id);
-			manage_div.setAttribute("data-type", type);
+				if (this.selected === target) {
 
-		const edit_button = document.createElement('button');
-			edit_button.className = "btn btn-secondary";
-			edit_button.innerText = "⛭";
-			edit_button.onclick = (e) => {
+					this.selected.classList.remove("highlight-selected");
+					this.selected = null;
+					this.onSelection();
+					return;
 
-				let id = e.target.parentElement.getAttribute("data-id");
-				let type = e.target.parentElement.getAttribute("data-type");
+				}
 
-				this.onEditButton(id, type);
+				
+				if (this.selected) {
 
-			}
+					this.selected.classList.remove("highlight-selected");
 
-		const up_button = document.createElement('button');
-			up_button.className = "btn btn-secondary";
-			up_button.innerText = "🡡";
-			up_button.onclick = (e) => {
+				}
 
-				let id = e.target.parentElement.getAttribute("data-id");
-				this.onUpButton(id);
+				this.selected = target;
+				
+				this.selected.classList.add("highlight-selected");
 
-			}
-
-		const down_button = document.createElement('button');
-			down_button.className = "btn btn-secondary";
-			down_button.innerText = "🡣";
-			down_button.onclick = (e) => {
-
-				let id = e.target.parentElement.getAttribute("data-id");
-				this.onDownButton(id);
+				this.onSelection();
 				
 			}
 
+		if (item.type === "normal") {
+			const title_div = document.createElement('div');
+			title_div.className = "flex-grow-1 no-wrap width-30";
+			title_div.innerText = item.title;
 
-		manage_div.appendChild(edit_button);
-		manage_div.appendChild(up_button);
-		manage_div.appendChild(down_button);
+			const url_div = document.createElement('div');
+				url_div.className = "flex-grow-1 txt-secondary no-wrap width-60";
+				url_div.innerText = item.action;
 
-		li.appendChild(manage_div);
-		
+			button.appendChild(title_div);
+			button.appendChild(url_div);
+		}
 
+		if (item.type === "separator") {
+			const hr = document.createElement('hr');
+			
+			const div = document.createElement('div');
+				div.className = "flex-grow-1";
+				div.appendChild(hr);
+			
+			button.appendChild(div);
+
+		}
+
+		li.appendChild(button);
 		this.ul.appendChild(li);
+
+		if (this.emptySpan) {
+			this.ul.removeChild(this.emptySpan);
+		}
+
+	},
+
+	moveSelectedUp() {
+
+		if (!this.selected) {
+			return;
+		}
+
+		if (this.selected.parentElement.previousSibling) {
+			
+			this.ul.insertBefore(this.selected.parentElement, this.selected.parentElement.previousSibling);
+
+		} 
+
+	},
+
+	moveSelectedDown() {
+
+		if (!this.selected) {
+			return;
+		}
+
+		if (this.selected.parentElement.nextSibling) {
+
+			this.ul.insertBefore(this.selected.parentElement.nextSibling, this.selected.parentElement);
+			
+		} 
 
 	}
 }

@@ -18,13 +18,32 @@
 		</div>
 	</div>
 
-	<div class="block-element">
-		<div class="">
-			<button id="add-button" class="btn btn-primary">Add new</button>
-			<button id="add-separator-button" class="btn btn-primary">Add separator</button>
-			<label class="btn btn-primary" tabindex="0" for="file_import">Import 🡧</label>
+	<div class="flex-element">
+		<div>
+			<button id="add-button" class="btn btn-hover btn-primary">
+				<svg class="icon icon-color"><use href="../icons/feather-sprite.svg#plus" /></svg>
+			</button>
+			<button id="add-separator-button" class="btn btn-hover btn-primary">
+				<svg class="icon icon-color"><use href="../icons/feather-sprite.svg#divide" /></svg>
+			</button>
+			<button id="edit-button" class="btn btn-hover btn-primary">
+				<svg class="icon icon-color"><use href="../icons/feather-sprite.svg#edit-2" /></svg>
+			</button>
+			<button id="up-button" class="btn btn-hover btn-primary">
+				<svg class="icon icon-color"><use href="../icons/feather-sprite.svg#chevron-up" /></svg>
+			</button>
+			<button id="down-button" class="btn btn-hover btn-primary">
+				<svg class="icon icon-color"><use href="../icons/feather-sprite.svg#chevron-down" /></svg>
+			</button>
+		</div>
+		<div>
+			<label class="btn btn-hover btn-primary" tabindex="0" for="file_import">
+				<svg class="icon icon-color"><use href="../icons/feather-sprite.svg#download" /></svg>
+			</label>
 			<input type="file" class="input-file" name="file_import" id="file_import" accept=".json">
-			<button id="file_export" class="btn btn-primary">Export 🡥</button>
+			<button id="file_export" class="btn btn-hover btn-primary">
+				<svg class="icon icon-color"><use href="../icons/feather-sprite.svg#upload" /></svg>
+			</button>
 		</div>
 	</div>
 
@@ -33,8 +52,8 @@
 	</ul>
 
 	<hr>
-
-	<span>Suggestions:</span>
+	
+	<h3>Suggestions:</h3>
 	<div>
 		<input type="text" class="input-text width-80" placeholder="Type to search for items to add" id="search-suggestions"/>
 		<div class="" id="suggestions_box">
@@ -48,7 +67,6 @@
 	<script src="../utils/searchItems.js"></script>
 	<script src="../objects/contextMenuItem.js"></script>
 	<script src="list.js"></script>
-	<script src="table.js"></script>
 	<script src="admonitions.js"></script>
 	<script src="suggestions.js"></script>
 	<script src="file.js"></script>

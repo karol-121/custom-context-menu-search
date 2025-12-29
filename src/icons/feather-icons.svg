@@ -1,0 +1,26 @@
+<!-- icons derived from https://unpkg.com/feather-icons@4.29.2/dist/feather-sprite.svg  -->
+<svg xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<symbol id="plus" viewBox="0 0 24 24">
+			<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+		</symbol>
+		<symbol id="divide" viewBox="0 0 24 24">
+			<circle cx="12" cy="6" r="2"/><line x1="5" y1="12" x2="19" y2="12"/><circle cx="12" cy="18" r="2"/>
+		</symbol>
+		<symbol id="edit-2" viewBox="0 0 24 24">
+			<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+		</symbol>
+		<symbol id="chevron-up" viewBox="0 0 24 24">
+			<polyline points="18 15 12 9 6 15"/>
+		</symbol>
+		<symbol id="chevron-down" viewBox="0 0 24 24">
+			<polyline points="6 9 12 15 18 9"/>
+		</symbol>
+		<symbol id="download" viewBox="0 0 24 24">
+			<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+		</symbol>
+		<symbol id="upload" viewBox="0 0 24 24">
+			<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+		</symbol>
+	</defs>
+</svg>

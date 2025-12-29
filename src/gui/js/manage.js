@@ -1,5 +1,5 @@
-const fileExportButton = document.getElementById("file_export");
-const	fileImportButton = document.getElementById("file_import");
+const fileExportButton = document.getElementById("file-export");
+const	fileImportButton = document.getElementById("file-import");
 const addSeparatorButton = document.getElementById("add-separator-button");
 const addButton = document.getElementById("add-button");
 const editButton = document.getElementById("edit-button");
@@ -63,8 +63,10 @@ async function editItem() {
 	let id = list.getSelectionId();
 
 	if (id < 0) {
-		//nothing selected
+		
+		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
 		return;
+		
 	}
 
 	let item = await browser.runtime.sendMessage({action: "getItem", payload: id});
@@ -120,8 +122,10 @@ async function moveItemUp() {
 	let id = list.getSelectionId();
 
 	if (id < 0) {
-		//nothing selected
+		
+		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
 		return;
+
 	}
 
 	let success = await browser.runtime.sendMessage({action: "moveItemUp", payload: id});
@@ -142,8 +146,10 @@ async function moveItemDown() {
 	let id = list.getSelectionId();
 
 	if (id < 0) {
-		//nothing selected
+
+		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
 		return;
+
 	}
 
 	let success = await browser.runtime.sendMessage({action: "moveItemDown", payload: id});
@@ -265,7 +271,6 @@ function disableButtons() {
 	editButton.removeAttribute("disabled");
 	upButton.removeAttribute("disabled");
 	downButton.removeAttribute("disabled");
-
 
 }
 

@@ -80,7 +80,18 @@ const list = {
 				
 			}
 
-		if (item.type === "normal") {
+		if (item.type === "separator") {
+			const hr = document.createElement('hr');
+			
+			const div = document.createElement('div');
+				div.className = "flex-grow-1";
+				div.appendChild(hr);
+			
+			button.appendChild(div);
+
+		}
+
+		if (item.type === "normal" || !item.type) {
 
 			const title_div = document.createElement('div');
 				title_div.className = "flex-grow-1 no-wrap width-30";
@@ -94,16 +105,6 @@ const list = {
 			button.appendChild(url_div);
 		}
 
-		if (item.type === "separator") {
-			const hr = document.createElement('hr');
-			
-			const div = document.createElement('div');
-				div.className = "flex-grow-1";
-				div.appendChild(hr);
-			
-			button.appendChild(div);
-
-		}
 
 		li.appendChild(button);
 		this.ul.appendChild(li);

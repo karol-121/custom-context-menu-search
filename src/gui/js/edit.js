@@ -19,7 +19,7 @@ async function getItem() {
 
 	item = await browser.runtime.sendMessage({action: "getItem", payload: id});
 
-	if (!item || item.type !== "normal") {
+	if (!item) {
 		
 		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
 		return;
@@ -35,7 +35,7 @@ async function editItem(e) {
 
 	e.preventDefault();
 
-	if (!item || item.type !== "normal") {
+	if (!item) {
 
 		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
 		return;

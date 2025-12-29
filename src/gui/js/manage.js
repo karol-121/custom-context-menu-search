@@ -29,6 +29,8 @@ async function getUserDataFromStorage() {
 
 	for (item of userItems.items) {
 
+		console.log(item);
+
 		list.createListItem(item);
 
 	}
@@ -83,7 +85,7 @@ async function editItem() {
 			
 	}
 
-	if (item.type === "normal") {
+	if (item.type === "normal" || !item.type) {
 
 		window.location.replace("edit.html?item_id="+id);
 

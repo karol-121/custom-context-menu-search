@@ -43,5 +43,5 @@ function composeURL(url, selection_text) {
   //insert selection text to the url
   url = insertSelectionText(url, selection_text);
  	
- 	return url;
+ 	return url; //todo: validate if url is valid
 }

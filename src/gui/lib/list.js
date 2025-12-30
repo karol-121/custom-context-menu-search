@@ -4,6 +4,37 @@ const list = {
 	onSelection: null,
 	messageSpan: null,
 
+	onClick(e) {
+
+		let target = e.target;
+
+		while (!target.getAttribute("data-id")) {
+
+			target = target.parentElement;
+
+		}
+
+		if (this.selected === target) {
+
+			this.selected.classList.remove("highlight-selected");
+			this.selected = null;
+			this.onSelection();
+			return;
+
+		}
+				
+		if (this.selected) {
+
+			this.selected.classList.remove("highlight-selected");
+
+		}
+
+		this.selected = target;
+		this.selected.classList.add("highlight-selected");
+		this.onSelection();				
+
+	},
+
 	getSelectionId() {
 
 		if (!this.selected) {
@@ -41,6 +72,25 @@ const list = {
 
 	},
 
+	urlListItem(index, url) {
+		const li = document.createElement('li');
+			li.className = "margin-03";
+
+		const button = document.createElement('button');
+			button.setAttribute("data-id", index);
+			button.className = ("flex-element width-100 btn-small btn-secondary btn-hover");
+			button.onclick = (e) => this.onClick(e);
+
+		const div = document.createElement('div');
+			div.className = "flex-grow-1";
+			div.innerText = url;
+
+			button.appendChild(div);
+			li.appendChild(button);
+			this.ul.appendChild(li);
+
+	},
+
 	createListItem(item) {
 
 		const li = document.createElement('li');
@@ -49,36 +99,7 @@ const list = {
 		const button = document.createElement('button');
 			button.setAttribute("data-id", item.id);
 			button.className = ("flex-element width-100 btn-small btn-secondary btn-hover")
-			button.onclick = (e) => {
-
-				let target = e.target;
-
-				while (!target.getAttribute("data-id")) {
-
-					target = target.parentElement;
-
-				}
-
-				if (this.selected === target) {
-
-					this.selected.classList.remove("highlight-selected");
-					this.selected = null;
-					this.onSelection();
-					return;
-
-				}
-				
-				if (this.selected) {
-
-					this.selected.classList.remove("highlight-selected");
-
-				}
-
-				this.selected = target;
-				this.selected.classList.add("highlight-selected");
-				this.onSelection();
-				
-			}
+			button.onclick = (e) => this.onClick(e);
 
 		if (item.type === "separator") {
 			const hr = document.createElement('hr');

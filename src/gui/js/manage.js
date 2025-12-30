@@ -1,6 +1,7 @@
 const fileExportButton = document.getElementById("file-export");
 const	fileImportButton = document.getElementById("file-import");
 const addSeparatorButton = document.getElementById("add-separator-button");
+const addGroupButton = document.getElementById("add-group-button");
 const addButton = document.getElementById("add-button");
 const editButton = document.getElementById("edit-button");
 const upButton = document.getElementById("up-button");
@@ -29,8 +30,6 @@ async function getUserDataFromStorage() {
 
 	for (item of userItems.items) {
 
-		console.log(item);
-
 		list.createListItem(item);
 
 	}
@@ -51,6 +50,12 @@ async function addSeparator() {
 	} 
 
 	list.createListItem(separator);
+
+}
+
+function addGroup() {
+
+	window.location.replace("addGroup.html");
 
 }
 
@@ -79,17 +84,28 @@ async function editItem() {
 
 	}
 
+
+	if (item.actions) {
+
+		window.location.replace("editGroup.html?item_id="+id);
+		return;
+
+	}
+
 	if (item.type === "separator") {
 
 		window.location.replace("delete.html?item_id="+id);
+		return;
 			
 	}
 
 	if (item.type === "normal" || !item.type) {
 
 		window.location.replace("edit.html?item_id="+id);
+		return;
 
 	}
+
 	
 }
 
@@ -282,6 +298,7 @@ suggestions.onSuggestionClicked = addPresetItem;
 
 addButton.onclick = addItem;
 addSeparatorButton.onclick = addSeparator;
+addGroupButton.onclick = addGroup;
 editButton.onclick = editItem;
 upButton.onclick = moveItemUp;
 downButton.onclick = moveItemDown;

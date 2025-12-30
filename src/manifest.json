@@ -15,12 +15,15 @@
       "utils/input-validation.js",
       "utils/compose-url.js",
       "objects/contextMenuItem.js",
+      "objects/contextMenuItemGroup.js",
       "background/tabController.js",
       "background/storageController.js",
       "background/contextMenuController.js",
       "background/downloadController.js",
       "background/dataController.js",
-      "background/main.js"
+      "background/itemGroupController.js",
+      "background/main.js",
+      "tests/testData.js"
     ]
   },
 

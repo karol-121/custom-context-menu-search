@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/acorn-alike.css">
+	<link rel="stylesheet" type="text/css" href="css/acorn-alike-color.css">
+	<title>Add group</title>
+</head>
+<body>
+
+	<h3>Add group</h3>
+	
+	<div id="admonition" class="admonition-hidden">
+		<div id="admonition-content">
+			<b><span id="admonition-title"></span></b>
+			<span id="admonition-text"></span>
+		</div>
+	</div>
+
+	<label class="block-element" for="title">Name:</label>
+	<input class="input-text form-element width-80" id="title-field" type="text" name="title" placeholder="Example" pattern=".{1,30}">
+
+	<button id="submit-button" class="btn btn-hover btn-primary">Add</button>
+	<button id="cancel-button" class="btn btn-hover btn-secondary">Cancel</button>
+
+	<script src="../utils/localization.js"></script>
+	<script src="../utils/random-id.js"></script>
+	<script src="../objects/contextMenuItemGroup.js"></script>
+	<script src="../background/itemGroupController.js"></script>
+	<script src="lib/admonitions.js"></script>
+	<script src="js/addGroup.js"></script>
+</body>
+</html>

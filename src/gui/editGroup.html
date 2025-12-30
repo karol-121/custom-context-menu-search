@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/acorn-alike.css">
+	<link rel="stylesheet" type="text/css" href="css/acorn-alike-color.css">
+	<title>Edit group</title>
+</head>
+<body>
+
+	<h3>Edit group</h3>
+	
+	<div id="admonition" class="admonition-hidden">
+		<div id="admonition-content">
+			<b><span id="admonition-title"></span></b>
+			<span id="admonition-text"></span>
+		</div>
+	</div>
+
+	<label class="block-element" for="title">Name:</label>
+	<input class="input-text form-element" id="title-field" type="text" name="title" placeholder="Example" pattern=".{1,30}">
+
+	<h3>Urls</h3>
+
+	<div>
+		<label class="block-element" for="url">Url:</label>
+		<input class="input-text form-element" id="url-field" type="text" name="url" placeholder="www.example.com/?q=%s" pattern="\S{3,200}">
+		<button id="add-url-button" class="btn btn-hover btn-primary">Add</button>
+		<button id="edit-url-button" class="btn btn-hover btn-primary">Edit</button>
+		<button id="delete-url-button" class="btn btn-hover btn-primary">Delete</button>
+	</div>
+
+	<ul id="list" class="no-decoration">
+		<!-- list items are dynamically created -->
+	</ul>
+
+	<div>
+		<button id="submit-button" class="btn btn-hover btn-primary">Edit</button>
+		<button id="delete-button" class="btn btn-hover btn-secondary">Delete</button>
+		<button id="cancel-button" class="btn btn-hover btn-secondary">Cancel</button>
+	</div>
+
+	<script src="../utils/localization.js"></script>
+	<script src="../utils/input-validation.js"></script>
+	<script src="../objects/contextMenuItem.js"></script>
+	<script src="../background/itemGroupController.js"></script>
+	<script src="lib/admonitions.js"></script>
+	<script src="lib/list.js"></script>
+	<script src="js/editGroup.js"></script>
+</body>
+</html>

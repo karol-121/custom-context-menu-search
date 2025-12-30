@@ -31,12 +31,38 @@ function onContextMenusClicked(info) {
 
 	}
 
+	if (clickedMenuItem.action === "%group%") {
+
+		if (!clickedMenuItem.actions) {
+
+			return;
+			
+		}
+
+		for (action of clickedMenuItem.actions) {
+
+			let url = composeURL(action, info.selectionText);
+
+			if (!url) {
+
+				return;
+
+			}
+
+			tabController.setTab(url); //todo: add "discarded" flag to setTab method
+		}
+
+		return;
+
+	}
+
 	if (clickedMenuItem.action === "%options%") {
 
 		tabController.setOptionsPage();
 		return;
 
 	}
+
 
 	let url = composeURL(clickedMenuItem.action, info.selectionText)
 

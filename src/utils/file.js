@@ -65,7 +65,7 @@ const file = {
 				if (!ContextMenuGroup.validateTitle(importItem.title)) {
 					
 					userItems.error = true;
-					userItems.errorMessage = "(Item: " + itemCount + ")"; //todo error message
+					userItems.errorMessage = `(Item: "${itemCount}") ${MESSAGE_INVALID_TITLE}`;
 					return userItems;
 
 				}
@@ -73,7 +73,7 @@ const file = {
 				if (!ContextMenuGroup.validateUrls(importItem.urls)) {
 					
 					userItems.error = true;
-					userItems.errorMessage = "(Item: " + itemCount + ")"; //todo error message
+					userItems.errorMessage = `(Item: "${itemCount}") ${MESSAGE_INVALID_URL}`; //todo error message
 					return userItems;
 
 				}
@@ -91,7 +91,7 @@ const file = {
 				if (!ContextMenuItem.validateTitle(importItem.title)) {
 
 					userItems.error = true;
-					userItems.errorMessage = "(Item: " + itemCount + ") " + MESSAGE_INVALID_TITLE;
+					userItems.errorMessage = `(Item: "${itemCount}") ${MESSAGE_INVALID_TITLE}`;
 					return userItems;
 
 				}
@@ -99,7 +99,7 @@ const file = {
 				if (!ContextMenuItem.validateUrl(importItem.url)) {
 
 					userItems.error = true;
-					userItems.errorMessage = "(Item: " + itemCount + ") " + MESSAGE_INVALID_URL;
+					userItems.errorMessage = `(Item: "${itemCount}") ${MESSAGE_INVALID_URL}`;
 					return userItems;
 
 				}

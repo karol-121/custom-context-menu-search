@@ -2,9 +2,7 @@ const titleField = document.getElementById("title-field");
 const submitButton = document.getElementById("submit-button");
 const cancelButton = document.getElementById("cancel-button");
 
-async function addGroup(e) {
-
-	e.preventDefault();
+async function addGroup() {
 
 	//add required attribute after submiting to prevent :invalid pseudoclass being applied before user input
 	titleField.setAttribute("required", "");
@@ -18,7 +16,6 @@ async function addGroup(e) {
 	}
 
 	let group = new ContextMenuGroup(titleField.value, []);
-
 	let success = await browser.runtime.sendMessage({action: "addItem", payload: group.export()});
 
 	if (success) {
@@ -32,9 +29,7 @@ async function addGroup(e) {
 
 }
 
-function cancel(e) {
-
-	e.preventDefault();
+function cancel() {
 
 	window.location.replace("manage.html");
 

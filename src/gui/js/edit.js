@@ -13,8 +13,9 @@ async function getItem() {
 
 	if (!id) {
 
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_NO_ID, "error");
 		return;
+		
 	}
 
 	item = await browser.runtime.sendMessage({action: "getItem", payload: id});
@@ -22,7 +23,7 @@ async function getItem() {
 
 	if (!itemManager.isItem()) {
 		
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_INVALID_ITEM, "error");
 		return;
 
 	}
@@ -36,7 +37,7 @@ async function editItem() {
 
 	if (!itemManager.isItem()) {
 
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_INVALID_ITEM, "error");
 		return;
 		
 	}
@@ -81,7 +82,7 @@ async function deleteItem() {
 
 	if (!itemManager.isItem()) {
 
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_INVALID_ITEM, "error");
 		return;
 		
 	}

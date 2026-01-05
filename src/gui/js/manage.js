@@ -39,7 +39,6 @@ async function getUserDataFromStorage() {
 async function addSeparator() {
 
 	let separator = new ContextMenuSeparator();
-
 	let success = await browser.runtime.sendMessage({action: "addItem", payload: separator.export()});
 
 	if (!success) {
@@ -71,7 +70,7 @@ async function editItem() {
 
 	if (id < 0) {
 		
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_NO_ID, "error");
 		return;
 		
 	}
@@ -80,28 +79,28 @@ async function editItem() {
 
 	if (!item) {
 
+		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
 		return;
 
 	}
 
+	if (ItemManager.isGroup(item)) {
 
-	if (item.actions) {
-
-		window.location.replace("editGroup.html?item_id="+id);
+		window.location.replace(`editGroup.html?item_id=${id}`);
 		return;
 
 	}
 
-	if (item.type === "separator") {
+	if (ItemManager.isSeparator(item)) {
 
-		window.location.replace("delete.html?item_id="+id);
+		window.location.replace(`delete.html?item_id=${id}`);
 		return;
 			
 	}
 
-	if (item.type === "normal" || !item.type) {
+	if (ItemManager.isItem(item)) {
 
-		window.location.replace("edit.html?item_id="+id);
+		window.location.replace(`edit.html?item_id=${id}`);
 		return;
 
 	}
@@ -115,13 +114,12 @@ async function addPresetItem(title) {
 
 	if (suggestedItem < 0) {
 
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_NO_ID, "error");
 		return;
 
 	}
 
 	let item = new ContextMenuItem(suggestedItem.title, suggestedItem.url);
-
 	let success = await browser.runtime.sendMessage({action: "addItem", payload: item.export()});
 
 	if (!success) {
@@ -141,7 +139,7 @@ async function moveItemUp() {
 
 	if (id < 0) {
 		
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_NO_ID, "error");
 		return;
 
 	}
@@ -165,7 +163,7 @@ async function moveItemDown() {
 
 	if (id < 0) {
 
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_NO_ID, "error");
 		return;
 
 	}
@@ -258,7 +256,6 @@ async function importFromFile(e) {
 		admonitions.hideAdmonition();
 	}, "2000")
 
-	//load newly saved items from storage for user to show
 	getUserDataFromStorage();
 
 }
@@ -292,8 +289,6 @@ function disableButtons() {
 
 }
 
-
-
 suggestions.onSuggestionClicked = addPresetItem;
 
 addButton.onclick = addItem;
@@ -308,7 +303,6 @@ list.onSelection = disableButtons;
 fileExportButton.onclick = exportToFile;
 fileImportButton.onchange = importFromFile;
 searchSuggestionsButton.oninput = searchSuggestions;
-
 
 getUserDataFromStorage();
 populateSuggestions("");

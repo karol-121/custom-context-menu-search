@@ -25,8 +25,7 @@ async function addItem() {
 
 	}
 
-	const item = new ContextMenuItem(titleField.value, urlField.value);
-
+	let item = new ContextMenuItem(titleField.value, urlField.value);
 	let success = await browser.runtime.sendMessage({action: "addItem", payload: item.export()});
 
 	if (success) {

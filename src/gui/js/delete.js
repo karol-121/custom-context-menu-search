@@ -11,7 +11,7 @@ async function getItem() {
 
 	if (!id) {
 
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_NO_ID, "error");
 		return;
 	}
 
@@ -21,7 +21,7 @@ async function deleteItem() {
 
 	if (!id) {
 
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_NO_ID, "error");
 		return;
 		
 	}

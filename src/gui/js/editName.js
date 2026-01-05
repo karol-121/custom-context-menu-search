@@ -12,7 +12,7 @@ async function getItem() {
 
 	if (!id) {
 
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_NO_ID, "error");
 		return;
 
 	}
@@ -22,7 +22,7 @@ async function getItem() {
 
 	if (!itemManager.isItem()) {
 		
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_INVALID_ITEM, "error");
 		return;
 
 	}
@@ -36,7 +36,7 @@ async function editName() {
 
 	if (!itemManager.isItem()) {
 
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_INVALID_ITEM, "error");
 		return;
 		
 	}
@@ -58,7 +58,7 @@ async function editName() {
 
 	if (success) {
 
-		window.location.replace("editGroup.html?item_id="+itemManager.getId());
+		window.location.replace(`editGroup.html?item_id=${itemManager.getId()}`);
 		return;
 
 	}
@@ -69,7 +69,7 @@ async function editName() {
 
 function cancel() {
 
-	window.location.replace("editGroup.html?item_id="+itemManager.getId());
+	window.location.replace(`editGroup.html?item_id=${itemManager.getId()}`);
 
 }
 

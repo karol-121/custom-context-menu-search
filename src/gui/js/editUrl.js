@@ -15,7 +15,7 @@ async function getItem() {
 
 	if (!id || !index) {
 
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_NO_ID, "error");
 		return;
 
 	}
@@ -25,7 +25,7 @@ async function getItem() {
 
 	if (!itemManager.isGroup()) {
 		
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_INVALID_ITEM, "error");
 		return;
 
 	}
@@ -41,7 +41,7 @@ async function editUrl() {
 
 	if (!itemManager.isGroup() || !urlIndex) {
 
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_INVALID_ITEM, "error");
 		return;
 
 	}
@@ -62,7 +62,7 @@ async function editUrl() {
 
 	if (success) {
 
-		window.location.replace("editGroup.html?item_id="+itemManager.getId());
+		window.location.replace(`editGroup.html?item_id=${itemManager.getId()}`);
 		return;
 		
 	}
@@ -75,7 +75,7 @@ async function deleteUrl() {
 
 	if (!itemManager.isGroup() || !urlIndex) {
 
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_INVALID_ITEM, "error");
 		return;
 
 	}
@@ -86,7 +86,7 @@ async function deleteUrl() {
 
 	if (success) {
 
-		window.location.replace("editGroup.html?item_id="+itemManager.getId());
+		window.location.replace(`editGroup.html?item_id=${itemManager.getId()}`);
 		return;
 		
 	}
@@ -97,7 +97,7 @@ async function deleteUrl() {
 
 function cancel() {
 
-	window.location.replace("editGroup.html?item_id="+itemManager.getId());
+	window.location.replace(`editGroup.html?item_id=${itemManager.getId()}`);
 
 }
 

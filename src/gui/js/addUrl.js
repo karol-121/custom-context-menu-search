@@ -11,7 +11,7 @@ async function getItem() {
 
 	if (!id) {
 
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_NO_ID, "error");
 		return;
 	}
 
@@ -20,7 +20,7 @@ async function getItem() {
 
 	if (!itemManager.isGroup()) {
 		
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_INVALID_ITEM, "error");
 		return;
 
 	}
@@ -31,11 +31,12 @@ async function addUrl() {
 
 	if (!itemManager.isGroup()) {
 
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_INVALID_ITEM, "error");
 		return;
 
 	}
 
+	//add required attribute after submiting to prevent :invalid pseudoclass being applied before user input
 	urlField.setAttribute("required", "");
 
 	if (!urlField.checkValidity()) {
@@ -52,7 +53,7 @@ async function addUrl() {
 
 	if (success) {
 
-		window.location.replace("editGroup.html?item_id="+itemManager.getId());
+		window.location.replace(`editGroup.html?item_id=${itemManager.getId()}`);
 		return;
 		
 	}
@@ -63,7 +64,7 @@ async function addUrl() {
 
 function cancel() {
 
-	window.location.replace("editGroup.html?item_id="+itemManager.getId());
+	window.location.replace(`editGroup.html?item_id=${itemManager.getId()}`);
 
 }
 

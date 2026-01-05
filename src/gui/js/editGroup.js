@@ -1,4 +1,4 @@
-const title = document.getElementById("title");
+const pageTitle = document.getElementById("title");
 
 const addUrlButton = document.getElementById("add-button");
 const editUrlButton = document.getElementById("edit-button");
@@ -11,28 +11,29 @@ const cancelButton = document.getElementById("cancel-button");
 
 const itemManager = new ItemManager("");
 
-async function getItem() {
+async function getGroup() {
 
 	let params = new URLSearchParams(document.location.search);
 	let id = params.get("item_id");
 
 	if (!id) {
 
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_NO_ID, "error");
 		return;
+
 	}
 
-	let item = await browser.runtime.sendMessage({action: "getItem", payload: id});
-	itemManager.setItem(item);
+	let group = await browser.runtime.sendMessage({action: "getItem", payload: id});
+	itemManager.setItem(group);
 
 	if (!itemManager.isGroup()) {
 		
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_INVALID_ITEM, "error");
 		return;
 
 	}
 
-	title.innerText = 'Edit group "' + itemManager.getTitle() + '"';
+	pageTitle.innerText = `Edit group "${itemManager.getTitle()}"`;
 	list.resetList();
 
 	if (itemManager.isUrlsEmpty()) {
@@ -43,7 +44,9 @@ async function getItem() {
 	}
 
 	for (url of itemManager.getUrls()) {
+
 		list.urlListItem(url);
+
 	}
 
 }
@@ -53,7 +56,7 @@ async function deleteGroup() {
 
 	if (!itemManager.isGroup()) {
 
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		admonitions.showAdmonition(MESSAGE_INVALID_ITEM, "error");
 		return;
 		
 	}
@@ -81,11 +84,12 @@ function addUrl() {
 
 	if (!itemManager.isGroup()) {
 
+		admonitions.showAdmonition(MESSAGE_INVALID_ITEM, "error");
 		return;
 
 	}
 
-	window.location.replace("addUrl.html?item_id="+itemManager.getId());
+	window.location.replace(`addUrl.html?item_id=${itemManager.getId()}`);
 
 }
 
@@ -94,11 +98,13 @@ function editUrl() {
 	let index = list.getSelectionIndex();
 
 	if (index < 0) {
-		// todo: error
+		
+		admonitions.showAdmonition(MESSAGE_NO_ID, "error");
 		return;
+
 	}
 
-	window.location.replace("editUrl.html?item_id="+itemManager.getId()+"&index="+index);
+	window.location.replace(`editUrl.html?item_id=${itemManager.getId()}&index=${index}`);
 
 }
 
@@ -107,8 +113,10 @@ async function moveUrlUp() {
 	let index = list.getSelectionIndex();
 
 	if (index < 0) {
-		// todo: error
+		
+		admonitions.showAdmonition(MESSAGE_NO_ID, "error");
 		return;
+
 	}
 
 	itemManager.moveUrlUp(index);
@@ -132,8 +140,10 @@ async function moveUrlDown() {
 	let index = list.getSelectionIndex();
 
 	if (index < 0) {
-		// todo: error
+		
+		admonitions.showAdmonition(MESSAGE_NO_ID, "error");
 		return;
+
 	}
 
 	itemManager.moveUrlDown(index);
@@ -154,11 +164,13 @@ async function moveUrlDown() {
 function editName() {
 
 	if (!itemManager.isGroup()) {
-		// todo: error
+
+		admonitions.showAdmonition(MESSAGE_INVALID_ITEM, "error");
 		return;
+		
 	}
 
-	window.location.replace("editName.html?item_id="+itemManager.getId());
+	window.location.replace(`editName.html?item_id=${itemManager.getId()}`);
 	
 }
 
@@ -190,4 +202,4 @@ moveUrlUpButton.onclick = moveUrlUp;
 moveUrlDownButton.onclick = moveUrlDown;
 editNameButton.onclick = editName;
 
-getItem();
+getGroup();

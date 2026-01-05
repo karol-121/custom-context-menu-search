@@ -27,6 +27,8 @@ const testData = {
 		]
 	},
 
+	// todo add testdata for 2.3 version (with separators)
+
 	storage_def: {
 		items: [
 			{
@@ -40,6 +42,57 @@ const testData = {
 				title: "Bandcamp",
 				contexts: ["selection"],
 				action: "https://bandcamp.com/search?q=%s&item_type"
+			}
+		]
+	},
+
+	sc: {
+		id: "17319286340290",
+		title: "Soundcloud",
+		contexts: ["selection"],
+		action: "https://soundcloud.com/search?q="
+	},
+	bc: {
+		id: "17319286340291",
+		title: "Bandcamp",
+		contexts: ["selection"],
+		action: "https://bandcamp.com/search?q=%s&item_type"
+	},
+
+	storage_group_test: {
+		
+		items: [
+			{
+				id: "17319286340290",
+				title: "Soundcloud",
+				contexts: ["selection"],
+				action: "https://soundcloud.com/search?q="
+			},
+			{
+				id: "17319286340291",
+				title: "Bandcamp",
+				contexts: ["selection"],
+				action: "https://bandcamp.com/search?q=%s&item_type"
+			},
+			{
+				id: "17319286340292",
+				title: "Maps",
+				contexts: ["selection"],
+				action: "%group%",
+				items: [
+					{
+						id: "17319286340290",
+						title: "Soundcloud",
+						contexts: ["selection"],
+						action: "https://soundcloud.com/search?q="
+					},
+					{
+						id: "17319286340291",
+						title: "Bandcamp",
+						contexts: ["selection"],
+						action: "https://bandcamp.com/search?q=%s&item_type"
+					}
+				]
 			}
 		]
 	}

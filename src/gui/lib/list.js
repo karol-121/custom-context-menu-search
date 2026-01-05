@@ -47,6 +47,28 @@ const list = {
 
 	},
 
+	getSelectionIndex() {
+
+		if (!this.selected) {
+
+			return -1;
+
+		}
+
+		if (this.ul.children.length === 0) {
+			return -1;
+		}
+
+		let i = 0;
+
+		while (this.ul.children[i].firstChild != this.selected) {
+			i++
+		}
+
+		return i;
+
+	},
+
 	resetList() {
 
 		while (this.ul.firstChild) {
@@ -72,13 +94,13 @@ const list = {
 
 	},
 
-	urlListItem(index, url) {
+	urlListItem(url) {
 		const li = document.createElement('li');
 			li.className = "margin-03";
 
 		const button = document.createElement('button');
-			button.setAttribute("data-id", index);
 			button.className = ("flex-element width-100 btn-small btn-secondary btn-hover");
+			button.setAttribute("data-id","-1");
 			button.onclick = (e) => this.onClick(e);
 
 		const div = document.createElement('div');
@@ -150,7 +172,7 @@ const list = {
 			
 			this.ul.insertBefore(this.selected.parentElement, this.selected.parentElement.previousSibling);
 
-		} 
+		}
 
 	},
 

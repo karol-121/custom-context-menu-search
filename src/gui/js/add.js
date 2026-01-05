@@ -3,9 +3,7 @@ const urlField = document.getElementById("url-field");
 const submitButton = document.getElementById("submit-button");
 const cancelButton = document.getElementById("cancel-button");
 
-async function addItem(e) {
-
-	e.preventDefault();
+async function addItem() {
 
 	//add required attribute after submiting to prevent :invalid pseudoclass being applied before user input
 	titleField.setAttribute("required", "");
@@ -27,9 +25,9 @@ async function addItem(e) {
 
 	}
 
-	const item = new contextMenuItem(titleField.value, urlField.value, "normal");
+	const item = new ContextMenuItem(titleField.value, urlField.value);
 
-	let success = await browser.runtime.sendMessage({action: "addItem", payload: item});
+	let success = await browser.runtime.sendMessage({action: "addItem", payload: item.export()});
 
 	if (success) {
 
@@ -42,9 +40,7 @@ async function addItem(e) {
 
 }
 
-function cancel(e) {
-
-	e.preventDefault();
+function cancel() {
 
 	window.location.replace("manage.html");
 

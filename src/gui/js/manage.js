@@ -38,9 +38,9 @@ async function getUserDataFromStorage() {
 
 async function addSeparator() {
 
-	let separator = new contextMenuItem("", "", "separator");
+	let separator = new ContextMenuSeparator();
 
-	let success = await browser.runtime.sendMessage({action: "addItem", payload: separator});
+	let success = await browser.runtime.sendMessage({action: "addItem", payload: separator.export()});
 
 	if (!success) {
 		
@@ -120,9 +120,9 @@ async function addPresetItem(title) {
 
 	}
 
-	const item = new contextMenuItem(suggestedItem.title, suggestedItem.url, "normal");
+	let item = new ContextMenuItem(suggestedItem.title, suggestedItem.url);
 
-	let success = await browser.runtime.sendMessage({action: "addItem", payload: item});
+	let success = await browser.runtime.sendMessage({action: "addItem", payload: item.export()});
 
 	if (!success) {
 

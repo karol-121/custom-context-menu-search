@@ -13,7 +13,8 @@ async function setContextMenuItems() {
 	//if no data from storage -> create shortcut as default
 	if (!userContextMenuItems.items || userContextMenuItems.items.length === 0) {
 
-		userContextMenuItems.items = [new contextMenuItem("Create new...","%options%", "normal")];
+		let defaultItem = new ContextMenuItem("Create new...", "%options%");
+		userContextMenuItems.items = [defaultItem.export()];
 
 	}
 
@@ -31,13 +32,7 @@ function onContextMenusClicked(info) {
 
 	}
 
-	if (clickedMenuItem.action === "%group%") {
-
-		if (!clickedMenuItem.actions) {
-
-			return;
-			
-		}
+	if (clickedMenuItem.actions) {
 
 		for (action of clickedMenuItem.actions) {
 

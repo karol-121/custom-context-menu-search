@@ -12,16 +12,15 @@
   "background": {
     "scripts":[
       "utils/random-id.js",
-      "utils/input-validation.js",
       "utils/compose-url.js",
-      "objects/contextMenuItem.js",
-      "objects/contextMenuItemGroup.js",
+      "objects/ContextMenuItem.js",
+      "objects/ContextMenuGroup.js",
+      "objects/ContextMenuSeparator.js",
       "background/tabController.js",
       "background/storageController.js",
       "background/contextMenuController.js",
       "background/downloadController.js",
       "background/dataController.js",
-      "background/itemGroupController.js",
       "background/main.js",
       "tests/testData.js"
     ]

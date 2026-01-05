@@ -52,30 +52,65 @@ const file = {
 
 			if (importItem.separator) {
 
-				userItems.items.push(new contextMenuItem(importItem.title, importItem.url, "separator"));
+				let separator = new ContextMenuSeparator();
+
+				userItems.items.push(separator.export());
 				itemCount++;
 				continue;
 
 			}
 
-			if (!validateTitle(importItem.title)) {
+			if (importItem.urls) {
 
-				userItems.error = true;
-				userItems.errorMessage = "(Item: " + itemCount + ") " + MESSAGE_INVALID_TITLE;
-				return userItems;
+				if (!ContextMenuGroup.validateTitle(importItem.title)) {
+					
+					userItems.error = true;
+					userItems.errorMessage = "(Item: " + itemCount + ")"; //todo error message
+					return userItems;
 
+				}
+
+				if (!ContextMenuGroup.validateUrls(importItem.urls)) {
+					
+					userItems.error = true;
+					userItems.errorMessage = "(Item: " + itemCount + ")"; //todo error message
+					return userItems;
+
+				}
+
+				let group = new ContextMenuGroup(importItem.title, importItem.urls);
+
+				userItems.items.push(group.export());
+				itemCount++;
+				continue;
+				
 			}
 
-			if (!validateUrl(importItem.url)) {
+			if (importItem.url) {
 
-				userItems.error = true;
-				userItems.errorMessage = "(Item: " + itemCount + ") " + MESSAGE_INVALID_URL;
-				return userItems;
+				if (!ContextMenuItem.validateTitle(importItem.title)) {
 
+					userItems.error = true;
+					userItems.errorMessage = "(Item: " + itemCount + ") " + MESSAGE_INVALID_TITLE;
+					return userItems;
+
+				}
+
+				if (!ContextMenuItem.validateUrl(importItem.url)) {
+
+					userItems.error = true;
+					userItems.errorMessage = "(Item: " + itemCount + ") " + MESSAGE_INVALID_URL;
+					return userItems;
+
+				}
+
+				let item = new ContextMenuItem(importItem.title, importItem.url);
+
+				userItems.items.push(item.export());
+				itemCount++;
+				
 			}
 
-			userItems.items.push(new contextMenuItem(importItem.title, importItem.url, "normal"));
-			itemCount++;
 
 		}
 
@@ -99,20 +134,34 @@ const file = {
 
 			const exportItem = {};
 
-			if (item.type === "separator") {
+			if (ItemManager.isGroup(item)) {
+
+				exportItem.title = item.title;
+				exportItem.urls = item.actions;
+
+				exportJSON.context_menu_items.push(exportItem);
+				continue;
+
+			}
+
+			if (ItemManager.isSeparator(item)) {
 
 				exportItem.separator = "separator";
 
+				exportJSON.context_menu_items.push(exportItem);
+				continue;
+
 			}
 
-			if (item.type != "separator") {
-
+			if (ItemManager.isItem(item)) {
+				
 				exportItem.title = item.title;
 				exportItem.url = item.action;
 
-			}
+				exportJSON.context_menu_items.push(exportItem);
+				continue;
 
-			exportJSON.context_menu_items.push(exportItem);
+			}
 
 		}
 

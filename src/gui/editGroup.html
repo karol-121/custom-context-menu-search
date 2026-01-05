@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<h3>Edit group</h3>
+	<h3 id="title">Edit group</h3>
 	
 	<div id="admonition" class="admonition-hidden">
 		<div id="admonition-content">
@@ -18,17 +18,22 @@
 		</div>
 	</div>
 
-	<label class="block-element" for="title">Name:</label>
-	<input class="input-text form-element" id="title-field" type="text" name="title" placeholder="Example" pattern=".{1,30}">
-
-	<h3>Urls</h3>
-
 	<div>
-		<label class="block-element" for="url">Url:</label>
-		<input class="input-text form-element" id="url-field" type="text" name="url" placeholder="www.example.com/?q=%s" pattern="\S{3,200}">
-		<button id="add-url-button" class="btn btn-hover btn-primary">Add</button>
-		<button id="edit-url-button" class="btn btn-hover btn-primary">Edit</button>
-		<button id="delete-url-button" class="btn btn-hover btn-primary">Delete</button>
+		<button id="add-button" class="btn btn-hover btn-primary" title="Add new">
+			<svg class="icon icon-color"><use href="../icons/feather-icons.svg#plus" /></svg>
+		</button>
+		<button id="edit-button" class="btn btn-hover btn-primary" title="Edit">
+			<svg class="icon icon-color"><use href="../icons/feather-icons.svg#edit-2" /></svg>
+		</button>
+		<button id="move-up-button" class="btn btn-hover btn-primary" title="Move up">
+			<svg class="icon icon-color"><use href="../icons/feather-icons.svg#chevron-up" /></svg>
+		</button>
+		<button id="move-down-button" class="btn btn-hover btn-primary" title="Move down">
+			<svg class="icon icon-color"><use href="../icons/feather-icons.svg#chevron-down" /></svg>
+		</button>
+		<button id="edit-name-button" class="btn btn-hover btn-primary" title="change name">
+			Change name
+		</button>
 	</div>
 
 	<ul id="list" class="no-decoration">
@@ -36,15 +41,13 @@
 	</ul>
 
 	<div>
-		<button id="submit-button" class="btn btn-hover btn-primary">Edit</button>
-		<button id="delete-button" class="btn btn-hover btn-secondary">Delete</button>
-		<button id="cancel-button" class="btn btn-hover btn-secondary">Cancel</button>
+		<button id="delete-button" class="btn btn-hover btn-secondary" title="delete">Delete</button>
+		<button id="cancel-button" class="btn btn-hover btn-secondary" title="cancel">Cancel</button>
 	</div>
 
+
 	<script src="../utils/localization.js"></script>
-	<script src="../utils/input-validation.js"></script>
-	<script src="../objects/contextMenuItem.js"></script>
-	<script src="../background/itemGroupController.js"></script>
+	<script src="../objects/ItemManager.js"></script>
 	<script src="lib/admonitions.js"></script>
 	<script src="lib/list.js"></script>
 	<script src="js/editGroup.js"></script>

@@ -1,4 +1,4 @@
-class ContextMenuItem {
+class ContextMenuGroup {
   static titleRegex = /^.{1,30}$/;
   static urlRegex = /^\S{3,200}$/;
 
@@ -6,7 +6,7 @@ class ContextMenuItem {
 
     if (!title) {
 
-      return false;
+      return false
 
     }
 
@@ -14,29 +14,39 @@ class ContextMenuItem {
 
   }
 
-  static validateUrl(url) {
+  static validateUrls(urls) {
 
-    if (!url) {
+    if (!urls) {
 
       return false;
+      
+    }
+
+    for (let url of urls) {
+
+      if (!this.urlRegex.test(url)) {
+
+        return false;
+
+      }
 
     }
 
-    return this.urlRegex.test(url);
+    return true;
 
   }
 
-  constructor(name, url) {
+  constructor(name, urls) {
     this.id = randomId.generateNewId();
     this.title = name;
-    this.action = url;
+    this.actions = urls;
   }
 
   export() {
     return {
       id: this.id,
       title: this.title,
-      action: this.action
+      actions: this.actions
     }
   }
 

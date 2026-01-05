@@ -17,9 +17,9 @@ async function addGroup(e) {
 
 	}
 
-	const group = new contextMenuItemGroup(titleField.value);
+	let group = new ContextMenuGroup(titleField.value, []);
 
-	let success = await browser.runtime.sendMessage({action: "addItem", payload: group});
+	let success = await browser.runtime.sendMessage({action: "addItem", payload: group.export()});
 
 	if (success) {
 

@@ -1,8 +1,7 @@
-const titleField = document.getElementById("title-field");
-const urlField = document.getElementById("url-field");
 const submitButton = document.getElementById("submit-button");
-const deleteButton = document.getElementById("delete-button");
 const cancelButton = document.getElementById("cancel-button");
+
+const titleField = document.getElementById("title-field");
 
 const itemManager = new ItemManager("");
 
@@ -15,6 +14,7 @@ async function getItem() {
 
 		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
 		return;
+
 	}
 
 	item = await browser.runtime.sendMessage({action: "getItem", payload: id});
@@ -28,11 +28,11 @@ async function getItem() {
 	}
 
 	titleField.value = itemManager.getTitle();
-	urlField.value = itemManager.getAction();
 
 }
 
-async function editItem() {
+
+async function editName() {
 
 	if (!itemManager.isItem()) {
 
@@ -43,7 +43,6 @@ async function editItem() {
 
 	//add required attribute after submiting to prevent :invalid pseudoclass being applied before user input
 	titleField.setAttribute("required", "");
-	urlField.setAttribute("required", "");
 
 	if (!titleField.checkValidity()) {
 
@@ -53,44 +52,13 @@ async function editItem() {
 
 	}
 
-	if (!urlField.checkValidity()) {
-
-		urlField.reportValidity();
-		admonitions.showAdmonition(MESSAGE_INVALID_URL,"error");
-		return;
-
-	}
-
 	itemManager.setTitle(titleField.value);
-	itemManager.setAction(urlField.value);
 
 	let success = await browser.runtime.sendMessage({action: "editItem", payload: itemManager.getItem()});
 
 	if (success) {
 
-		window.location.replace("manage.html");
-		return;
-
-	}
-
-	admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
-
-}
-
-async function deleteItem() {
-
-	if (!itemManager.isItem()) {
-
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
-		return;
-		
-	}
-
-	let success = await browser.runtime.sendMessage({action: "deleteItem", payload: itemManager.getId()});
-
-	if (success) {
-
-		window.location.replace("manage.html");
+		window.location.replace("editGroup.html?item_id="+itemManager.getId());
 		return;
 
 	}
@@ -101,12 +69,11 @@ async function deleteItem() {
 
 function cancel() {
 
-	window.location.replace("manage.html");
+	window.location.replace("editGroup.html?item_id="+itemManager.getId());
 
 }
 
-submitButton.onclick = editItem;
-deleteButton.onclick = deleteItem;
+submitButton.onclick = editName;
 cancelButton.onclick = cancel;
 
 getItem();

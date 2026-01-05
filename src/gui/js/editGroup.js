@@ -1,13 +1,17 @@
-const titleField = document.getElementById("title-field");
-const urlField = document.getElementById("url-field");
-const addUrlButton = document.getElementById("add-url-button");
-const editUrlButton = document.getElementById("edit-url-button");
-const deleteUrlButton = document.getElementById("delete-url-button");
-const submitButton = document.getElementById("submit-button");
+const title = document.getElementById("title");
+
+const addUrlButton = document.getElementById("add-button");
+const editUrlButton = document.getElementById("edit-button");
+const moveUrlUpButton = document.getElementById("move-up-button");
+const moveUrlDownButton = document.getElementById("move-down-button");
+const editNameButton = document.getElementById("edit-name-button");
+
 const deleteButton = document.getElementById("delete-button");
 const cancelButton = document.getElementById("cancel-button");
 
-async function getGroupItem() {
+const itemManager = new ItemManager("");
+
+async function getItem() {
 
 	let params = new URLSearchParams(document.location.search);
 	let id = params.get("item_id");
@@ -19,59 +23,42 @@ async function getGroupItem() {
 	}
 
 	let item = await browser.runtime.sendMessage({action: "getItem", payload: id});
+	itemManager.setItem(item);
 
-	if (!item && !item.actions) {
+	if (!itemManager.isGroup()) {
 		
 		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
 		return;
 
 	}
 
-	
-	itemGroupController.groupItem = item;
-	updateFields();
-
-}
-
-function updateFields() {
-
-	titleField.value = itemGroupController.groupItem.title;
-
+	title.innerText = 'Edit group "' + itemManager.getTitle() + '"';
 	list.resetList();
 
-	for (let i = 0; i < itemGroupController.groupItem.actions.length; i++) {
+	if (itemManager.isUrlsEmpty()) {
 
-		list.urlListItem(i, itemGroupController.groupItem.actions[i]);
+		list.printEmpty();
+		return;
 
+	}
+
+	for (url of itemManager.getUrls()) {
+		list.urlListItem(url);
 	}
 
 }
 
-async function editItem(e) {
 
-	e.preventDefault();
+async function deleteGroup() {
 
-	if (!itemGroupController.groupItem) {
+	if (!itemManager.isGroup()) {
 
 		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
 		return;
 		
 	}
 
-	//add required attribute after submiting to prevent :invalid pseudoclass being applied before user input
-	titleField.setAttribute("required", "");
-
-	if (!titleField.checkValidity()) {
-
-		titleField.reportValidity();
-		admonitions.showAdmonition(MESSAGE_INVALID_TITLE,"error");
-		return;
-
-	}
-
-	itemGroupController.groupItem.title = titleField.value;
-
-	let success = await browser.runtime.sendMessage({action: "editItem", payload: itemGroupController.groupItem});
+	let success = await browser.runtime.sendMessage({action: "deleteItem", payload: itemManager.getId()});
 
 	if (success) {
 
@@ -84,96 +71,123 @@ async function editItem(e) {
 
 }
 
-async function deleteItem(e) {
+function cancel() {
 
-	e.preventDefault();
-
-	if (!itemGroupController.groupItem) {
-
-		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
-		return;
-		
-	}
-
-	let success = await browser.runtime.sendMessage({action: "deleteItem", payload: itemGroupController.groupItem.id});
-
-	if (success) {
-
-		window.location.replace("manage.html");
-		return;
-
-	}
-
-	admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
-
-}
-
-function cancel(e) {
-
-	e.preventDefault();
 	window.location.replace("manage.html");
 
 }
 
 function addUrl() {
 
-	let url = urlField.value;
+	if (!itemManager.isGroup()) {
 
-	itemGroupController.addUrl(url);
-	updateFields();
-
-}
-
-function chooseUrl() {
-	let selected = list.getSelectionId();
-
-	if (selected < 0) {
-
-		urlField.value = "";
 		return;
 
 	}
 
-	let url = itemGroupController.groupItem.actions[selected];
-	urlField.value = url;
+	window.location.replace("addUrl.html?item_id="+itemManager.getId());
 
 }
 
 function editUrl() {
 
-	let url = urlField.value;
+	let index = list.getSelectionIndex();
 
-	let selected = list.getSelectionId();
-
-	if (selected < 0) {
+	if (index < 0) {
+		// todo: error
 		return;
 	}
 
-	itemGroupController.editUrl(selected, url);
-	updateFields();
+	window.location.replace("editUrl.html?item_id="+itemManager.getId()+"&index="+index);
 
 }
 
-function deleteUrl() {
+async function moveUrlUp() {
 
-	let selected = list.getSelectionId();
+	let index = list.getSelectionIndex();
 
-	if (selected < 0) {
+	if (index < 0) {
+		// todo: error
 		return;
 	}
 
-	itemGroupController.deleteUrl(selected);
-	updateFields();
+	itemManager.moveUrlUp(index);
+
+	let success = await browser.runtime.sendMessage({action: "editItem", payload: itemManager.getItem()});
+
+	if (!success) {
+
+		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		return;
+
+	}
+
+	list.moveSelectedUp();
+
+
 }
 
-submitButton.onclick = editItem;
-deleteButton.onclick = deleteItem;
+async function moveUrlDown() {
+
+	let index = list.getSelectionIndex();
+
+	if (index < 0) {
+		// todo: error
+		return;
+	}
+
+	itemManager.moveUrlDown(index);
+
+	let success = await browser.runtime.sendMessage({action: "editItem", payload: itemManager.getItem()});
+
+	if (!success) {
+
+		admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+		return;
+
+	}
+
+	list.moveSelectedDown();
+
+}
+
+function editName() {
+
+	if (!itemManager.isGroup()) {
+		// todo: error
+		return;
+	}
+
+	window.location.replace("editName.html?item_id="+itemManager.getId());
+	
+}
+
+function disableButtons() {
+
+	if (list.getSelectionIndex() < 0) {
+
+		editUrlButton.setAttribute("disabled","");
+		moveUrlUpButton.setAttribute("disabled","");
+		moveUrlDownButton.setAttribute("disabled","");
+		return;
+
+	}
+
+	editUrlButton.removeAttribute("disabled");
+	moveUrlUpButton.removeAttribute("disabled");
+	moveUrlDownButton.removeAttribute("disabled");
+
+}
+
+deleteButton.onclick = deleteGroup;
 cancelButton.onclick = cancel;
 
-list.onSelection = chooseUrl;
+list.onSelection = disableButtons;
 
 addUrlButton.onclick = addUrl;
 editUrlButton.onclick = editUrl;
-deleteUrlButton.onclick = deleteUrl;
+moveUrlUpButton.onclick = moveUrlUp;
+moveUrlDownButton.onclick = moveUrlDown;
+editNameButton.onclick = editName;
 
-getGroupItem();
+getItem();

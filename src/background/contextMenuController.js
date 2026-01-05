@@ -11,8 +11,8 @@ const contextMenuController = {
 
 			browser.contextMenus.create({
       	id: menuItem.id,
-      	title: menuItem.title,
-      	contexts: menuItem.contexts,
+      	title: ((menuItem.title) ? menuItem.title : ""),
+      	contexts: ["selection"],
       	type: ((menuItem.type) ? menuItem.type : "normal")
     	});
 

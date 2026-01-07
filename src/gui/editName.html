@@ -5,10 +5,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/acorn-alike.css">
 	<link rel="stylesheet" type="text/css" href="css/acorn-alike-color.css">
-	<title>Edit name</title>
+	<title>Edit group name</title>
 </head>
 <body>
-	<h3>Edit name</h3>
+
+	<div class="flex-element">
+		<div>
+			<button id="cancel-button" class="btn btn-hover btn-secondary" title="Go back">
+				<svg class="icon icon-color"><use href="../icons/feather-icons.svg#chevron-left" /></svg>
+			</button>
+			<h3 class="inline-element">Edit group name</h3>
+		</div>
+	</div>
+
+	<hr>
 	
 	<div id="admonition" class="admonition-hidden">
 		<div id="admonition-content">
@@ -22,7 +32,6 @@
 
 	<div>
 		<button id="submit-button" class="btn btn-hover btn-primary">Edit</button>
-		<button id="cancel-button" class="btn btn-hover btn-secondary">Cancel</button>
 	</div>
 
 	<script src="../utils/random-id.js"></script>

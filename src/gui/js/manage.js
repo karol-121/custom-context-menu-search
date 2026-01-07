@@ -30,7 +30,26 @@ async function getUserDataFromStorage() {
 
 	for (item of userItems.items) {
 
-		list.createListItem(item);
+		if (ItemManager.isGroup(item)) {
+
+			list.printGroup(item);
+			continue;
+
+		}
+
+		if (ItemManager.isSeparator(item)) {
+
+			list.printSeparator(item);
+			continue;
+
+		}
+
+		if (ItemManager.isItem(item)) {
+
+			list.printItem(item);
+			continue;
+
+		}
 
 	}
 
@@ -48,7 +67,7 @@ async function addSeparator() {
 
 	} 
 
-	list.createListItem(separator);
+	list.printSeparator(separator);
 
 }
 
@@ -129,7 +148,7 @@ async function addPresetItem(title) {
 
 	}
 
-	list.createListItem(item);
+	list.printItem(item);
 
 }
 

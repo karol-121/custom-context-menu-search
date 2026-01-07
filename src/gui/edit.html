@@ -9,7 +9,19 @@
 </head>
 <body>
 
-	<h3>Edit context menu search item</h3>
+	<div class="flex-element">
+		<div>
+			<button id="cancel-button" class="btn btn-hover btn-secondary" title="Go back">
+				<svg class="icon icon-color"><use href="../icons/feather-icons.svg#chevron-left" /></svg>
+			</button>
+			<h3 class="inline-element">Edit context menu search item</h3>
+		</div>
+		<button id="delete-button" class="btn btn-hover btn-secondary" title="Delete">
+			<svg class="icon icon-color"><use href="../icons/feather-icons.svg#trash" /></svg>
+		</button>
+	</div>
+
+	<hr>
 	
 	<div id="admonition" class="admonition-hidden">
 		<div id="admonition-content">
@@ -31,8 +43,6 @@
 	<span class="txt-secondary block-element">Tip: Use "%s" as a wildcard for search value in links. Additionaly use "%options%" as url to create shorcut to manage page.</span>
 	<div>
 		<button id="submit-button" class="btn btn-hover btn-primary">Edit</button>
-		<button id="delete-button" class="btn btn-hover btn-secondary">Delete</button>
-		<button id="cancel-button" class="btn btn-hover btn-secondary">Cancel</button>
 	</div>
 
 	<script src="../objects/ItemManager.js"></script>

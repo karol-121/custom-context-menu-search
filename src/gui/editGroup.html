@@ -8,8 +8,25 @@
 	<title>Edit group</title>
 </head>
 <body>
+	
+	<div class="flex-element">
+		<div>
+			<button id="cancel-button" class="btn btn-hover btn-secondary" title="Go back">
+				<svg class="icon icon-color"><use href="../icons/feather-icons.svg#chevron-left" /></svg>
+			</button>
+			<h3 id="title" class="inline-element">Manage group</h3>
+		</div>
+		<div>
+			<button id="edit-name-button" class="btn btn-hover btn-secondary" title="Change name">
+				<svg class="icon icon-color"><use href="../icons/feather-icons.svg#edit-2" /></svg>
+			</button>
+			<button id="delete-button" class="btn btn-hover btn-secondary" title="Delete">
+				<svg class="icon icon-color"><use href="../icons/feather-icons.svg#trash" /></svg>
+			</button>
+		</div>
+	</div>
 
-	<h3 id="title">Edit group</h3>
+	<hr>
 	
 	<div id="admonition" class="admonition-hidden">
 		<div id="admonition-content">
@@ -31,20 +48,11 @@
 		<button id="move-down-button" class="btn btn-hover btn-primary" title="Move down">
 			<svg class="icon icon-color"><use href="../icons/feather-icons.svg#chevron-down" /></svg>
 		</button>
-		<button id="edit-name-button" class="btn btn-hover btn-primary" title="change name">
-			Change name
-		</button>
 	</div>
 
 	<ul id="list" class="no-decoration">
 		<!-- list items are dynamically created -->
 	</ul>
-
-	<div>
-		<button id="delete-button" class="btn btn-hover btn-secondary" title="delete">Delete</button>
-		<button id="cancel-button" class="btn btn-hover btn-secondary" title="cancel">Cancel</button>
-	</div>
-
 
 	<script src="../objects/ItemManager.js"></script>
 	<script src="lib/localization.js"></script>

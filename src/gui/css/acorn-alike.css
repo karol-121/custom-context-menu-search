@@ -2,12 +2,8 @@ body, input, button {
 	font-size: 15px;
 }
 
-body {
+body, ul {
 	margin: 0em;
-}
-
-div, ul {
-	margin: 0.3em 0em;
 }
 
 h3, span, label {
@@ -40,6 +36,10 @@ hr {
 	margin: 0.3em;
 }
 
+.margin-03-y {
+	margin: 0.3em 0em;
+}
+
 .no-wrap {
 	white-space: nowrap;
 	overflow: hidden;
@@ -53,6 +53,10 @@ hr {
 
 .block-element {
 	display: block;
+}
+
+.inline-element {
+	display: inline-block;
 }
 
 .flex-element {

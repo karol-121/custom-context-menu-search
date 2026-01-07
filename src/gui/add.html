@@ -9,7 +9,16 @@
 </head>
 <body>
 
-	<h3>Add new context menu search item</h3>
+	<div class="flex-element">
+		<div>
+			<button id="cancel-button" class="btn btn-hover btn-secondary" title="Go back">
+				<svg class="icon icon-color"><use href="../icons/feather-icons.svg#chevron-left" /></svg>
+			</button>
+			<h3 class="inline-element">Add new context menu search item</h3>
+		</div>
+	</div>
+
+	<hr>
 
 	<div id="admonition" class="admonition-hidden">
 		<div id="admonition-content">
@@ -31,7 +40,6 @@
 	<span class="txt-secondary block-element">Tip: Use "%s" as a wildcard for search value in links. Additionaly use "%options%" as url to create shorcut to manage page.</span>
 	<div>
 		<button id="submit-button" class="btn btn-hover btn-primary">Add</button>
-		<button id="cancel-button" class="btn btn-hover btn-secondary">Cancel</button>
 	</div>
 
 	<script src="../utils/random-id.js"></script>

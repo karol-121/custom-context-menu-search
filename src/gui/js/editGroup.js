@@ -33,7 +33,7 @@ async function getGroup() {
 
 	}
 
-	pageTitle.innerText = `Edit group "${itemManager.getTitle()}"`;
+	pageTitle.innerText = `Manage group - "${itemManager.getTitle()}"`;
 	list.resetList();
 
 	if (itemManager.isUrlsEmpty()) {
@@ -45,7 +45,7 @@ async function getGroup() {
 
 	for (url of itemManager.getUrls()) {
 
-		list.urlListItem(url);
+		list.printUrl(url);
 
 	}
 

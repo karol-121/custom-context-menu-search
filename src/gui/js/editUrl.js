@@ -51,7 +51,7 @@ async function editUrl() {
 	if (!urlField.checkValidity()) {
 
 		urlField.reportValidity();
-		admonitions.showAdmonition("invalid value","error");
+		admonitions.showAdmonition(MESSAGE_INVALID_URL,"error");
 		return;
 
 	}

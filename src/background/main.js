@@ -1,6 +1,8 @@
+let userContextMenuItems;
+
 async function setContextMenuItems() {
 
-	let userContextMenuItems = await storageController.getData();
+	userContextMenuItems = await storageController.getData();
 
 	//as storageController.getData returns "false" upon failing
 	//convert this return value to an object so the default context menu item can be added
@@ -22,6 +24,37 @@ async function setContextMenuItems() {
 
 }
 
+function openMultiple(actions, text) {
+
+	for (action of actions) {
+
+		let url = composeURL(action, text);
+
+		if (!url) {
+
+			continue;
+		}
+
+		tabController.setTab(url, true);
+
+	}
+
+}
+
+function openSingle(action, text, discarded) {
+
+	let url = composeURL(action, text);
+
+	if (!url) {
+
+		return;
+
+	}
+
+	tabController.setTab(url, discarded);
+
+}
+
 function onContextMenusClicked(info) {
 
 	let clickedMenuItem = contextMenuController.getContextMenuItem(info.menuItemId);
@@ -34,17 +67,44 @@ function onContextMenusClicked(info) {
 
 	if (clickedMenuItem.actions) {
 
-		for (action of clickedMenuItem.actions) {
+		openMultiple(clickedMenuItem.actions, info.selectionText)
+		return;
 
-			let url = composeURL(action, info.selectionText);
+	}
 
-			if (!url) {
 
-				return;
+	if (clickedMenuItem.action === "%all%") {
+
+		for (item of userContextMenuItems.items) {
+
+			if (item.action) {
+
+				openSingle(item.action, info.selectionText, true)
+				
+			}
+
+		}
+
+		return;
+
+	}
+
+	if (clickedMenuItem.action === "%all_all%") {
+
+		for (item of userContextMenuItems.items) {
+
+			if (item.action) {
+
+				openSingle(item.action, info.selectionText, true);
+				
+			}
+
+			if (item.actions) {
+
+				openMultiple(item.actions, info.selectionText);
 
 			}
 
-			tabController.setTab(url, true);
 		}
 
 		return;
@@ -58,16 +118,7 @@ function onContextMenusClicked(info) {
 
 	}
 
-
-	let url = composeURL(clickedMenuItem.action, info.selectionText)
-
-	if (!url) {
-
-		return;
-
-	}
-
-	tabController.setTab(url, false);
+	openSingle(clickedMenuItem.action, info.selectionText, false);
 
 }
 

@@ -1,5 +1,6 @@
 const titleField = document.getElementById("title-field");
 const urlField = document.getElementById("url-field");
+const actionSelect = document.getElementById("action-select");
 const submitButton = document.getElementById("submit-button");
 const cancelButton = document.getElementById("cancel-button");
 
@@ -39,6 +40,11 @@ async function addItem() {
 
 }
 
+function changeAction() {
+
+	urlField.value = actionSelect.value;
+}
+
 function cancel() {
 
 	window.location.replace("manage.html");
@@ -46,4 +52,5 @@ function cancel() {
 }
 
 submitButton.onclick = addItem;
+actionSelect.onchange = changeAction;
 cancelButton.onclick = cancel;

@@ -1,4 +1,4 @@
-body, input, button {
+body, input, button, select {
 	font-size: 15px;
 }
 
@@ -66,12 +66,12 @@ hr {
 	align-items: center;
 }
 
-.flex-grow-1 {
-	flex-grow: 1;
+.flex-1 {
+	flex: 1;
 }
 
-.flex-grow-2 {
-	flex-grow: 2;
+.flex-2 {
+	flex: 2;
 }
 
 .input-text {

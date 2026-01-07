@@ -2,16 +2,10 @@ const tabController = {
 
 	setTab(url, discarded) {
 
-		if (!url) {
-
-			return;
-			
-		}
-
 		browser.tabs.create({
-      "url": url,
-      "discarded": discarded
-    });
+    	"url": url,
+    	"discarded": discarded
+  	});
 
 	},
 
@@ -20,4 +14,5 @@ const tabController = {
 		browser.runtime.openOptionsPage();
 
 	}
+	
 }

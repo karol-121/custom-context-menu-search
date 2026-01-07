@@ -5,25 +5,59 @@ const DEF_PROTOCOL = "https://"; //protocol to append if url does not contain su
 
 //function that prepends protocol to url if missing. Otherwise returns copy of url
 function prependProtocol(url, protocol) {
+
 	if (!PROTOCOL_REGEX.test(url)) {
+
 		return protocol + url;
+
 	}
 
 	return url;
+
 }
 
 //function that inserts text to url marked with wildcard "%s".
 //if no wildcard is found, appends text at the end.
 function insertSelectionText(url, text) {
+
 	if (url.search(/%s/gm) === -1) {
+
     return url + text;
+
   }
 
   return url.replaceAll(/%s/gm, text);
+
+}
+
+function isReserved(url) {
+
+  switch (url) {
+
+    case "%options%": 
+      return true;
+
+    case "%all%":
+      return true;
+
+    case "%all_all%":
+      return true;
+
+    default:
+      return false;
+
+  }
+
 }
 
 //function that creates functional url with selection text inserted
 function composeURL(url, selection_text) {
+
+  if (isReserved(url)) {
+
+    return false;
+
+  }
 
   //trim start and end
   selection_text = selection_text.trim();
@@ -44,4 +78,5 @@ function composeURL(url, selection_text) {
   url = insertSelectionText(url, selection_text);
  	
  	return url; //todo: validate if url is valid
+
 }

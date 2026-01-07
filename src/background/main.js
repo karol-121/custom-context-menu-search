@@ -44,7 +44,7 @@ function onContextMenusClicked(info) {
 
 			}
 
-			tabController.setTab(url); //todo: add "discarded" flag to setTab method
+			tabController.setTab(url, true);
 		}
 
 		return;
@@ -67,7 +67,7 @@ function onContextMenusClicked(info) {
 
 	}
 
-	tabController.setTab(url)
+	tabController.setTab(url, false);
 
 }
 

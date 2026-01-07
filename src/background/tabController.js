@@ -1,6 +1,6 @@
 const tabController = {
 
-	setTab(url) {
+	setTab(url, discarded) {
 
 		if (!url) {
 
@@ -9,7 +9,8 @@ const tabController = {
 		}
 
 		browser.tabs.create({
-      "url": url
+      "url": url,
+      "discarded": discarded
     });
 
 	},

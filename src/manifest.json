@@ -3,7 +3,14 @@
   "manifest_version": 2,
   "name": "Custom context menu searches",
   "description": "Customizable context menu search items.",
-  "version": "2.3",
+  "version": "2.4",
+  "browser_specific_settings": {
+    "gecko": {
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
   
   "icons": {
     "48": "icons/icon-48.png"

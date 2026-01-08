@@ -1,0 +1,42 @@
+{
+  "context_menu_items": [
+    {
+      "title": "Search all (no groups)",
+      "action": "2"
+    },
+    {
+      "title": "Search all",
+      "action": "3"
+    },
+    {
+      "separator": "separator"
+    },
+    {
+      "title": "Examples https",
+      "urls": [
+        "https://www.example.com/?search=",
+        "https://www.example.com/?search=%s",
+        "https://www.example.com/?search=%s&foo=bar"
+      ]
+    },
+    {
+      "title": "Example",
+      "url": "www.example.com/?search="
+    },
+    {
+      "title": "Example (%s)",
+      "url": "www.example.com/?search=%s"
+    },
+    {
+      "title": "Example foo",
+      "url": "www.example.com/?search=%s&foo=bar"
+    },
+    {
+      "separator": "separator"
+    },
+    {
+      "title": "Options page",
+      "action": "1"
+    }
+  ]
+}

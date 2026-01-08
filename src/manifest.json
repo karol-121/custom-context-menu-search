@@ -22,8 +22,7 @@
       "background/contextMenuController.js",
       "background/downloadController.js",
       "background/dataController.js",
-      "background/main.js",
-      "tests/testData.js"
+      "background/main.js"
     ]
   },
 

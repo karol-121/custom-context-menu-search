@@ -45,7 +45,7 @@ async function getGroup() {
 
 	for (url of itemManager.getUrls()) {
 
-		list.printUrl(url);
+		list.printSingle(-1, url);
 
 	}
 

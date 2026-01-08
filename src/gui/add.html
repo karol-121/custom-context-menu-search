@@ -30,21 +30,24 @@
 	<div class="width-60">
 		<label class="block-element" for="title">Name:</label>
 		<input class="input-text width-100" id="title-field" type="text" name="title" placeholder="Example" pattern=".{1,30}">
-		<label for="action" class="block-element">Action:</label>
-		<select id="action-select" class="input-text width-100" name="action">
-			<option value="">Custom url</option>
-			<option value="%all%">Open all (excluding groups)</option>
-			<option value="%all_all%">Open all (including groups)</option>
-			<option value="%options%">Open manage page</option>
+		<label for="handling" class="block-element">Action:</label>
+		<select id="handling-select" class="input-text width-100" name="handling">
+			<option value="0">Custom url</option>
+			<option value="2">Open all (excluding groups)</option>
+			<option value="3">Open all (including groups)</option>
+			<option value="1">Open manage page</option>
 		</select>
-		<label class="block-element" for="url">Url:</label>
-		<input class="input-text width-100" id="url-field" type="text" name="url" placeholder="www.example.com/?q=%s" pattern="\S{3,200}">
-		<span class="txt-secondary block-element">Use "%s" as a wildcard for search value in links.</span>
+		<div id="url-fieldset">
+			<label class="block-element" for="url">Url:</label>
+			<input class="input-text width-100" id="url-field" type="text" name="url" placeholder="www.example.com/?q=%s" pattern="\S{3,200}">
+			<span class="txt-secondary block-element">Use "%s" as a wildcard for search value in links.</span>
+		</div>
 		<button id="submit-button" class="btn btn-hover btn-primary">Add</button>
 	</div>
 
 	<script src="../utils/random-id.js"></script>
 	<script src="../objects/ContextMenuItem.js"></script>
+	<script src="../objects/ContextMenuHandling.js"></script>
 	<script src="lib/localization.js"></script>
 	<script src="lib/admonitions.js"></script>
 	<script src="js/add.js"></script>

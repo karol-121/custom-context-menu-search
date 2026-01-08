@@ -32,21 +32,28 @@ async function getUserDataFromStorage() {
 
 		if (ItemManager.isGroup(item)) {
 
-			list.printGroup(item);
+			list.printDoubleMuted(item.id, item.title, "Group");
 			continue;
 
 		}
 
 		if (ItemManager.isSeparator(item)) {
 
-			list.printSeparator(item);
+			list.printSeparator(item.id);
 			continue;
 
 		}
 
+		if (ItemManager.isHandling(item)) {
+
+			list.printDoubleMuted(item.id, item.title, "Action");
+			continue;
+			
+		}
+
 		if (ItemManager.isItem(item)) {
 
-			list.printItem(item);
+			list.printDouble(item.id, item.title, item.action);
 			continue;
 
 		}
@@ -67,7 +74,7 @@ async function addSeparator() {
 
 	} 
 
-	list.printSeparator(separator);
+	list.printSeparator(separator.id);
 
 }
 
@@ -148,7 +155,7 @@ async function addPresetItem(title) {
 
 	}
 
-	list.printItem(item);
+	list.printDouble(item.id, item.title, item.action);
 
 }
 

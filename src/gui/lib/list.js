@@ -108,18 +108,18 @@ const list = {
 
 	},
 
-	printUrl(url) {
+	printSingle(id, title) {
 		const li = document.createElement('li');
 			li.className = "margin-03";
 
 		const button = document.createElement('button');
 			button.className = ("flex-element width-100 btn-small btn-secondary btn-hover");
-			button.setAttribute("data-id","-1");
+			button.setAttribute("data-id", id);
 			button.onclick = (e) => this.onClick(e);
 
 		const div = document.createElement('div');
 			div.className = "flex-grow-1 margin-03-y";
-			div.innerText = url;
+			div.innerText = title;
 
 		button.appendChild(div);
 		li.appendChild(button);
@@ -129,13 +129,13 @@ const list = {
 
 	},
 
-	printSeparator(separator) {
+	printSeparator(id) {
 
 		const li = document.createElement('li');
 			li.className = "margin-03";
 
 		const button = document.createElement('button');
-			button.setAttribute("data-id", separator.id);
+			button.setAttribute("data-id", id);
 			button.className = ("flex-element width-100 btn-small btn-secondary btn-hover")
 			button.onclick = (e) => this.onClick(e);
 
@@ -149,23 +149,26 @@ const list = {
 
 	},
 
-	printGroup(group) {
+	printDoubleMuted(id, title, undertitle) {
 
 		const li = document.createElement('li');
 			li.className = "margin-03";
 
 		const button = document.createElement('button');
-			button.setAttribute("data-id", group.id);
+			button.setAttribute("data-id", id);
 			button.className = ("flex-element width-100 btn-small btn-secondary btn-hover")
 			button.onclick = (e) => this.onClick(e);
 
 		const title_div = document.createElement('div');
 			title_div.className = "flex-grow-1 margin-03-y no-wrap width-30";
-			title_div.innerText = item.title;
+			title_div.innerText = title;
+
+		const italic = document.createElement('i');
+			italic.innerText = undertitle;
 
 		const url_div = document.createElement('div');
 			url_div.className = "flex-grow-1 margin-03-y txt-secondary no-wrap width-60";
-			url_div.innerHTML = "<i>Group</i>";
+			url_div.appendChild(italic);
 
 		button.appendChild(title_div);
 		button.appendChild(url_div);
@@ -176,23 +179,23 @@ const list = {
 
 	},
 
-	printItem(item) {
+	printDouble(id, title, undertitle) {
 
 		const li = document.createElement('li');
 			li.className = "margin-03";
 
 		const button = document.createElement('button');
-			button.setAttribute("data-id", item.id);
+			button.setAttribute("data-id", id);
 			button.className = ("flex-element width-100 btn-small btn-secondary btn-hover")
 			button.onclick = (e) => this.onClick(e);
 
 		const title_div = document.createElement('div');
 			title_div.className = "flex-grow-1 margin-03-y no-wrap width-30";
-			title_div.innerText = item.title;
+			title_div.innerText = title;
 
 		const url_div = document.createElement('div');
 			url_div.className = "flex-grow-1 margin-03-y txt-secondary no-wrap width-60";
-			url_div.innerText = item.action;
+			url_div.innerText = undertitle;
 
 		button.appendChild(title_div);
 		button.appendChild(url_div);

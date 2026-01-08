@@ -13,6 +13,7 @@
     "scripts":[
       "utils/random-id.js",
       "utils/compose-url.js",
+      "objects/ContextMenuHandling.js",
       "objects/ContextMenuItem.js",
       "objects/ContextMenuGroup.js",
       "objects/ContextMenuSeparator.js",

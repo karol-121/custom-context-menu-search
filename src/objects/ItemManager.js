@@ -12,6 +12,12 @@ class ItemManager {
 
 	}
 
+	static isHandling(item) {
+
+		return !(!item.handling);
+
+	}
+
 	static isSeparator(item) {
 
 		return item.type === "separator";
@@ -63,6 +69,18 @@ class ItemManager {
 	getAction() {
 
 		return this.item.action;
+
+	}
+
+	setHandling(handling) {
+
+		this.item.handling = handling; 
+
+	}
+
+	getHandling() {
+
+		return this.item.handling
 
 	}
 
@@ -139,6 +157,12 @@ class ItemManager {
 	isItem() {
 
 		return ItemManager.isItem(this.item);		
+
+	}
+
+	isHandling() {
+
+		return ItemManager.isHandling(this.item);
 
 	}
 

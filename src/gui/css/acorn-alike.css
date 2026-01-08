@@ -66,6 +66,10 @@ hr {
 	align-items: center;
 }
 
+.hidden-element {
+	display: none;
+}
+
 .flex-1 {
 	flex: 1;
 }

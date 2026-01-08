@@ -50,6 +50,32 @@ const file = {
 
 		for (importItem of importJSON.context_menu_items) {
 
+			if (importItem.action) {
+
+				if (!ContextMenuHandling.validateTitle(importItem.title)) {
+
+					userItems.error = true;
+					userItems.errorMessage = `(Item: ${itemCount}) ${MESSAGE_INVALID_TITLE}`;
+					return userItems;
+
+				}
+
+				if (!ContextMenuHandling.validateHandling(importItem.action)) {
+
+					userItems.error = true;
+					userItems.errorMessage = `(Item: ${itemCount}) ${MESSAGE_INVALID_HANDLING}`;
+					return userItems;
+
+				}
+
+				let handling = new ContextMenuHandling(importItem.title, importItem.action);
+
+				userItems.items.push(handling.export());
+				itemCount++;
+				continue;
+
+			}
+
 			if (importItem.separator) {
 
 				let separator = new ContextMenuSeparator();
@@ -65,7 +91,7 @@ const file = {
 				if (!ContextMenuGroup.validateTitle(importItem.title)) {
 					
 					userItems.error = true;
-					userItems.errorMessage = `(Item: "${itemCount}") ${MESSAGE_INVALID_TITLE}`;
+					userItems.errorMessage = `(Item: ${itemCount}) ${MESSAGE_INVALID_TITLE}`;
 					return userItems;
 
 				}
@@ -73,7 +99,7 @@ const file = {
 				if (!ContextMenuGroup.validateUrls(importItem.urls)) {
 					
 					userItems.error = true;
-					userItems.errorMessage = `(Item: "${itemCount}") ${MESSAGE_INVALID_URL}`; //todo error message
+					userItems.errorMessage = `(Item: ${itemCount}) ${MESSAGE_INVALID_URL}`;
 					return userItems;
 
 				}
@@ -91,7 +117,7 @@ const file = {
 				if (!ContextMenuItem.validateTitle(importItem.title)) {
 
 					userItems.error = true;
-					userItems.errorMessage = `(Item: "${itemCount}") ${MESSAGE_INVALID_TITLE}`;
+					userItems.errorMessage = `(Item: ${itemCount}) ${MESSAGE_INVALID_TITLE}`;
 					return userItems;
 
 				}
@@ -99,7 +125,7 @@ const file = {
 				if (!ContextMenuItem.validateUrl(importItem.url)) {
 
 					userItems.error = true;
-					userItems.errorMessage = `(Item: "${itemCount}") ${MESSAGE_INVALID_URL}`;
+					userItems.errorMessage = `(Item: ${itemCount}) ${MESSAGE_INVALID_URL}`;
 					return userItems;
 
 				}
@@ -108,9 +134,13 @@ const file = {
 
 				userItems.items.push(item.export());
 				itemCount++;
+				continue;
 				
 			}
 
+			userItems.error = true;
+			userItems.errorMessage = `(Item: ${itemCount}) ${MESSAGE_INVALID_ITEM}`;
+			return userItems;
 
 		}
 
@@ -133,6 +163,16 @@ const file = {
 		for (item of userData.items) {
 
 			const exportItem = {};
+
+			if (ItemManager.isHandling(item)) {
+
+				exportItem.title = item.title;
+				exportItem.action = item.handling;
+
+				exportJSON.context_menu_items.push(exportItem);
+				continue;
+
+			}
 
 			if (ItemManager.isGroup(item)) {
 

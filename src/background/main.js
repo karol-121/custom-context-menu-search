@@ -15,7 +15,7 @@ async function setContextMenuItems() {
 	//if no data from storage -> create shortcut as default
 	if (!userContextMenuItems.items || userContextMenuItems.items.length === 0) {
 
-		let defaultItem = new ContextMenuItem("Create new...", "%options%");
+		let defaultItem = new ContextMenuHandling("Create new...", 1);
 		userContextMenuItems.items = [defaultItem.export()];
 
 	}
@@ -73,7 +73,7 @@ function onContextMenusClicked(info) {
 	}
 
 
-	if (clickedMenuItem.action === "%all%") {
+	if (clickedMenuItem.handling == 2) {
 
 		for (item of userContextMenuItems.items) {
 
@@ -89,7 +89,7 @@ function onContextMenusClicked(info) {
 
 	}
 
-	if (clickedMenuItem.action === "%all_all%") {
+	if (clickedMenuItem.handling == 3) {
 
 		for (item of userContextMenuItems.items) {
 
@@ -111,7 +111,7 @@ function onContextMenusClicked(info) {
 
 	}
 
-	if (clickedMenuItem.action === "%options%") {
+	if (clickedMenuItem.handling == 1) {
 
 		tabController.setOptionsPage();
 		return;

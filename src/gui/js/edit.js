@@ -1,5 +1,8 @@
 const titleField = document.getElementById("title-field");
 const urlField = document.getElementById("url-field");
+const urlFieldset = document.getElementById("url-fieldset");
+const handlingFieldset = document.getElementById("handling-fieldset");
+const handlingSelect = document.getElementById("handling-select");
 const submitButton = document.getElementById("submit-button");
 const deleteButton = document.getElementById("delete-button");
 const cancelButton = document.getElementById("cancel-button");
@@ -21,26 +24,31 @@ async function getItem() {
 	item = await browser.runtime.sendMessage({action: "getItem", payload: id});
 	itemManager.setItem(item);
 
-	if (!itemManager.isItem()) {
+	if (itemManager.isHandling()) {
 		
-		admonitions.showAdmonition(MESSAGE_INVALID_ITEM, "error");
+		titleField.value = itemManager.getTitle();
+		handlingSelect.value = itemManager.getHandling();
+
+		urlFieldset.classList.add("hidden-element");
 		return;
 
 	}
 
-	titleField.value = itemManager.getTitle();
-	urlField.value = itemManager.getAction();
+	if (itemManager.isItem()) {
+
+		titleField.value = itemManager.getTitle();
+		urlField.value = itemManager.getAction();
+
+		handlingFieldset.classList.add("hidden-element");
+		return;
+
+	}
+
+	admonitions.showAdmonition(MESSAGE_INVALID_ITEM, "error");
 
 }
 
 async function editItem() {
-
-	if (!itemManager.isItem()) {
-
-		admonitions.showAdmonition(MESSAGE_INVALID_ITEM, "error");
-		return;
-		
-	}
 
 	//add required attribute after submiting to prevent :invalid pseudoclass being applied before user input
 	titleField.setAttribute("required", "");
@@ -78,6 +86,35 @@ async function editItem() {
 
 }
 
+async function editHandling() {
+
+	//add required attribute after submiting to prevent :invalid pseudoclass being applied before user input
+	titleField.setAttribute("required", "");
+
+	if (!titleField.checkValidity()) {
+
+		titleField.reportValidity();
+		admonitions.showAdmonition(MESSAGE_INVALID_TITLE,"error");
+		return;
+
+	}
+
+	itemManager.setTitle(titleField.value);
+	itemManager.setHandling(handlingSelect.value);
+
+	let success = await browser.runtime.sendMessage({action: "editItem", payload: itemManager.getItem()});
+
+	if (success) {
+
+		window.location.replace("manage.html");
+		return;
+
+	}
+
+	admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+
+}
+
 async function deleteItem() {
 
 	if (!itemManager.isItem()) {
@@ -100,13 +137,33 @@ async function deleteItem() {
 
 }
 
+function submit() {
+
+	if (itemManager.isHandling()) {
+
+		editHandling();
+		return;
+
+	}
+
+	if (itemManager.isItem()) {
+
+		editItem();
+		return;
+		
+	}
+
+	admonitions.showAdmonition(MESSAGE_INVALID_ITEM, "error");
+
+}
+
 function cancel() {
 
 	window.location.replace("manage.html");
 
 }
 
-submitButton.onclick = editItem;
+submitButton.onclick = submit;
 deleteButton.onclick = deleteItem;
 cancelButton.onclick = cancel;
 

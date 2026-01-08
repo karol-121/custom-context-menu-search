@@ -1,6 +1,7 @@
 const titleField = document.getElementById("title-field");
+const urlFieldset = document.getElementById("url-fieldset");
 const urlField = document.getElementById("url-field");
-const actionSelect = document.getElementById("action-select");
+const handlingSelect = document.getElementById("handling-select");
 const submitButton = document.getElementById("submit-button");
 const cancelButton = document.getElementById("cancel-button");
 
@@ -40,9 +41,58 @@ async function addItem() {
 
 }
 
-function changeAction() {
+async function addHandling() {
 
-	urlField.value = actionSelect.value;
+	//add required attribute after submiting to prevent :invalid pseudoclass being applied before user input
+	titleField.setAttribute("required", "");
+
+	if (!titleField.checkValidity()) {
+
+		titleField.reportValidity();
+		admonitions.showAdmonition(MESSAGE_INVALID_TITLE,"error");
+		return;
+
+	}
+
+	let handling = new ContextMenuHandling(titleField.value, handlingSelect.value);
+	let success = await browser.runtime.sendMessage({action: "addItem", payload: handling.export()});
+
+	if (success) {
+
+		window.location.replace("manage.html");
+		return;
+		
+	}
+
+	admonitions.showAdmonition(MESSAGE_DEFAULT_ERROR, "error");
+
+}
+
+function submit() {
+
+	if (handlingSelect.value > 0) {
+
+		addHandling();
+		return;
+
+	}
+
+	addItem();
+
+}
+
+function changeHandling() {
+	
+	
+	if (handlingSelect.value > 0) {
+
+		urlFieldset.classList.add("hidden-element");
+		return;
+
+	}
+
+	urlFieldset.classList.remove("hidden-element");
+	
 }
 
 function cancel() {
@@ -51,6 +101,6 @@ function cancel() {
 
 }
 
-submitButton.onclick = addItem;
-actionSelect.onchange = changeAction;
+submitButton.onclick = submit;
+handlingSelect.onchange = changeHandling;
 cancelButton.onclick = cancel;

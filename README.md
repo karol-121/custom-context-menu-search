@@ -73,6 +73,14 @@ Note that the .json file size are restricted to 10 000 bytes meaning it is possi
 #### Suggestions:
 The extension include predefined searches that user can make use of. Suggestions are automatically added to the list where they can be modified. As there is more predefined items than it is shown, searching for given item may become helpful. Currently there is around 15 predefined searches which mostly consist of search engines, more may come in the future. 
 
+## Permissions
+Folowing persmissions are required:
+- Access browser tabs - required to open new tabs
+- Download files and read and modify the browser’s download history - required to export user data
+    
+
+
+
 ## Installation
 Available for Firefox via: https://addons.mozilla.org/en-US/firefox/addon/custom-context-menu-searches/
 
